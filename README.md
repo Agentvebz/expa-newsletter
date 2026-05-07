@@ -1,5 +1,3 @@
-# ibu-podx-newsletter
-IBU PODx Monthly Newsletter
 # IBU PODx Newsletter
 
 Monthly newsletter for the **IBU Personalisation, Omnichannel & Digital** team at Eli Lilly.
