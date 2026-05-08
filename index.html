@@ -40,12 +40,33 @@
   }
   .lilly-wordmark { font-family: 'DM Serif Display', serif; color: var(--white); font-size: 22px; letter-spacing: 0.05em; }
   .lilly-wordmark span { color: var(--lilly-red); }
+  .header-top-right { display: flex; align-items: center; gap: 12px; }
   .edition-badge {
     background: var(--lilly-red); color: white; font-size: 11px; font-weight: 700;
     padding: 5px 14px; border-radius: 20px; letter-spacing: 0.08em; text-transform: uppercase;
   }
+  .admin-btn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .admin-btn:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
+  .admin-btn .lock-icon { font-size: 12px; }
+  .admin-btn.logged-in { background: rgba(45,125,70,0.25); border-color: rgba(45,125,70,0.5); color: #7DD895; }
 
-  /* MESH MORPHING GRADIENT - 4 morphing blobs that drift around */
+  /* MESH MORPHING GRADIENT */
   .mesh-bg {
     position: absolute; inset: 0; z-index: 1;
     background: #1A2B4A;
@@ -676,14 +697,530 @@
   .highlight-box { background: linear-gradient(135deg, #FFF8EC, #FFF3E0); border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 14px 0; font-size: 13px; color: var(--slate); }
   .highlight-box strong { color: var(--navy); }
 
+  /* ═══════════════ ADMIN MODAL ═══════════════ */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 20px;
+    animation: overlay-fade 0.3s ease;
+  }
+  .modal-overlay.active { display: flex; }
+  @keyframes overlay-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal-card {
+    background: var(--white);
+    border-radius: 20px;
+    width: 100%; max-width: 440px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    animation: modal-slide 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    position: relative;
+  }
+  @keyframes modal-slide {
+    from { opacity: 0; transform: translateY(40px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-card.large { max-width: 920px; }
+
+  .modal-header {
+    background: linear-gradient(135deg, #1A2B4A 0%, #4A1F5C 100%);
+    padding: 26px 30px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .modal-header::before {
+    content: '🔐';
+    position: absolute;
+    font-size: 130px;
+    opacity: 0.06;
+    right: -10px; top: -30px;
+  }
+  .modal-header.publish::before { content: '📨'; }
+  .modal-header.dashboard::before { content: '📊'; }
+  .modal-tag {
+    display: inline-block;
+    background: rgba(213,43,30,0.2);
+    border: 1px solid rgba(213,43,30,0.4);
+    color: #FF8880;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+  .modal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 4px;
+    position: relative; z-index: 1;
+  }
+  .modal-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    position: relative; z-index: 1;
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.2); }
+
+  .modal-body {
+    padding: 28px 30px;
+  }
+
+  /* PIN PAD */
+  .pin-display {
+    display: flex; gap: 10px; justify-content: center;
+    margin-bottom: 22px;
+  }
+  .pin-dot {
+    width: 50px; height: 56px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    color: var(--navy);
+    background: var(--mist);
+    transition: all 0.2s ease;
+  }
+  .pin-dot.filled {
+    border-color: var(--lilly-red);
+    background: var(--lilly-red-light);
+  }
+  .pin-dot.error {
+    border-color: var(--lilly-red);
+    background: #FEF3F2;
+    animation: shake 0.4s;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+
+  .pin-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .pin-key {
+    background: var(--mist);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 0;
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+  .pin-key:hover { background: var(--white); border-color: var(--lilly-red); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(213,43,30,0.1); }
+  .pin-key:active { transform: translateY(0); }
+  .pin-key.action {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+  }
+  .pin-key.submit {
+    background: var(--lilly-red);
+    color: white;
+    border-color: var(--lilly-red);
+  }
+  .pin-key.submit:hover { background: #B8241A; }
+
+  .pin-error-msg {
+    color: var(--lilly-red);
+    font-size: 12px;
+    text-align: center;
+    margin-top: 12px;
+    font-weight: 600;
+    min-height: 18px;
+  }
+  .pin-hint {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-bottom: 18px;
+  }
+  .pin-hint code {
+    background: var(--mist);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--lilly-red);
+    font-size: 11px;
+  }
+
+  /* ADMIN DASHBOARD */
+  .admin-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    background: var(--mist);
+    padding: 0 30px;
+  }
+  .admin-tab {
+    background: none;
+    border: none;
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .admin-tab:hover { color: var(--navy); }
+  .admin-tab.active {
+    color: var(--lilly-red);
+    border-bottom-color: var(--lilly-red);
+    background: white;
+  }
+
+  .admin-panel { display: none; padding: 26px 30px; max-height: 70vh; overflow-y: auto; }
+  .admin-panel.active { display: block; }
+
+  /* ANALYTICS DASHBOARD */
+  .analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .analytics-stat {
+    background: var(--mist);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .analytics-stat::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent, var(--lilly-red));
+  }
+  .analytics-stat-icon {
+    font-size: 18px; margin-bottom: 6px;
+  }
+  .analytics-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .analytics-stat-label {
+    font-size: 10px;
+    color: var(--text-light);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .analytics-stat-delta {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-top: 6px;
+  }
+
+  .analytics-section-title {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 13px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .analytics-section-title::before {
+    content: '';
+    width: 3px; height: 14px;
+    background: var(--lilly-red);
+    border-radius: 2px;
+  }
+
+  .rating-breakdown {
+    background: var(--mist);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 18px;
+  }
+  .rating-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px; font-size: 12px;
+  }
+  .rating-row:last-child { margin-bottom: 0; }
+  .rating-label {
+    width: 60px;
+    font-weight: 600;
+    color: var(--navy);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .rating-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .rating-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+    border-radius: 99px;
+    transition: width 1s ease;
+  }
+  .rating-count {
+    width: 40px;
+    text-align: right;
+    color: var(--text-light);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+
+  .top-sections-list {
+    background: var(--mist);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 18px;
+  }
+  .top-section-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 12.5px;
+  }
+  .top-section-row:last-child { border-bottom: none; }
+  .top-section-rank {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--lilly-red);
+    width: 24px;
+    text-align: center;
+  }
+  .top-section-name {
+    flex: 1;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .top-section-views {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-light);
+    background: var(--white);
+    padding: 2px 8px;
+    border-radius: 12px;
+  }
+
+  /* PUBLISH FORM */
+  .publish-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label {
+    font-size: 12px; font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .form-label .helper { font-weight: 400; color: var(--text-light); font-size: 11px; }
+  .form-input, .form-textarea, .form-select {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--lilly-red);
+    box-shadow: 0 0 0 3px rgba(213,43,30,0.1);
+  }
+  .form-textarea { resize: vertical; min-height: 70px; font-family: 'DM Sans', sans-serif; }
+
+  .recipient-list {
+    background: var(--mist);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  .recipient-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 6px;
+    border-radius: 8px;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .recipient-row:hover { background: white; }
+  .recipient-row input[type="checkbox"] { cursor: pointer; accent-color: var(--lilly-red); width: 16px; height: 16px; }
+  .recipient-avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--lilly-red), #FF6B6B);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .recipient-info { flex: 1; }
+  .recipient-name { font-weight: 600; color: var(--navy); font-size: 12.5px; }
+  .recipient-email { color: var(--text-light); font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+
+  .recipient-controls {
+    display: flex; gap: 8px;
+    margin-bottom: 10px;
+  }
+  .ctrl-btn {
+    background: var(--mist);
+    border: 1px solid var(--border);
+    color: var(--navy);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.04em;
+    transition: all 0.15s;
+  }
+  .ctrl-btn:hover { background: var(--white); border-color: var(--lilly-red); color: var(--lilly-red); }
+
+  .form-footer {
+    display: flex; gap: 10px; justify-content: flex-end;
+    margin-top: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    letter-spacing: 0.03em;
+  }
+  .btn-secondary {
+    background: var(--mist);
+    border-color: var(--border);
+    color: var(--navy);
+  }
+  .btn-secondary:hover { background: white; border-color: var(--navy); }
+  .btn-primary {
+    background: var(--lilly-red);
+    color: white;
+    box-shadow: 0 4px 12px rgba(213,43,30,0.25);
+  }
+  .btn-primary:hover { background: #B8241A; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(213,43,30,0.35); }
+  .btn-primary:disabled { background: var(--border); color: var(--text-light); cursor: not-allowed; box-shadow: none; transform: none; }
+
+  /* SEND PROGRESS */
+  .send-progress {
+    background: var(--mist);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 14px;
+    display: none;
+  }
+  .send-progress.active { display: block; animation: fade-in 0.3s ease; }
+  .send-bar-track {
+    height: 10px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .send-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--lilly-red), #FF6B6B);
+    border-radius: 99px;
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .send-status {
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--text-light);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .send-log {
+    margin-top: 12px;
+    max-height: 140px; overflow-y: auto;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--slate);
+  }
+  .send-log .log-line { margin-bottom: 4px; }
+  .send-log .log-line.success { color: var(--green); }
+  .send-log .log-line.info { color: var(--purple); }
+
+  .send-success {
+    background: linear-gradient(135deg, #EBF8F0, #D1F2DC);
+    border: 1px solid #86E1A6;
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-align: center;
+    margin-top: 14px;
+    display: none;
+  }
+  .send-success.active { display: block; animation: fade-in 0.4s ease; }
+  .send-success-icon {
+    font-size: 36px; margin-bottom: 6px;
+  }
+  .send-success-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; color: var(--green);
+    margin-bottom: 4px;
+  }
+  .send-success-msg { font-size: 12.5px; color: var(--slate); }
+
   @media (max-width: 720px) {
     .header-hero { grid-template-columns: 1fr; gap: 24px; }
-    .kpi-grid, .stat-row { grid-template-columns: 1fr 1fr; }
+    .kpi-grid, .stat-row, .analytics-grid { grid-template-columns: 1fr 1fr; }
     .quick-grid, .market-grid, .achievement-grid, .learn-grid, .people-grid, .two-col, .countdown-grid { grid-template-columns: 1fr 1fr; }
     .hero-title { font-size: 30px; }
     .flip-front { grid-template-columns: 1fr; text-align: center; }
     .flip-portrait { margin: 0 auto; }
     .section { padding: 32px 24px; }
+    .modal-card.large { max-width: 100%; }
   }
 </style>
 </head>
@@ -695,7 +1232,13 @@
   <div class="header">
     <div class="header-top">
       <div class="lilly-wordmark">Eli <span>Lilly</span></div>
-      <span class="edition-badge">April 2026 · Vol. 01</span>
+      <div class="header-top-right">
+        <span class="edition-badge">April 2026 · Vol. 01</span>
+        <button class="admin-btn" id="adminBtn" onclick="openAdminModal()">
+          <span class="lock-icon">🔒</span>
+          <span id="adminBtnLabel">Admin</span>
+        </button>
+      </div>
     </div>
     <div class="mesh-bg">
       <div class="mesh-blob mesh-blob-1"></div>
@@ -832,14 +1375,12 @@
               <stop offset="100%" stop-color="#2B7A8C" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <!-- Grid -->
           <g class="chart-grid">
             <line x1="0"   y1="40"  x2="600" y2="40"/>
             <line x1="0"   y1="80"  x2="600" y2="80"/>
             <line x1="0"   y1="120" x2="600" y2="120"/>
             <line x1="0"   y1="160" x2="600" y2="160"/>
           </g>
-          <!-- X-axis labels -->
           <g class="chart-axis">
             <text x="40"  y="195" text-anchor="middle">Nov</text>
             <text x="140" y="195" text-anchor="middle">Dec</text>
@@ -848,13 +1389,10 @@
             <text x="440" y="195" text-anchor="middle">Mar</text>
             <text x="540" y="195" text-anchor="middle">Apr</text>
           </g>
-          <!-- Areas -->
           <path class="chart-area" id="redArea" d="M40,140 L140,125 L240,110 L340,90 L440,68 L540,44 L540,180 L40,180 Z" fill="url(#redArea)"/>
           <path class="chart-area" id="tealArea" d="M40,160 L140,150 L240,135 L340,115 L440,95 L540,80 L540,180 L40,180 Z" fill="url(#tealArea)"/>
-          <!-- Lines -->
           <path class="chart-line" id="redLine"  d="M40,140 L140,125 L240,110 L340,90 L440,68 L540,44"  stroke="#D52B1E"/>
           <path class="chart-line" id="tealLine" d="M40,160 L140,150 L240,135 L340,115 L440,95 L540,80" stroke="#2B7A8C"/>
-          <!-- Dots -->
           <g id="chartDots">
             <circle class="chart-dot" cx="40"  cy="140" r="4" fill="#D52B1E"/>
             <circle class="chart-dot" cx="140" cy="125" r="4" fill="#D52B1E"/>
@@ -873,7 +1411,6 @@
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;">
-        <!-- EQUALIZER WIDGET -->
         <div class="equalizer-card">
           <div class="eq-header">
             <div class="eq-title"><span class="eq-pulse-dot"></span> Live Engagement Activity</div>
@@ -882,7 +1419,6 @@
           <div class="eq-bars" id="eqBars"></div>
         </div>
 
-        <!-- HEATMAP CALENDAR -->
         <div class="heatmap-card">
           <div class="heatmap-header">
             <div class="heatmap-title">📅 April 2026 — Team Activity</div>
@@ -1163,6 +1699,254 @@
 
 </div>
 
+<!-- ════════════════════════════════════════════════ -->
+<!-- ════════ ADMIN LOGIN MODAL ═══════════════════ -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeAdminModal()">✕</button>
+      <span class="modal-tag">🔒 Restricted Access</span>
+      <div class="modal-title">Admin Login</div>
+      <div class="modal-sub">Enter your 4-digit admin code to unlock analytics & publishing tools</div>
+    </div>
+    <div class="modal-body">
+      <div class="pin-display" id="pinDisplay">
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+        <div class="pin-dot"></div>
+      </div>
+      <div class="pin-error-msg" id="pinError">&nbsp;</div>
+      <div class="pin-pad" id="pinPad">
+        <div class="pin-key" data-key="1">1</div>
+        <div class="pin-key" data-key="2">2</div>
+        <div class="pin-key" data-key="3">3</div>
+        <div class="pin-key" data-key="4">4</div>
+        <div class="pin-key" data-key="5">5</div>
+        <div class="pin-key" data-key="6">6</div>
+        <div class="pin-key" data-key="7">7</div>
+        <div class="pin-key" data-key="8">8</div>
+        <div class="pin-key" data-key="9">9</div>
+        <div class="pin-key action" data-key="clear">CLR</div>
+        <div class="pin-key" data-key="0">0</div>
+        <div class="pin-key action" data-key="back">⌫</div>
+      </div>
+      <div class="pin-hint" style="margin-top:18px;">Hint: For demo purposes the code is <code>1234</code></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- ════════ ADMIN DASHBOARD MODAL ═══════════════ -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="dashboardModal">
+  <div class="modal-card large">
+    <div class="modal-header dashboard">
+      <button class="modal-close" onclick="closeDashboardModal()">✕</button>
+      <span class="modal-tag">✅ Authenticated · Admin</span>
+      <div class="modal-title">PODx Admin Dashboard</div>
+      <div class="modal-sub">Analytics, distribution, and editorial tools</div>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab(this,'panelAnalytics')">📊 Analytics</button>
+      <button class="admin-tab" onclick="switchAdminTab(this,'panelPublish')">📨 Publish</button>
+      <button class="admin-tab" onclick="switchAdminTab(this,'panelHistory')">🕓 History</button>
+    </div>
+
+    <!-- ANALYTICS PANEL -->
+    <div class="admin-panel active" id="panelAnalytics">
+      <div class="analytics-grid">
+        <div class="analytics-stat" style="--accent:#D52B1E;">
+          <div class="analytics-stat-icon">👀</div>
+          <div class="analytics-stat-num">1,247</div>
+          <div class="analytics-stat-label">Total Views</div>
+          <span class="analytics-stat-delta delta-up">▲ +18% MoM</span>
+        </div>
+        <div class="analytics-stat" style="--accent:#2B7A8C;">
+          <div class="analytics-stat-icon">🧑‍💼</div>
+          <div class="analytics-stat-num">312</div>
+          <div class="analytics-stat-label">Unique Readers</div>
+          <span class="analytics-stat-delta delta-up">▲ +24% MoM</span>
+        </div>
+        <div class="analytics-stat" style="--accent:#2D7D46;">
+          <div class="analytics-stat-icon">⭐</div>
+          <div class="analytics-stat-num">4.6</div>
+          <div class="analytics-stat-label">Avg Rating</div>
+          <span class="analytics-stat-delta delta-up">▲ +0.3</span>
+        </div>
+        <div class="analytics-stat" style="--accent:#C8943A;">
+          <div class="analytics-stat-icon">⏱️</div>
+          <div class="analytics-stat-num">4:32</div>
+          <div class="analytics-stat-label">Avg Read Time</div>
+          <span class="analytics-stat-delta delta-flat">→ Steady</span>
+        </div>
+      </div>
+
+      <div class="analytics-section-title">Star Rating Distribution</div>
+      <div class="rating-breakdown">
+        <div class="rating-row">
+          <span class="rating-label">5 ★</span>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:62%;"></div></div>
+          <span class="rating-count">68%</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">4 ★</span>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:42%;"></div></div>
+          <span class="rating-count">22%</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">3 ★</span>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:18%;"></div></div>
+          <span class="rating-count">7%</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">2 ★</span>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:8%;"></div></div>
+          <span class="rating-count">2%</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">1 ★</span>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:4%;"></div></div>
+          <span class="rating-count">1%</span>
+        </div>
+      </div>
+
+      <div class="analytics-section-title">Most Engaging Sections</div>
+      <div class="top-sections-list">
+        <div class="top-section-row">
+          <span class="top-section-rank">1</span>
+          <span class="top-section-name">🌟 Person of the Month (Spotlight)</span>
+          <span class="top-section-views">298 views</span>
+        </div>
+        <div class="top-section-row">
+          <span class="top-section-rank">2</span>
+          <span class="top-section-name">📊 KPI Dashboard</span>
+          <span class="top-section-views">271 views</span>
+        </div>
+        <div class="top-section-row">
+          <span class="top-section-rank">3</span>
+          <span class="top-section-name">🏆 Quarterly Wins</span>
+          <span class="top-section-views">244 views</span>
+        </div>
+        <div class="top-section-row">
+          <span class="top-section-rank">4</span>
+          <span class="top-section-name">🤖 AI & Automation Corner</span>
+          <span class="top-section-views">218 views</span>
+        </div>
+        <div class="top-section-row">
+          <span class="top-section-rank">5</span>
+          <span class="top-section-name">😄 Joke of the Month</span>
+          <span class="top-section-views">196 views</span>
+        </div>
+      </div>
+
+      <div class="analytics-section-title">Engagement by Region</div>
+      <div class="rating-breakdown">
+        <div class="rating-row">
+          <span class="rating-label" style="width:90px;">🇮🇳 BLR</span>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:88%;background:linear-gradient(90deg,#D52B1E,#FF6B6B);"></div></div>
+          <span class="rating-count">186</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label" style="width:90px;">🇺🇸 Indy</span>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:54%;background:linear-gradient(90deg,#2B7A8C,#5BB5C9);"></div></div>
+          <span class="rating-count">94</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label" style="width:90px;">🇬🇧 EU M5</span>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:18%;background:linear-gradient(90deg,#2D7D46,#4ECDC4);"></div></div>
+          <span class="rating-count">22</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label" style="width:90px;">🌍 Other</span>
+          <div class="rating-bar"><div class="rating-bar-fill" style="width:8%;background:linear-gradient(90deg,#5B4FBE,#8B80F9);"></div></div>
+          <span class="rating-count">10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PUBLISH PANEL -->
+    <div class="admin-panel" id="panelPublish">
+      <div class="publish-form">
+        <div class="form-group">
+          <label class="form-label">Subject Line <span class="helper">Shows in inbox</span></label>
+          <input type="text" class="form-input" id="emailSubject" value="📰 PODx Newsletter — April 2026 Edition is here!">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Sender <span class="helper">From address</span></label>
+          <input type="text" class="form-input" id="emailFrom" value="podx-newsletter@lilly.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Pre-header <span class="helper">Inbox preview text (~100 chars)</span></label>
+          <textarea class="form-textarea" id="emailPreheader">The wins, the work, and the people behind them. Your monthly dose of IBU updates is here.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Recipients <span class="helper" id="recipientCount">0 selected</span></label>
+          <div class="recipient-controls">
+            <button type="button" class="ctrl-btn" onclick="selectAllRecipients(true)">Select all</button>
+            <button type="button" class="ctrl-btn" onclick="selectAllRecipients(false)">Clear</button>
+            <button type="button" class="ctrl-btn" onclick="selectByGroup('blr')">BLR team</button>
+            <button type="button" class="ctrl-btn" onclick="selectByGroup('lead')">Leadership</button>
+          </div>
+          <div class="recipient-list" id="recipientList">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Schedule <span class="helper">Pick a delivery time</span></label>
+          <select class="form-select" id="emailSchedule">
+            <option value="now">Send immediately</option>
+            <option value="9am">Tomorrow 9:00 AM IST</option>
+            <option value="june1">June 1, 2026 · 09:00 IST (official launch)</option>
+            <option value="custom">Custom (next iteration)</option>
+          </select>
+        </div>
+
+        <div class="form-footer">
+          <button class="btn btn-secondary" onclick="closeDashboardModal()">Cancel</button>
+          <button class="btn btn-primary" id="sendBtn" onclick="publishNewsletter()">📨 Publish Newsletter</button>
+        </div>
+
+        <!-- Send progress -->
+        <div class="send-progress" id="sendProgress">
+          <div class="send-bar-track"><div class="send-bar-fill" id="sendBarFill"></div></div>
+          <div class="send-status">
+            <span id="sendStatusLeft">Preparing...</span>
+            <span id="sendStatusRight">0%</span>
+          </div>
+          <div class="send-log" id="sendLog"></div>
+        </div>
+
+        <!-- Send success -->
+        <div class="send-success" id="sendSuccess">
+          <div class="send-success-icon">✅</div>
+          <div class="send-success-title">Newsletter Published!</div>
+          <div class="send-success-msg" id="sendSuccessMsg">Successfully delivered to recipients.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORY PANEL -->
+    <div class="admin-panel" id="panelHistory">
+      <div class="analytics-section-title">Recent Sends</div>
+      <div class="top-sections-list" id="historyList">
+        <div class="top-section-row">
+          <span class="top-section-rank">📨</span>
+          <span class="top-section-name">No sends yet — your publish history will appear here</span>
+        </div>
+      </div>
+      <div style="margin-top:18px;font-size:12px;color:var(--text-light);text-align:center;line-height:1.6;">
+        💡 In production, this would integrate with Outlook / Power Automate via Microsoft Graph API to track real delivery, opens, and click-throughs per recipient.
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   // ═══════════════ LIVE TIMEZONE CLOCKS ═══════════════
   function fmtTime(date, tz) {
@@ -1202,8 +1986,7 @@
   setInterval(updateClocks, 1000);
 
   // ═══════════════ COUNTDOWN TIMER ═══════════════
-  const launchDate = new Date('2026-06-01T03:30:00Z'); // 09:00 IST = 03:30 UTC
-  let prev = { d:null,h:null,m:null,s:null };
+  const launchDate = new Date('2026-06-01T03:30:00Z');
   function pad(n){ return String(n).padStart(2,'0'); }
   function flipDigit(el, val){
     if (el.textContent !== val) {
@@ -1241,7 +2024,6 @@
     bar.style.animationDelay = (Math.random() * 0.5).toFixed(2) + 's';
     eqBars.appendChild(bar);
   }
-  // Live "events / hr" simulator
   const eqStatus = document.getElementById('eqStatus');
   setInterval(() => {
     const v = (12 + Math.random() * 1.2).toFixed(1);
@@ -1257,15 +2039,13 @@
     el.textContent = d;
     heatmapGrid.appendChild(el);
   });
-  // April 2026 — April 1, 2026 is a Wednesday → leading offset 2 (Mon, Tue empty)
-  const aprilStart = 2; // 0=Mon
+  const aprilStart = 2;
   const aprilDays = 30;
   for (let i = 0; i < aprilStart; i++) {
     const el = document.createElement('div');
     el.className = 'hm-cell empty';
     heatmapGrid.appendChild(el);
   }
-  // Activity intensity by day (simulated based on real April activity)
   const intensity = [
     1,2,3,1,1, 0,0,
     2,3,4,3,2, 0,0,
@@ -1282,7 +2062,7 @@
     heatmapGrid.appendChild(el);
   }
 
-  // ═══════════════ CONSTELLATION (canvas particles) ═══════════════
+  // ═══════════════ CONSTELLATION ═══════════════
   const canvas = document.getElementById('constellation');
   const ctx = canvas.getContext('2d');
   let cw, ch, particles;
@@ -1318,7 +2098,6 @@
       ctx.fillStyle = 'rgba(255,107,107,0.7)';
       ctx.fill();
     });
-    // Connect nearby
     for (let i = 0; i < particles.length; i++) {
       for (let j = i+1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
@@ -1433,6 +2212,279 @@
       document.body.appendChild(c);
       c.addEventListener('animationend', () => c.remove());
     }
+  }
+
+  // ════════════════════════════════════════════════
+  // ════════ ADMIN LOGIN SYSTEM ═══════════════════
+  // ════════════════════════════════════════════════
+  const ADMIN_CODE = '1234';
+  let isLoggedIn = false;
+  let currentPin = '';
+  const loginModal = document.getElementById('loginModal');
+  const dashboardModal = document.getElementById('dashboardModal');
+  const pinDisplay = document.getElementById('pinDisplay');
+  const pinError = document.getElementById('pinError');
+  const adminBtn = document.getElementById('adminBtn');
+  const adminBtnLabel = document.getElementById('adminBtnLabel');
+
+  function openAdminModal() {
+    if (isLoggedIn) {
+      // Already logged in → open dashboard directly
+      dashboardModal.classList.add('active');
+      return;
+    }
+    currentPin = '';
+    updatePinDisplay();
+    pinError.innerHTML = '&nbsp;';
+    loginModal.classList.add('active');
+  }
+  function closeAdminModal() {
+    loginModal.classList.remove('active');
+  }
+  function closeDashboardModal() {
+    dashboardModal.classList.remove('active');
+  }
+  function updatePinDisplay() {
+    const dots = pinDisplay.querySelectorAll('.pin-dot');
+    dots.forEach((dot, i) => {
+      dot.classList.remove('error');
+      if (i < currentPin.length) {
+        dot.classList.add('filled');
+        dot.textContent = '●';
+      } else {
+        dot.classList.remove('filled');
+        dot.textContent = '';
+      }
+    });
+  }
+  function tryLogin() {
+    if (currentPin === ADMIN_CODE) {
+      isLoggedIn = true;
+      adminBtn.classList.add('logged-in');
+      adminBtnLabel.textContent = 'Admin ✓';
+      adminBtn.querySelector('.lock-icon').textContent = '🔓';
+      closeAdminModal();
+      setTimeout(() => {
+        dashboardModal.classList.add('active');
+      }, 200);
+    } else {
+      // Wrong code
+      pinDisplay.querySelectorAll('.pin-dot').forEach(d => d.classList.add('error'));
+      pinError.textContent = '❌ Incorrect code. Try again.';
+      setTimeout(() => {
+        currentPin = '';
+        updatePinDisplay();
+        pinError.innerHTML = '&nbsp;';
+      }, 900);
+    }
+  }
+  // Pin pad clicks
+  document.getElementById('pinPad').addEventListener('click', (e) => {
+    const k = e.target.closest('.pin-key');
+    if (!k) return;
+    const key = k.dataset.key;
+    if (key === 'back') {
+      currentPin = currentPin.slice(0, -1);
+      updatePinDisplay();
+    } else if (key === 'clear') {
+      currentPin = '';
+      updatePinDisplay();
+      pinError.innerHTML = '&nbsp;';
+    } else if (currentPin.length < 4) {
+      currentPin += key;
+      updatePinDisplay();
+      if (currentPin.length === 4) {
+        setTimeout(tryLogin, 200);
+      }
+    }
+  });
+  // Keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (!loginModal.classList.contains('active')) return;
+    if (/^\d$/.test(e.key) && currentPin.length < 4) {
+      currentPin += e.key;
+      updatePinDisplay();
+      if (currentPin.length === 4) setTimeout(tryLogin, 200);
+    } else if (e.key === 'Backspace') {
+      currentPin = currentPin.slice(0, -1);
+      updatePinDisplay();
+    } else if (e.key === 'Escape') {
+      closeAdminModal();
+    }
+  });
+  // Click overlay to close
+  loginModal.addEventListener('click', (e) => { if (e.target === loginModal) closeAdminModal(); });
+  dashboardModal.addEventListener('click', (e) => { if (e.target === dashboardModal) closeDashboardModal(); });
+
+  // ════════════════════════════════════════════════
+  // ════════ ADMIN DASHBOARD - TABS ═══════════════
+  // ════════════════════════════════════════════════
+  function switchAdminTab(btn, panelId) {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  // ════════════════════════════════════════════════
+  // ════════ PUBLISH NEWSLETTER ═══════════════════
+  // ════════════════════════════════════════════════
+  const teamMembers = [
+    { name: 'Vaibhav Rachalwar', email: 'vaibhav.rachalwar@lilly.com', group: ['blr','lead'] },
+    { name: 'Shruti Choubey',    email: 'shruti.choubey@lilly.com',    group: ['blr','lead'] },
+    { name: 'Aditya Sharma',     email: 'aditya.sharma@lilly.com',     group: ['blr'] },
+    { name: 'Priya Iyer',        email: 'priya.iyer@lilly.com',        group: ['blr'] },
+    { name: 'Rohit Mehta',       email: 'rohit.mehta@lilly.com',       group: ['blr'] },
+    { name: 'Anjali Verma',      email: 'anjali.verma@lilly.com',      group: ['blr'] },
+    { name: 'Karan Singh',       email: 'karan.singh@lilly.com',       group: ['blr'] },
+    { name: 'Megha Patel',       email: 'megha.patel@lilly.com',       group: ['blr'] },
+    { name: 'Daniel Brown',      email: 'daniel.brown@lilly.com',      group: ['indy','lead'] },
+    { name: 'Sarah Johnson',     email: 'sarah.johnson@lilly.com',     group: ['indy','lead'] },
+    { name: 'Michael Chen',      email: 'michael.chen@lilly.com',      group: ['indy'] },
+    { name: 'Emily Roberts',     email: 'emily.roberts@lilly.com',     group: ['indy'] }
+  ];
+
+  const recipientList = document.getElementById('recipientList');
+  function renderRecipients() {
+    recipientList.innerHTML = '';
+    teamMembers.forEach((m, i) => {
+      const initial = m.name.split(' ').map(p=>p[0]).slice(0,2).join('');
+      const row = document.createElement('label');
+      row.className = 'recipient-row';
+      row.innerHTML = `
+        <input type="checkbox" data-idx="${i}" checked>
+        <div class="recipient-avatar">${initial}</div>
+        <div class="recipient-info">
+          <div class="recipient-name">${m.name}</div>
+          <div class="recipient-email">${m.email}</div>
+        </div>
+      `;
+      recipientList.appendChild(row);
+    });
+    updateRecipientCount();
+    recipientList.addEventListener('change', updateRecipientCount);
+  }
+  function updateRecipientCount() {
+    const n = recipientList.querySelectorAll('input[type=checkbox]:checked').length;
+    document.getElementById('recipientCount').textContent = `${n} selected`;
+    document.getElementById('sendBtn').disabled = n === 0;
+  }
+  function selectAllRecipients(state) {
+    recipientList.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = state);
+    updateRecipientCount();
+  }
+  function selectByGroup(group) {
+    recipientList.querySelectorAll('input[type=checkbox]').forEach(c => {
+      const idx = parseInt(c.dataset.idx);
+      c.checked = teamMembers[idx].group.includes(group);
+    });
+    updateRecipientCount();
+  }
+  renderRecipients();
+
+  // History tracking
+  const sendHistory = [];
+
+  function publishNewsletter() {
+    const selected = [...recipientList.querySelectorAll('input[type=checkbox]:checked')]
+      .map(c => teamMembers[parseInt(c.dataset.idx)]);
+    if (selected.length === 0) return;
+
+    const subject = document.getElementById('emailSubject').value.trim();
+    const schedule = document.getElementById('emailSchedule').value;
+
+    // Reset UI
+    document.getElementById('sendBtn').disabled = true;
+    document.getElementById('sendSuccess').classList.remove('active');
+    const progressBox = document.getElementById('sendProgress');
+    const sendLog = document.getElementById('sendLog');
+    const barFill = document.getElementById('sendBarFill');
+    const statusLeft = document.getElementById('sendStatusLeft');
+    const statusRight = document.getElementById('sendStatusRight');
+    progressBox.classList.add('active');
+    sendLog.innerHTML = '';
+    barFill.style.width = '0%';
+
+    // Pseudo-send simulation
+    const total = selected.length;
+    let sent = 0;
+    const startTime = Date.now();
+
+    function logLine(msg, cls) {
+      const div = document.createElement('div');
+      div.className = 'log-line ' + (cls || '');
+      const ts = new Intl.DateTimeFormat('en-GB', { hour:'2-digit', minute:'2-digit', second:'2-digit' }).format(new Date());
+      div.textContent = `[${ts}] ${msg}`;
+      sendLog.appendChild(div);
+      sendLog.scrollTop = sendLog.scrollHeight;
+    }
+
+    logLine(`Connecting to mail relay…`, 'info');
+    setTimeout(() => logLine(`✓ Auth OK · podx-newsletter@lilly.com`, 'success'), 250);
+    setTimeout(() => logLine(`Composing message · subject: "${subject.slice(0,40)}${subject.length>40?'…':''}"`, 'info'), 500);
+
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (sent >= total) {
+          clearInterval(interval);
+          const elapsed = ((Date.now() - startTime)/1000).toFixed(1);
+          logLine(`✓ Done · ${total} message${total>1?'s':''} delivered in ${elapsed}s`, 'success');
+          progressBox.classList.remove('active');
+          const successBox = document.getElementById('sendSuccess');
+          successBox.classList.add('active');
+          document.getElementById('sendSuccessMsg').textContent =
+            `Delivered to ${total} recipient${total>1?'s':''} ${schedule==='now' ? 'just now' : '(scheduled)'} • ${elapsed}s`;
+
+          // Add to history
+          sendHistory.unshift({
+            ts: new Date(),
+            count: total,
+            subject,
+            schedule
+          });
+          renderHistory();
+
+          // Confetti for celebration
+          spawnConfetti();
+          document.getElementById('sendBtn').disabled = false;
+          return;
+        }
+        const recip = selected[sent];
+        sent++;
+        const pct = Math.round((sent/total)*100);
+        barFill.style.width = pct + '%';
+        statusLeft.textContent = `Sending ${sent} of ${total}…`;
+        statusRight.textContent = pct + '%';
+        logLine(`→ ${recip.email}`, 'success');
+      }, 220);
+    }, 800);
+  }
+
+  function renderHistory() {
+    const list = document.getElementById('historyList');
+    if (sendHistory.length === 0) {
+      list.innerHTML = `
+        <div class="top-section-row">
+          <span class="top-section-rank">📨</span>
+          <span class="top-section-name">No sends yet — your publish history will appear here</span>
+        </div>`;
+      return;
+    }
+    list.innerHTML = sendHistory.map((h, i) => {
+      const when = new Intl.DateTimeFormat('en-GB', {
+        day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'
+      }).format(h.ts);
+      return `
+        <div class="top-section-row">
+          <span class="top-section-rank">📨</span>
+          <span class="top-section-name">
+            <strong style="display:block;color:var(--navy);font-size:12.5px;">${h.subject}</strong>
+            <span style="color:var(--text-light);font-size:11px;">${when} · ${h.schedule === 'now' ? 'sent immediately' : 'scheduled'}</span>
+          </span>
+          <span class="top-section-views">${h.count} sent</span>
+        </div>
+      `;
+    }).join('');
   }
 </script>
 </body>
