@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBU PODx | March 2026 — Pilot Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lilly-red: #D52B1E;
+    --lilly-red-dark: #A8221A;
+    --lilly-red-light: #F5E6E5;
+    --navy: #1A2B4A;
+    --navy-mid: #2D4470;
+    --slate: #4A5568;
+    --mist: #F7F8FA;
+    --white: #FFFFFF;
+    --border: #E2E8F0;
+    --gold: #C8943A;
+    --teal: #2B7A8C;
+    --green: #2D7D46;
+    --purple: #5B4FBE;
+    --text: #1A202C;
+    --text-light: #718096;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #ECEEF2;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .email-wrapper {
+    max-width: 760px;
+    margin: 32px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+
+  /* ═══════════════════════════════════════
+     ARCHIVE BANNER (shows this is past edition)
+  ═══════════════════════════════════════ */
+  .archive-banner {
+    background: var(--purple);
+    color: white;
+    padding: 10px 36px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .archive-banner a {
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+  .archive-banner a:hover { opacity: 1; }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .lilly-wordmark {
+    font-family: 'DM Serif Display', serif;
+    color: var(--white);
+    font-size: 22px;
+    letter-spacing: 0.05em;
+  }
+  .lilly-wordmark span { color: var(--lilly-red); }
+  .edition-badge {
+    background: var(--purple);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .header-hero {
+    padding: 52px 36px 44px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #3A5FA0 100%);
+    overflow: hidden;
+  }
+  .hero-bg::before {
+    content:'';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(91,79,190,0.22) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    animation: pulse-glow 4s ease-in-out infinite alternate;
+  }
+  @keyframes pulse-glow {
+    from { transform: scale(1); opacity: 0.6; }
+    to   { transform: scale(1.3); opacity: 1; }
+  }
+  .grid-lines {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .header-hero { position: relative; z-index: 3; }
+  .podx-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(91,79,190,0.18);
+    border: 1px solid rgba(91,79,190,0.4);
+    color: #B0A8F0;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    background: var(--purple); border-radius: 50%;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    color: var(--white);
+    font-size: 46px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .hero-title .accent { color: var(--purple); font-style: italic; }
+  .hero-subtitle {
+    color: rgba(255,255,255,0.65);
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+  .hero-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.55);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .meta-item .dot { color: var(--purple); font-size: 16px; }
+
+  /* SECTIONS */
+  .body-content { background: var(--mist); }
+  .section { padding: 40px 36px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-white { background: var(--white); }
+  .section-mist  { background: var(--mist); }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lilly-red);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* EDITOR'S NOTE */
+  .editor-note {
+    background: var(--navy);
+    color: rgba(255,255,255,0.85);
+    padding: 32px;
+    border-radius: 14px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    position: relative;
+  }
+  .editor-note p { margin-bottom: 14px; }
+  .editor-note p:last-child { margin-bottom: 0; }
+  .editor-sig {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.65);
+    font-size: 12px;
+  }
+  .editor-sig strong { color: white; font-weight: 600; }
+
+  /* KPI GRID */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .kpi-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 20px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(26,43,74,0.08);
+  }
+  .kpi-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .kpi-num.is-purple { color: var(--purple); }
+  .kpi-num.is-teal   { color: var(--teal); }
+  .kpi-label {
+    font-size: 11px;
+    color: var(--text-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .kpi-trend {
+    font-size: 11px;
+    color: var(--green);
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
+  /* SPOTLIGHT CARD */
+  .spotlight-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    color: white;
+    padding: 28px;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .spotlight-card::after {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(91,79,190,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .spotlight-badge {
+    background: rgba(91,79,190,0.2);
+    border: 1px solid rgba(91,79,190,0.5);
+    color: #B0A8F0;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+  .spotlight-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .spotlight-body {
+    color: rgba(255,255,255,0.7);
+    font-size: 13.5px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+  .spotlight-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    position: relative; z-index: 1;
+  }
+  .spot-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* PERSON OF THE MONTH */
+  .person-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .person-avatar {
+    width: 92px; height: 92px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--lilly-red) 100%);
+    color: white;
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .person-text { flex: 1; }
+  .person-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .person-role {
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+  .person-quote {
+    color: var(--slate);
+    font-size: 14px;
+    line-height: 1.55;
+    font-style: italic;
+    border-left: 3px solid var(--lilly-red);
+    padding-left: 14px;
+  }
+
+  /* MILESTONES */
+  .milestone-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .milestone {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--purple);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .milestone-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--purple);
+    min-width: 80px;
+  }
+  .milestone-text {
+    flex: 1;
+    font-size: 14px;
+    color: var(--slate);
+  }
+  .milestone-text strong { color: var(--navy); }
+
+  /* RESOURCES */
+  .resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .resource-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .resource-item:hover {
+    border-color: var(--purple);
+    transform: translateX(3px);
+  }
+  .resource-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .resource-text { flex: 1; }
+  .resource-text .title { font-size: 13.5px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+  .resource-text .desc { font-size: 12px; color: var(--text-light); }
+  .resource-arrow { color: var(--text-light); font-size: 16px; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--navy);
+    padding: 36px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .footer-logo span { color: var(--lilly-red); }
+  .footer-tagline { color: rgba(255,255,255,0.4); font-size: 12px; margin-bottom: 20px; }
+  .footer-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
+  .footer-legal { color: rgba(255,255,255,0.25); font-size: 11px; line-height: 1.6; }
+  .footer-back {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 18px;
+    background: var(--lilly-red);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .footer-back:hover { background: var(--lilly-red-dark); }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .email-wrapper { margin: 16px auto; border-radius: 14px; }
+    .header-hero { padding: 40px 24px 32px; }
+    .hero-title { font-size: 36px; }
+    .section { padding: 32px 24px; }
+    .section-title { font-size: 26px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .person-card { flex-direction: column; text-align: center; }
+    .person-quote { border-left: none; border-top: 3px solid var(--lilly-red); padding-left: 0; padding-top: 12px; }
+    .milestone { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 420px) {
+    .hero-title { font-size: 30px; }
+    .kpi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="email-wrapper">
+
+  <!-- ════════ ARCHIVE BANNER ════════ -->
+  <div class="archive-banner">
+    <span>◆ Archived Edition · Pilot Preview</span>
+    <a href="../archive.html">← Back to Archive</a>
+  </div>
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="header">
+    <div class="header-top">
+      <div class="lilly-wordmark">Eli <span>Lilly</span></div>
+      <span class="edition-badge">Pilot · Mar 2026</span>
+    </div>
+
+    <div class="header-hero">
+      <div class="hero-bg"></div>
+      <div class="grid-lines"></div>
+
+      <div class="podx-label">
+        <span class="live-dot"></span>
+        <span>PODx · Pilot Edition</span>
+      </div>
+      <h1 class="hero-title">March <span class="accent">2026</span></h1>
+      <p class="hero-subtitle">Pilot run before launch. Section structure tested, design locked, content shape proven.</p>
+
+      <div class="hero-meta">
+        <div class="meta-item"><span class="dot">●</span> Pre-launch Preview 02</div>
+        <div class="meta-item"><span class="dot">●</span> 4 min read</div>
+        <div class="meta-item"><span class="dot">●</span> IBU · Personalisation · Omnichannel</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ BODY ════════ -->
+  <div class="body-content">
+
+    <!-- ── EDITOR'S NOTE ── -->
+    <div class="section section-white reveal">
+      <div class="section-label">From the Editor</div>
+      <h2 class="section-title">A Pilot Worth Running</h2>
+      <p class="section-desc">What we learned shaping the format before launch</p>
+      <div class="editor-note">
+        <p>March was the month we stopped sketching and started shipping. The opti_processor pipeline finally cleared its last channel — events processing for Canada — meaning we now have a unified processor for every market and every channel type. That's the spine of the NBA operation.</p>
+        <p>This pilot edition exists to test one thing: <strong style="color:white;">can we tell the team's story month over month without losing the data backbone?</strong> Answer so far: yes, but it needs tighter section curation. April will tell us if we've got the rhythm right.</p>
+        <div class="editor-sig">
+          <strong>Vaibhav Rachalwar</strong> · IBU Omnichannel / ML · Eli Lilly, Bengaluru
+        </div>
+      </div>
+    </div>
+
+    <!-- ── KPI DASHBOARD ── -->
+    <div class="section section-mist reveal">
+      <div class="section-label">Numbers</div>
+      <h2 class="section-title">March 2026 KPI Snapshot</h2>
+      <p class="section-desc">The metrics that mattered this month</p>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-num is-purple">7</div>
+          <div class="kpi-label">Channels Processed</div>
+          <div class="kpi-trend">VAE · Events · HQ · IVA · Calls · LillyPlay · LillyApp</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">518M</div>
+          <div class="kpi-label">Rows Streamed</div>
+          <div class="kpi-trend">↑ IVA pipeline · pyarrow batching</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num is-teal">5</div>
+          <div class="kpi-label">Markets Live</div>
+          <div class="kpi-trend">EU M5 · META · LATAM · Japan · Canada</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PIPELINE SPOTLIGHT ── -->
+    <div class="section section-white reveal">
+      <div class="section-label">Project Spotlight</div>
+      <h2 class="section-title">opti_processor — Now Fully Unified</h2>
+      <p class="section-desc">One processor. Seven channels. Every market.</p>
+      <div class="spotlight-card">
+        <div class="spotlight-badge">◆ Pipeline · Production Ready</div>
+        <div class="spotlight-title">Seven Channel Types, One Codebase</div>
+        <div class="spotlight-body">After resolving the IVA kernel crashes (the 518M-row file that broke SageMaker) via streaming 1M-row batches with pyarrow pre-filtering, every channel now flows through a single unified PipelineConfig dataclass. HQ product format mismatch resolved. Canada-specific BRD defaults wired in. The unified processor now serves EU M5, META, LATAM, Japan, and Canada with zero hardcoding.</div>
+        <div class="spotlight-pills">
+          <span class="spot-pill">PipelineConfig</span>
+          <span class="spot-pill">s3_data_manager</span>
+          <span class="spot-pill">opti_processor.py</span>
+          <span class="spot-pill">pyarrow streaming</span>
+          <span class="spot-pill">5 markets</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PERSON OF THE MONTH ── -->
+    <div class="section section-mist reveal">
+      <div class="section-label">People</div>
+      <h2 class="section-title">Person of the Month</h2>
+      <p class="section-desc">Quiet excellence that holds the pipelines up</p>
+      <div class="person-card">
+        <div class="person-avatar">MK</div>
+        <div class="person-text">
+          <div class="person-name">Murali K.</div>
+          <div class="person-role">DATA ENGINEERING · IDS · LILLY</div>
+          <p class="person-quote">"The right S3 path saves you a week. The wrong one costs you three. Get the contract right first, then build."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── AUTOMATION ── -->
+    <div class="section section-white reveal">
+      <div class="section-label">Automation</div>
+      <h2 class="section-title">Jira → Excel in Three Phases</h2>
+      <p class="section-desc">How we worked around the DLP block</p>
+      <div class="spotlight-card">
+        <div class="spotlight-badge">◆ Automation · Internal Tooling</div>
+        <div class="spotlight-title">jira_to_excel.py — Direct API Access from SageMaker</div>
+        <div class="spotlight-body">Phase 1: discovered DLP blocks the obvious connector. Phase 2: provisioned a Jira Cloud API token for lilly-jira.atlassian.net (April 2026). Phase 3: hit the `/rest/api/3/search/jql` POST endpoint with `nextPageToken` pagination directly from a notebook. ES sprint splits and full project exports now run in under a minute, no manual UI work.</div>
+        <div class="spotlight-pills">
+          <span class="spot-pill">jira_es_splitter.py</span>
+          <span class="spot-pill">jira_to_excel.py</span>
+          <span class="spot-pill">IBUNBEES</span>
+          <span class="spot-pill">Direct API · Token Auth</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Q2 MILESTONES ── -->
+    <div class="section section-mist reveal">
+      <div class="section-label">Looking Ahead</div>
+      <h2 class="section-title">Q2 2026 Milestones</h2>
+      <p class="section-desc">What's tracking, what's at risk</p>
+      <div class="milestone-list">
+        <div class="milestone">
+          <div class="milestone-date">APR · W1</div>
+          <div class="milestone-text"><strong>Canada NBA model</strong> — Master data merge architecture review</div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-date">APR · W3</div>
+          <div class="milestone-text"><strong>Leadership Dashboard</strong> — AI Registry submission · Yellow / Internal classification</div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-date">MAY</div>
+          <div class="milestone-text"><strong>GenAI Insight Booster</strong> — LATAM rollout · ZS code review closeout</div>
+        </div>
+        <div class="milestone">
+          <div class="milestone-date">JUN</div>
+          <div class="milestone-text"><strong>PODx Issue #01</strong> — Official newsletter launch · target 1–2 June</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RESOURCES ── -->
+    <div class="section section-white reveal">
+      <div class="section-label">Resources</div>
+      <h2 class="section-title">Quick Links</h2>
+      <p class="section-desc">Everything you need, one click away</p>
+      <div class="resource-list">
+        <a href="#" class="resource-item">
+          <div class="resource-icon" style="background:#F5E6E5;">◆</div>
+          <div class="resource-text">
+            <div class="title">opti_processor Repository</div>
+            <div class="desc">Unified pipeline · 7 channel types · 5 markets</div>
+          </div>
+          <span class="resource-arrow">→</span>
+        </a>
+        <a href="#" class="resource-item">
+          <div class="resource-icon" style="background:#EBE8F8;">◆</div>
+          <div class="resource-text">
+            <div class="title">IBUNBEES Jira Board</div>
+            <div class="desc">Sprint tracking · API token-based exports now live</div>
+          </div>
+          <span class="resource-arrow">→</span>
+        </a>
+        <a href="#" class="resource-item">
+          <div class="resource-icon" style="background:#E0F5F8;">◆</div>
+          <div class="resource-text">
+            <div class="title">ZAIDYN Architecture Wiki</div>
+            <div class="desc">ZAF · FlowBuilder · Orchestration Centre overview</div>
+          </div>
+          <span class="resource-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /body-content -->
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="footer">
+    <div class="footer-logo">Eli <span>Lilly</span></div>
+    <div class="footer-tagline">IBU Omnichannel / ML · PODx Newsletter · Pilot Edition</div>
+    <a href="../archive.html" class="footer-back">← Back to Archive</a>
+    <div class="footer-divider"></div>
+    <div class="footer-legal">
+      This newsletter is intended for internal Eli Lilly and Company employees only.<br>
+      No patient data, HCP personal information, or commercially sensitive data is included.<br>
+      © 2026 Eli Lilly and Company. All rights reserved. | Lilly Corporate Center, Indianapolis, Indiana 46285, USA
+    </div>
+  </div>
+
+</div><!-- /email-wrapper -->
+
+<script>
+  // ── SCROLL REVEAL ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
