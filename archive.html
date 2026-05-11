@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBU PODx Newsletter — Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lilly-red: #D52B1E;
+    --lilly-red-dark: #A8221A;
+    --lilly-red-light: #F5E6E5;
+    --navy: #1A2B4A;
+    --navy-mid: #2D4470;
+    --slate: #4A5568;
+    --mist: #F7F8FA;
+    --white: #FFFFFF;
+    --border: #E2E8F0;
+    --gold: #C8943A;
+    --teal: #2B7A8C;
+    --green: #2D7D46;
+    --purple: #5B4FBE;
+    --text: #1A202C;
+    --text-light: #718096;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #ECEEF2;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .archive-wrapper {
+    max-width: 1100px;
+    margin: 32px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+
+  /* ═══════════════════════════════════════
+     HEADER
+  ═══════════════════════════════════════ */
+  .archive-header {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .header-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: relative; z-index: 4;
+  }
+  .lilly-wordmark {
+    font-family: 'DM Serif Display', serif;
+    color: var(--white);
+    font-size: 22px;
+    letter-spacing: 0.05em;
+  }
+  .lilly-wordmark span { color: var(--lilly-red); }
+  .back-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+  .back-pill:hover {
+    background: var(--lilly-red);
+    border-color: var(--lilly-red);
+  }
+
+  .archive-hero {
+    padding: 56px 36px 48px;
+    position: relative;
+    z-index: 3;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #3A5FA0 100%);
+    overflow: hidden;
+  }
+  .hero-bg::before {
+    content:'';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(213,43,30,0.18) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    animation: pulse-glow 4s ease-in-out infinite alternate;
+  }
+  .hero-bg::after {
+    content:'';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(43,122,140,0.2) 0%, transparent 70%);
+    bottom: -150px; left: -80px;
+    animation: pulse-glow 5s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes pulse-glow {
+    from { transform: scale(1); opacity: 0.6; }
+    to   { transform: scale(1.3); opacity: 1; }
+  }
+  .grid-lines {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .podx-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(213,43,30,0.15);
+    border: 1px solid rgba(213,43,30,0.4);
+    color: #FF8880;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px;
+    margin-bottom: 20px;
+    position: relative; z-index: 3;
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    color: var(--white);
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    position: relative; z-index: 3;
+  }
+  .hero-title .accent { color: var(--lilly-red); font-style: italic; }
+  .hero-subtitle {
+    color: rgba(255,255,255,0.65);
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 28px;
+    max-width: 620px;
+    position: relative; z-index: 3;
+  }
+
+  .hero-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    position: relative; z-index: 3;
+  }
+  .meta-item {
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.55);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .meta-item .dot { color: var(--lilly-red); font-size: 16px; }
+
+  /* ═══════════════════════════════════════
+     YEAR BAR
+  ═══════════════════════════════════════ */
+  .year-bar {
+    background: var(--lilly-red);
+    padding: 12px 36px;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .year-bar .count {
+    background: rgba(255,255,255,0.18);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+  }
+
+  /* ═══════════════════════════════════════
+     ARCHIVE BODY
+  ═══════════════════════════════════════ */
+  .archive-body {
+    background: var(--mist);
+    padding: 48px 36px;
+  }
+
+  .year-section {
+    margin-bottom: 48px;
+  }
+  .year-section:last-child { margin-bottom: 0; }
+
+  .year-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .year-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--navy);
+  }
+  .year-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* CARDS GRID */
+  .editions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 24px;
+  }
+
+  .edition-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .edition-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(26,43,74,0.12);
+    border-color: var(--lilly-red);
+  }
+
+  .card-accent {
+    height: 6px;
+    background: linear-gradient(90deg, var(--lilly-red) 0%, #FF6B5E 100%);
+  }
+  .card-accent.is-live {
+    background: linear-gradient(90deg, var(--green) 0%, #4CAF50 100%);
+  }
+  .card-accent.is-pilot {
+    background: linear-gradient(90deg, var(--purple) 0%, #7B6FE0 100%);
+  }
+  .card-accent.is-concept {
+    background: linear-gradient(90deg, var(--teal) 0%, #4A9FB0 100%);
+  }
+
+  .card-body {
+    padding: 24px 24px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 12px;
+    align-self: flex-start;
+    margin-bottom: 14px;
+  }
+  .card-status.is-live {
+    background: rgba(45,125,70,0.1);
+    color: var(--green);
+  }
+  .card-status.is-live::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: live-pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes live-pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%     { opacity: 0.4; transform: scale(0.7); }
+  }
+  .card-status.is-pilot {
+    background: rgba(91,79,190,0.1);
+    color: var(--purple);
+  }
+  .card-status.is-concept {
+    background: rgba(43,122,140,0.1);
+    color: var(--teal);
+  }
+
+  .card-month {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .card-issue {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  .card-tagline {
+    font-size: 14px;
+    color: var(--slate);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .card-highlights {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  .card-highlights li {
+    font-size: 12px;
+    color: var(--slate);
+    padding: 6px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .card-highlights li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--lilly-red);
+    font-size: 8px;
+    top: 9px;
+  }
+
+  .card-stats {
+    display: flex;
+    gap: 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .stat {
+    flex: 1;
+  }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .card-cta {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--lilly-red);
+    font-size: 13px;
+    font-weight: 600;
+    padding-top: 4px;
+  }
+  .card-cta .arrow {
+    transition: transform 0.2s;
+  }
+  .edition-card:hover .card-cta .arrow {
+    transform: translateX(4px);
+  }
+
+  /* ═══════════════════════════════════════
+     FOOTER
+  ═══════════════════════════════════════ */
+  .footer {
+    background: var(--navy);
+    padding: 36px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .footer-logo span { color: var(--lilly-red); }
+  .footer-tagline { color: rgba(255,255,255,0.4); font-size: 12px; margin-bottom: 20px; }
+  .footer-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
+  .footer-legal { color: rgba(255,255,255,0.25); font-size: 11px; line-height: 1.6; }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-light);
+    font-size: 14px;
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════════ */
+  @media (max-width: 720px) {
+    .archive-wrapper { margin: 16px auto; border-radius: 14px; }
+    .archive-hero { padding: 40px 24px 32px; }
+    .hero-title { font-size: 36px; }
+    .archive-body { padding: 32px 20px; }
+    .editions-grid { grid-template-columns: 1fr; gap: 16px; }
+    .header-top { padding: 14px 24px; }
+    .year-bar { padding: 10px 24px; }
+  }
+
+  @media (max-width: 420px) {
+    .hero-title { font-size: 30px; }
+    .hero-meta { gap: 12px; }
+    .card-month { font-size: 24px; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="archive-wrapper">
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="archive-header">
+    <div class="header-top">
+      <div class="lilly-wordmark">Eli <span>Lilly</span></div>
+      <a href="./" target="_top" class="back-pill">← Current Edition</a>
+    </div>
+
+    <div class="archive-hero">
+      <div class="hero-bg"></div>
+      <div class="grid-lines"></div>
+
+      <div class="podx-label">
+        <span>◆</span>
+        <span>IBU · Personalisation · Omnichannel · ML</span>
+      </div>
+      <h1 class="hero-title">PODx <span class="accent">Archive</span></h1>
+      <p class="hero-subtitle">Every past edition of the IBU PODx Newsletter — the wins, the work, and the people behind them. One click to browse, one click to read.</p>
+
+      <div class="hero-meta">
+        <div class="meta-item"><span class="dot">●</span> Monthly Cadence</div>
+        <div class="meta-item"><span class="dot">●</span> Internal Use Only</div>
+        <div class="meta-item"><span class="dot">●</span> Eli Lilly · IBU Team</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ YEAR INDEX BAR ════════ -->
+  <div class="year-bar">
+    <span>◆ Browse by Year</span>
+    <span class="count">3 Editions · 2026</span>
+  </div>
+
+  <!-- ════════ BODY ════════ -->
+  <div class="archive-body">
+
+    <!-- ─── 2026 ─── -->
+    <section class="year-section">
+      <div class="year-heading">
+        <div class="year-num">2026</div>
+        <div class="year-label">Year One</div>
+      </div>
+
+      <div class="editions-grid">
+
+        <!-- ── APRIL 2026 — CURRENTLY LIVE ── -->
+        <a href="./" target="_blank" class="edition-card reveal">
+          <div class="card-accent is-live"></div>
+          <div class="card-body">
+            <span class="card-status is-live">Currently Live</span>
+            <div class="card-month">April 2026</div>
+            <div class="card-issue">VOL. 01 · PROTOTYPE</div>
+            <p class="card-tagline">The full first edition. KPIs across markets, Canada NBA spotlight, channel performance, and Q2 milestones.</p>
+            <ul class="card-highlights">
+              <li>Canada Model Master Data Merge</li>
+              <li>IBU Leadership Dashboard launch</li>
+              <li>GenAI Insight Booster progress</li>
+            </ul>
+            <div class="card-stats">
+              <div class="stat">
+                <div class="stat-num">11</div>
+                <div class="stat-label">Sections</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">5</div>
+                <div class="stat-label">Min Read</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">6</div>
+                <div class="stat-label">Markets</div>
+              </div>
+            </div>
+            <div class="card-cta">
+              <span>Read Edition</span>
+              <span class="arrow">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ── MARCH 2026 — PILOT ── -->
+        <a href="editions/2026-03-march.html" target="_blank" class="edition-card reveal">
+          <div class="card-accent is-pilot"></div>
+          <div class="card-body">
+            <span class="card-status is-pilot">Pilot Edition</span>
+            <div class="card-month">March 2026</div>
+            <div class="card-issue">PRE-LAUNCH · PREVIEW 02</div>
+            <p class="card-tagline">Pilot run before the full launch. Section structure tested, design system finalized, content shape locked.</p>
+            <ul class="card-highlights">
+              <li>opti_processor pipeline shipped</li>
+              <li>Jira automation 3-phase DLP workaround</li>
+              <li>ZAIDYN architecture deep dive</li>
+            </ul>
+            <div class="card-stats">
+              <div class="stat">
+                <div class="stat-num">8</div>
+                <div class="stat-label">Sections</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">4</div>
+                <div class="stat-label">Min Read</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">5</div>
+                <div class="stat-label">Markets</div>
+              </div>
+            </div>
+            <div class="card-cta">
+              <span>Read Edition</span>
+              <span class="arrow">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- ── FEBRUARY 2026 — CONCEPT ── -->
+        <a href="editions/2026-02-february.html" target="_blank" class="edition-card reveal">
+          <div class="card-accent is-concept"></div>
+          <div class="card-body">
+            <span class="card-status is-concept">Concept Preview</span>
+            <div class="card-month">February 2026</div>
+            <div class="card-issue">PRE-LAUNCH · PREVIEW 01</div>
+            <p class="card-tagline">Earliest concept. Tone, layout, and voice exploration. The starting point for everything you see today.</p>
+            <ul class="card-highlights">
+              <li>EU dismissal word cloud analysis</li>
+              <li>Evolved CEI methodology pivot</li>
+              <li>opti_processor architecture design</li>
+            </ul>
+            <div class="card-stats">
+              <div class="stat">
+                <div class="stat-num">6</div>
+                <div class="stat-label">Sections</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Min Read</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">4</div>
+                <div class="stat-label">Markets</div>
+              </div>
+            </div>
+            <div class="card-cta">
+              <span>Read Edition</span>
+              <span class="arrow">→</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </div><!-- /archive-body -->
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="footer">
+    <div class="footer-logo">Eli <span>Lilly</span></div>
+    <div class="footer-tagline">IBU Omnichannel / ML · PODx Newsletter Archive</div>
+    <div class="footer-divider"></div>
+    <div class="footer-legal">
+      This archive is intended for internal Eli Lilly and Company employees only.<br>
+      No patient data, HCP personal information, or commercially sensitive data is included.<br>
+      © 2026 Eli Lilly and Company. All rights reserved. | Lilly Corporate Center, Indianapolis, Indiana 46285, USA
+    </div>
+  </div>
+
+</div><!-- /archive-wrapper -->
+
+<script>
+  // ── SCROLL REVEAL ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
