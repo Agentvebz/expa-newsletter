@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBU PODx | February 2026 — Concept Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lilly-red: #D52B1E;
+    --lilly-red-dark: #A8221A;
+    --navy: #1A2B4A;
+    --navy-mid: #2D4470;
+    --slate: #4A5568;
+    --mist: #F7F8FA;
+    --white: #FFFFFF;
+    --border: #E2E8F0;
+    --teal: #2B7A8C;
+    --teal-light: #E0F2F5;
+    --green: #2D7D46;
+    --text: #1A202C;
+    --text-light: #718096;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #ECEEF2;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .email-wrapper {
+    max-width: 760px;
+    margin: 32px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+
+  /* ARCHIVE BANNER */
+  .archive-banner {
+    background: var(--teal);
+    color: white;
+    padding: 10px 36px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .archive-banner a {
+    color: white;
+    text-decoration: none;
+    font-size: 11px;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+  .archive-banner a:hover { opacity: 1; }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .header-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .lilly-wordmark {
+    font-family: 'DM Serif Display', serif;
+    color: var(--white);
+    font-size: 22px;
+    letter-spacing: 0.05em;
+  }
+  .lilly-wordmark span { color: var(--lilly-red); }
+  .edition-badge {
+    background: var(--teal);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .header-hero {
+    padding: 52px 36px 44px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #3A5FA0 100%);
+    overflow: hidden;
+  }
+  .hero-bg::before {
+    content:'';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(43,122,140,0.25) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    animation: pulse-glow 4s ease-in-out infinite alternate;
+  }
+  @keyframes pulse-glow {
+    from { transform: scale(1); opacity: 0.6; }
+    to   { transform: scale(1.3); opacity: 1; }
+  }
+  .grid-lines {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .header-hero { position: relative; z-index: 3; }
+  .podx-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(43,122,140,0.18);
+    border: 1px solid rgba(43,122,140,0.4);
+    color: #8AC8D5;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .live-dot { width: 7px; height: 7px; background: var(--teal); border-radius: 50%; }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    color: var(--white);
+    font-size: 46px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .hero-title .accent { color: var(--teal); font-style: italic; }
+  .hero-subtitle {
+    color: rgba(255,255,255,0.65);
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+  .hero-meta { display: flex; gap: 24px; flex-wrap: wrap; }
+  .meta-item {
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.55);
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .meta-item .dot { color: var(--teal); font-size: 16px; }
+
+  /* SECTIONS */
+  .body-content { background: var(--mist); }
+  .section { padding: 40px 36px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-white { background: var(--white); }
+  .section-mist  { background: var(--mist); }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lilly-red);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* CONCEPT NOTE (replaces editor note for v0) */
+  .concept-note {
+    background: linear-gradient(135deg, var(--teal) 0%, #1F5563 100%);
+    color: white;
+    padding: 32px;
+    border-radius: 14px;
+    font-size: 14.5px;
+    line-height: 1.7;
+    position: relative;
+  }
+  .concept-note p { margin-bottom: 14px; color: rgba(255,255,255,0.92); }
+  .concept-note p:last-child { margin-bottom: 0; }
+  .editor-sig {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+  }
+  .editor-sig strong { color: white; font-weight: 600; }
+
+  /* WORD CLOUD CARD (visual representation) */
+  .wordcloud-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px;
+    text-align: center;
+  }
+  .wordcloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .word {
+    font-family: 'DM Serif Display', serif;
+    color: var(--navy);
+    transition: color 0.2s;
+  }
+  .word:hover { color: var(--lilly-red); }
+  .w-xxl { font-size: 42px; }
+  .w-xl  { font-size: 32px; color: var(--teal); }
+  .w-lg  { font-size: 24px; }
+  .w-md  { font-size: 18px; color: var(--slate); }
+  .w-sm  { font-size: 14px; color: var(--text-light); }
+  .wordcloud-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+  .ws-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+  }
+  .ws-label {
+    font-size: 11px;
+    color: var(--text-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* INSIGHT CARD */
+  .insight-card {
+    background: var(--navy);
+    color: white;
+    padding: 28px;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .insight-card::after {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(43,122,140,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .insight-badge {
+    background: rgba(43,122,140,0.25);
+    border: 1px solid rgba(43,122,140,0.5);
+    color: #8AC8D5;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+  .insight-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .insight-body {
+    color: rgba(255,255,255,0.78);
+    font-size: 13.5px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+  .insight-pills {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    position: relative; z-index: 1;
+  }
+  .pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ARCHITECTURE BLOCK */
+  .arch-flow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .arch-node {
+    flex: 1;
+    min-width: 100px;
+    background: var(--teal-light);
+    border: 1px solid var(--teal);
+    color: var(--navy);
+    padding: 14px 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .arch-node .icon {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  .arch-arrow {
+    color: var(--teal);
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  /* RESOURCES */
+  .resource-list {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .resource-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .resource-item:hover {
+    border-color: var(--teal);
+    transform: translateX(3px);
+  }
+  .resource-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .resource-text { flex: 1; }
+  .resource-text .title { font-size: 13.5px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+  .resource-text .desc { font-size: 12px; color: var(--text-light); }
+  .resource-arrow { color: var(--text-light); font-size: 16px; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--navy);
+    padding: 36px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .footer-logo span { color: var(--lilly-red); }
+  .footer-tagline { color: rgba(255,255,255,0.4); font-size: 12px; margin-bottom: 20px; }
+  .footer-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
+  .footer-legal { color: rgba(255,255,255,0.25); font-size: 11px; line-height: 1.6; }
+  .footer-back {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 18px;
+    background: var(--lilly-red);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .footer-back:hover { background: var(--lilly-red-dark); }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .email-wrapper { margin: 16px auto; border-radius: 14px; }
+    .header-hero { padding: 40px 24px 32px; }
+    .hero-title { font-size: 36px; }
+    .section { padding: 32px 24px; }
+    .section-title { font-size: 26px; }
+    .w-xxl { font-size: 32px; }
+    .w-xl  { font-size: 26px; }
+    .w-lg  { font-size: 20px; }
+    .wordcloud-stats { gap: 20px; }
+    .arch-flow { flex-direction: column; }
+    .arch-arrow { transform: rotate(90deg); }
+  }
+  @media (max-width: 420px) {
+    .hero-title { font-size: 30px; }
+    .w-xxl { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="email-wrapper">
+
+  <!-- ════════ ARCHIVE BANNER ════════ -->
+  <div class="archive-banner">
+    <span>◆ Archived Edition · Concept Preview</span>
+    <a href="../archive.html">← Back to Archive</a>
+  </div>
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="header">
+    <div class="header-top">
+      <div class="lilly-wordmark">Eli <span>Lilly</span></div>
+      <span class="edition-badge">Concept · Feb 2026</span>
+    </div>
+
+    <div class="header-hero">
+      <div class="hero-bg"></div>
+      <div class="grid-lines"></div>
+
+      <div class="podx-label">
+        <span class="live-dot"></span>
+        <span>PODx · Concept Preview</span>
+      </div>
+      <h1 class="hero-title">February <span class="accent">2026</span></h1>
+      <p class="hero-subtitle">The earliest sketch. What if the IBU team had a monthly heartbeat?</p>
+
+      <div class="hero-meta">
+        <div class="meta-item"><span class="dot">●</span> Pre-launch Preview 01</div>
+        <div class="meta-item"><span class="dot">●</span> 3 min read</div>
+        <div class="meta-item"><span class="dot">●</span> IBU · Personalisation · Omnichannel</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ BODY ════════ -->
+  <div class="body-content">
+
+    <!-- ── WHAT IS PODx? ── -->
+    <div class="section section-white reveal">
+      <div class="section-label">The Idea</div>
+      <h2 class="section-title">What if we had a team heartbeat?</h2>
+      <p class="section-desc">The original concept note that became PODx</p>
+      <div class="concept-note">
+        <p>The IBU team ships fast. Pipelines roll out, NBA models retrain, GenAI booster scripts iterate weekly. But the work sometimes outpaces the storytelling — leadership sees the deliverables, the team sees their own thread, and the cross-pollination between markets gets lost.</p>
+        <p>PODx is a monthly attempt to fix that. One newsletter. One read. One thread connecting <strong style="color:white;">what we built, who built it, and what's next.</strong> February is the concept run — testing whether the format even makes sense.</p>
+        <div class="editor-sig">
+          <strong>Vaibhav Rachalwar</strong> · IBU Omnichannel / ML · Eli Lilly, Bengaluru
+        </div>
+      </div>
+    </div>
+
+    <!-- ── EU DISMISSAL WORD CLOUD ── -->
+    <div class="section section-mist reveal">
+      <div class="section-label">Market Insight</div>
+      <h2 class="section-title">EU Dismissal Reasons — A Word Cloud</h2>
+      <p class="section-desc">38K NBA dismissal records · six languages · one mapping</p>
+      <div class="wordcloud-card">
+        <div class="wordcloud">
+          <span class="word w-xxl">not relevant</span>
+          <span class="word w-xl">already discussed</span>
+          <span class="word w-lg">no time</span>
+          <span class="word w-xl">no interest</span>
+          <span class="word w-lg">low priority</span>
+          <span class="word w-md">duplicate</span>
+          <span class="word w-md">irrelevant brand</span>
+          <span class="word w-lg">covered earlier</span>
+          <span class="word w-sm">other</span>
+          <span class="word w-md">timing</span>
+          <span class="word w-sm">obsolete</span>
+          <span class="word w-md">already prescribing</span>
+          <span class="word w-sm">unclear</span>
+          <span class="word w-lg">handled</span>
+          <span class="word w-sm">not applicable</span>
+        </div>
+        <div class="wordcloud-stats">
+          <div>
+            <div class="ws-num">38K</div>
+            <div class="ws-label">Records</div>
+          </div>
+          <div>
+            <div class="ws-num">6</div>
+            <div class="ws-label">Languages</div>
+          </div>
+          <div>
+            <div class="ws-num">100%</div>
+            <div class="ws-label">Mapped</div>
+          </div>
+          <div>
+            <div class="ws-num">5</div>
+            <div class="ws-label">Markets</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── EVOLVED CEI PIVOT ── -->
+    <div class="section section-white reveal">
+      <div class="section-label">Methodology</div>
+      <h2 class="section-title">Evolved CEI — What Actually Changes</h2>
+      <p class="section-desc">A scoring-layer change, not a model retraining</p>
+      <div class="insight-card">
+        <div class="insight-badge">◆ CEI · Scoring Layer</div>
+        <div class="insight-title">No retraining required for the methodology change</div>
+        <div class="insight-body">The Evolved CEI shift introduces exponential decay and slope/trajectory features into the consumption layer — but the ML model never sees them. That's a scoring-layer adjustment. Retraining is only triggered when the target metric the model optimizes for changes, not when the downstream scoring math evolves. EU CVI remains the correct precedent for "true retraining required."</div>
+        <div class="insight-pills">
+          <span class="pill">Exponential Decay</span>
+          <span class="pill">TP-level BDC</span>
+          <span class="pill">CVI Precedent</span>
+          <span class="pill">No Model Change</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ARCHITECTURE CONCEPT ── -->
+    <div class="section section-mist reveal">
+      <div class="section-label">Design</div>
+      <h2 class="section-title">opti_processor — The Concept Flow</h2>
+      <p class="section-desc">The architecture sketch we'll build out next month</p>
+      <div class="arch-flow">
+        <div class="arch-node">
+          <div class="icon">◆</div>
+          S3 Source<br>Files
+        </div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node">
+          <div class="icon">◆</div>
+          s3_data_<br>manager
+        </div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node">
+          <div class="icon">◆</div>
+          Channel<br>Processor
+        </div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node">
+          <div class="icon">◆</div>
+          Pipeline<br>Output
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RESOURCES ── -->
+    <div class="section section-white reveal">
+      <div class="section-label">Resources</div>
+      <h2 class="section-title">Read More</h2>
+      <p class="section-desc">The foundational docs behind this concept</p>
+      <div class="resource-list">
+        <a href="#" class="resource-item">
+          <div class="resource-icon" style="background:var(--teal-light);">◆</div>
+          <div class="resource-text">
+            <div class="title">LATAM Evolved CEI Document</div>
+            <div class="desc">The authoritative source on why retraining is not required</div>
+          </div>
+          <span class="resource-arrow">→</span>
+        </a>
+        <a href="#" class="resource-item">
+          <div class="resource-icon" style="background:#F5E6E5;">◆</div>
+          <div class="resource-text">
+            <div class="title">EU NBA Dismissal Analysis</div>
+            <div class="desc">Word cloud notebook · dual-string normalizer · 38K records</div>
+          </div>
+          <span class="resource-arrow">→</span>
+        </a>
+        <a href="#" class="resource-item">
+          <div class="resource-icon" style="background:#EBF8F0;">◆</div>
+          <div class="resource-text">
+            <div class="title">IBU Knowledge Hub</div>
+            <div class="desc">All references · meeting notes · ZS knowledge transfers</div>
+          </div>
+          <span class="resource-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /body-content -->
+
+  <!-- ════════ FOOTER ════════ -->
+  <div class="footer">
+    <div class="footer-logo">Eli <span>Lilly</span></div>
+    <div class="footer-tagline">IBU Omnichannel / ML · PODx Newsletter · Concept Preview</div>
+    <a href="../archive.html" class="footer-back">← Back to Archive</a>
+    <div class="footer-divider"></div>
+    <div class="footer-legal">
+      This newsletter is intended for internal Eli Lilly and Company employees only.<br>
+      No patient data, HCP personal information, or commercially sensitive data is included.<br>
+      © 2026 Eli Lilly and Company. All rights reserved. | Lilly Corporate Center, Indianapolis, Indiana 46285, USA
+    </div>
+  </div>
+
+</div><!-- /email-wrapper -->
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
