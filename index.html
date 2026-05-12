@@ -24,12 +24,142 @@
     --text-light: #718096;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--mist); color: var(--text); font-size: 15px; line-height: 1.6; }
 
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .email-wrapper { width: 100%; max-width: 100%; margin: 0; }
+
+  /* ═══════════════ QUICK NAV (floating sidebar) ═══════════════ */
+  .quick-nav {
+    position: fixed;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    z-index: 9000;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.12);
+    padding: 14px 10px;
+    max-height: 78vh;
+    overflow-y: auto;
+    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.3s ease;
+    width: 230px;
+  }
+  .quick-nav.collapsed {
+    transform: translateY(-50%) translateX(calc(100% + 22px));
+  }
+  .quick-nav::-webkit-scrollbar { width: 4px; }
+  .quick-nav::-webkit-scrollbar-track { background: transparent; }
+  .quick-nav::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .qn-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 8px 10px 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .qn-title {
+    font-size: 10px; font-weight: 700;
+    color: var(--lilly-red);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .qn-title::before {
+    content: ''; display: inline-block;
+    width: 12px; height: 2px;
+    background: var(--lilly-red);
+    border-radius: 2px;
+  }
+  .qn-close-btn {
+    background: var(--mist);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--text-light);
+    font-size: 11px;
+    transition: all 0.2s ease;
+  }
+  .qn-close-btn:hover { background: var(--lilly-red); color: white; border-color: var(--lilly-red); }
+
+  .qn-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+  .qn-item a {
+    display: flex; align-items: center; gap: 9px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--slate);
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.18s ease;
+    border-left: 2px solid transparent;
+    line-height: 1.3;
+  }
+  .qn-item a:hover {
+    background: var(--mist);
+    color: var(--navy);
+    border-left-color: var(--lilly-red);
+    transform: translateX(2px);
+  }
+  .qn-item a.active {
+    background: var(--lilly-red-light);
+    color: var(--lilly-red);
+    font-weight: 700;
+    border-left-color: var(--lilly-red);
+  }
+  .qn-emoji {
+    font-size: 14px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .qn-label { flex: 1; }
+
+  /* Floating reopen button (shown when nav is collapsed) */
+  .qn-toggle {
+    position: fixed;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    z-index: 8999;
+    background: var(--lilly-red);
+    color: white;
+    border: none;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(213, 43, 30, 0.35);
+    display: none;
+    align-items: center; justify-content: center;
+    font-size: 18px;
+    transition: all 0.25s ease;
+  }
+  .qn-toggle:hover {
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 8px 22px rgba(213, 43, 30, 0.5);
+  }
+  .qn-toggle.visible { display: flex; }
+
+  /* Scroll progress indicator at top */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--lilly-red), #FF6B6B);
+    z-index: 9999;
+    transition: width 0.1s ease;
+    box-shadow: 0 1px 6px rgba(213, 43, 30, 0.4);
+  }
+
+  /* Offset for fixed-anchor scrolling */
+  .section { scroll-margin-top: 24px; }
 
   /* ═══════════════ HEADER WITH MESH MORPHING ═══════════════ */
   .header { background: #1A2B4A; padding: 0; position: relative; overflow: hidden; }
@@ -1212,6 +1342,16 @@
   }
   .send-success-msg { font-size: 12.5px; color: var(--slate); }
 
+  @media (max-width: 1100px) {
+    .quick-nav { width: 210px; right: 12px; }
+  }
+  @media (max-width: 900px) {
+    .quick-nav {
+      width: 200px;
+      font-size: 11px;
+    }
+    .qn-item a { font-size: 11.5px; padding: 6px 8px; }
+  }
   @media (max-width: 720px) {
     .header-hero { grid-template-columns: 1fr; gap: 24px; }
     .kpi-grid, .stat-row, .analytics-grid { grid-template-columns: 1fr 1fr; }
@@ -1221,12 +1361,53 @@
     .flip-portrait { margin: 0 auto; }
     .section { padding: 32px 24px; }
     .modal-card.large { max-width: 100%; }
+    /* On mobile, hide the side nav by default & let users toggle via floating button */
+    .quick-nav {
+      transform: translateY(-50%) translateX(calc(100% + 22px));
+      width: 240px;
+    }
+    .quick-nav.mobile-open { transform: translateY(-50%) translateX(0); }
+    .qn-toggle { display: flex; }
   }
 </style>
 </head>
 <body>
 
-<div class="email-wrapper">
+<!-- ════════ SCROLL PROGRESS BAR ════════ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ════════ QUICK NAVIGATION SIDEBAR ════════ -->
+<aside class="quick-nav" id="quickNav">
+  <div class="qn-header">
+    <div class="qn-title">Quick Nav</div>
+    <button class="qn-close-btn" onclick="toggleQuickNav()" title="Hide navigation">✕</button>
+  </div>
+  <ul class="qn-list">
+    <li class="qn-item"><a href="#top" data-target="top"><span class="qn-emoji">🏠</span><span class="qn-label">Top</span></a></li>
+    <li class="qn-item"><a href="#tldr" data-target="tldr"><span class="qn-emoji">⚡</span><span class="qn-label">TL;DR · 60 sec</span></a></li>
+    <li class="qn-item"><a href="#countdown" data-target="countdown"><span class="qn-emoji">🚀</span><span class="qn-label">Countdown</span></a></li>
+    <li class="qn-item"><a href="#editor" data-target="editor"><span class="qn-emoji">✍️</span><span class="qn-label">Editor's Note</span></a></li>
+    <li class="qn-item"><a href="#kpi" data-target="kpi"><span class="qn-emoji">📊</span><span class="qn-label">KPI Dashboard</span></a></li>
+    <li class="qn-item"><a href="#spotlight" data-target="spotlight"><span class="qn-emoji">🌟</span><span class="qn-label">Person of the Month</span></a></li>
+    <li class="qn-item"><a href="#achievements" data-target="achievements"><span class="qn-emoji">🏆</span><span class="qn-label">Quarterly Wins</span></a></li>
+    <li class="qn-item"><a href="#network" data-target="network"><span class="qn-emoji">🌐</span><span class="qn-label">PODx Network</span></a></li>
+    <li class="qn-item"><a href="#channels" data-target="channels"><span class="qn-emoji">📡</span><span class="qn-label">Channel Performance</span></a></li>
+    <li class="qn-item"><a href="#markets" data-target="markets"><span class="qn-emoji">🌍</span><span class="qn-label">Market Snapshot</span></a></li>
+    <li class="qn-item"><a href="#automation" data-target="automation"><span class="qn-emoji">🤖</span><span class="qn-label">AI &amp; Automation</span></a></li>
+    <li class="qn-item"><a href="#learning" data-target="learning"><span class="qn-emoji">📚</span><span class="qn-label">Level Up</span></a></li>
+    <li class="qn-item"><a href="#news" data-target="news"><span class="qn-emoji">📣</span><span class="qn-label">Around the Company</span></a></li>
+    <li class="qn-item"><a href="#people" data-target="people"><span class="qn-emoji">🎉</span><span class="qn-label">Our People</span></a></li>
+    <li class="qn-item"><a href="#reminders" data-target="reminders"><span class="qn-emoji">⏰</span><span class="qn-label">Reminders &amp; Roadmap</span></a></li>
+    <li class="qn-item"><a href="#fun" data-target="fun"><span class="qn-emoji">😄</span><span class="qn-label">Joke of the Month</span></a></li>
+    <li class="qn-item"><a href="#resources" data-target="resources"><span class="qn-emoji">🔗</span><span class="qn-label">Quick Links</span></a></li>
+    <li class="qn-item"><a href="#feedback" data-target="feedback"><span class="qn-emoji">⭐</span><span class="qn-label">Feedback</span></a></li>
+  </ul>
+</aside>
+
+<!-- Floating reopen button -->
+<button class="qn-toggle" id="qnToggle" onclick="toggleQuickNav()" title="Show navigation">☰</button>
+
+<div class="email-wrapper" id="top">
 
   <!-- ════════ HEADER ════════ -->
   <div class="header">
@@ -1293,7 +1474,7 @@
   <div class="body-content">
 
     <!-- ── PODx IN 60 SECONDS ── -->
-    <div class="section section-white reveal">
+    <div class="section section-white reveal" id="tldr">
       <div class="section-label">PODx in 60 seconds</div>
       <h2 class="section-title">The TL;DR ⚡</h2>
       <p class="section-desc">Everything you need to know about IBU this month — fast.</p>
@@ -1308,7 +1489,7 @@
     </div>
 
     <!-- ── COUNTDOWN TIMER ── -->
-    <div class="section section-mist reveal">
+    <div class="section section-mist reveal" id="countdown">
       <div class="section-label">Mark Your Calendar</div>
       <h2 class="section-title">Countdown to PODx Launch 🚀</h2>
       <p class="section-desc">First official PODx Newsletter goes live for the entire IBU on June 1, 2026.</p>
@@ -1326,7 +1507,7 @@
     </div>
 
     <!-- ── EDITOR'S NOTE ── -->
-    <div class="section section-white reveal">
+    <div class="section section-white reveal" id="editor">
       <div class="section-label">Editor's Note</div>
       <div class="editor-note">
         <p>Welcome to the very first edition of <strong style="color:#FF8880;">PODx</strong> — your monthly window into everything happening across the IBU Personalisation, Omnichannel & Digital team.</p>
@@ -1343,7 +1524,7 @@
     </div>
 
     <!-- ── KPI DASHBOARD with ANIMATED LINE CHART ── -->
-    <div class="section section-mist reveal">
+    <div class="section section-mist reveal" id="kpi">
       <div class="section-label">TEST UPDATE : IBU at a Glance</div>
       <h2 class="section-title">April 2026 KPI Dashboard 📊</h2>
       <p class="section-desc">Key performance indicators across IBU markets — updated end of month.</p>
@@ -1449,7 +1630,7 @@
     </div>
 
     <!-- ── 3D FLIP SPOTLIGHT ── -->
-    <div class="section section-white reveal">
+    <div class="section section-white reveal" id="spotlight">
       <div class="section-label">Spotlight</div>
       <h2 class="section-title">Person of the Month 🌟</h2>
       <p class="section-desc">Hover or tap the card to learn more →</p>
@@ -1482,7 +1663,7 @@
     </div>
 
     <!-- ── ACHIEVEMENTS ── -->
-    <div class="section section-mist reveal">
+    <div class="section section-mist reveal" id="achievements">
       <div class="section-label">Achievements</div>
       <h2 class="section-title">Quarterly Wins 🏆</h2>
       <p class="section-desc">Elevate-worthy moments from across the IBU team this quarter.</p>
@@ -1495,7 +1676,7 @@
     </div>
 
     <!-- ── CONSTELLATION SECTION ── -->
-    <div class="section constellation-section reveal">
+    <div class="section constellation-section reveal" id="network">
       <canvas class="constellation-canvas" id="constellation"></canvas>
       <div class="section-content">
         <div class="section-label">PODx Network</div>
@@ -1511,7 +1692,7 @@
     </div>
 
     <!-- ── CHANNEL PERFORMANCE ── -->
-    <div class="section section-white reveal">
+    <div class="section section-white reveal" id="channels">
       <div class="section-label">Omnichannel</div>
       <h2 class="section-title">Channel Performance 📡</h2>
       <p class="section-desc">Engagement share by channel — IBU composite, April 2026</p>
@@ -1544,7 +1725,7 @@
     </div>
 
     <!-- ── MARKET INTEL ── -->
-    <div class="section section-mist reveal">
+    <div class="section section-mist reveal" id="markets">
       <div class="section-label">Market Intelligence</div>
       <h2 class="section-title">IBU Market Snapshot 🌍</h2>
       <p class="section-desc">Therapeutic area signals and competitive landscape — April 2026</p>
@@ -1557,7 +1738,7 @@
     </div>
 
     <!-- ── AUTOMATION SPOTLIGHT ── -->
-    <div class="section section-white reveal">
+    <div class="section section-white reveal" id="automation">
       <div class="section-label">Automation Spotlight</div>
       <h2 class="section-title">AI & Automation Corner 🤖</h2>
       <p class="section-desc">What the team is automating, plus a personal-level tip you can use today.</p>
@@ -1577,7 +1758,7 @@
     </div>
 
     <!-- ── KNOWLEDGE & LEARNING ── -->
-    <div class="section section-mist reveal">
+    <div class="section section-mist reveal" id="learning">
       <div class="section-label">Knowledge & Learning</div>
       <h2 class="section-title">Level Up 📚</h2>
       <p class="section-desc">Certifications, trainings, and resources worth your time.</p>
@@ -1592,7 +1773,7 @@
     </div>
 
     <!-- ── HAPPENING IN LILLY ── -->
-    <div class="section section-white reveal">
+    <div class="section section-white reveal" id="news">
       <div class="section-label">What's Happening in Lilly</div>
       <h2 class="section-title">Around the Company 📣</h2>
       <p class="section-desc">News and updates from the wider Lilly world that matter to IBU.</p>
@@ -1604,7 +1785,7 @@
     </div>
 
     <!-- ── PEOPLE ── -->
-    <div class="section section-mist reveal">
+    <div class="section section-mist reveal" id="people">
       <div class="section-label">Our People</div>
       <h2 class="section-title">New Faces & Personal Wins 🎉</h2>
       <p class="section-desc">Welcoming new joiners and celebrating life beyond work.</p>
@@ -1616,7 +1797,7 @@
     </div>
 
     <!-- ── REMINDERS ── -->
-    <div class="section section-white reveal">
+    <div class="section section-white reveal" id="reminders">
       <div class="section-label">Reminders</div>
       <h2 class="section-title">Don't Forget ⏰</h2>
       <p class="section-desc">Forms, deadlines, and action items the team needs to action.</p>
@@ -1636,7 +1817,7 @@
     </div>
 
     <!-- ── FUN ── -->
-    <div class="section section-mist reveal">
+    <div class="section section-mist reveal" id="fun">
       <div class="section-label">Fun Corner</div>
       <h2 class="section-title">Joke of the Month 😄</h2>
       <p class="section-desc">Because data scientists need humour too.</p>
@@ -1648,7 +1829,7 @@
     </div>
 
     <!-- ── RESOURCES ── -->
-    <div class="section section-white reveal">
+    <div class="section section-white reveal" id="resources">
       <div class="section-label">Resources</div>
       <h2 class="section-title">Quick Links 🔗</h2>
       <p class="section-desc">Everything you need, one click away.</p>
@@ -1661,7 +1842,7 @@
     </div>
 
     <!-- ── FEEDBACK ── -->
-    <div class="section section-mist reveal">
+    <div class="section section-mist reveal" id="feedback">
       <div class="section-label">Feedback</div>
       <div class="feedback-card">
         <div class="feedback-q">How was this edition?</div>
@@ -1948,6 +2129,73 @@
 </div>
 
 <script>
+  // ═══════════════ QUICK NAV ═══════════════
+  const quickNav = document.getElementById('quickNav');
+  const qnToggle = document.getElementById('qnToggle');
+  const isMobile = () => window.matchMedia('(max-width: 720px)').matches;
+
+  function toggleQuickNav() {
+    if (isMobile()) {
+      const isOpen = quickNav.classList.toggle('mobile-open');
+      qnToggle.style.display = isOpen ? 'none' : 'flex';
+    } else {
+      const isCollapsed = quickNav.classList.toggle('collapsed');
+      qnToggle.classList.toggle('visible', isCollapsed);
+    }
+  }
+
+  // Smooth scroll for quick-nav links (handles potential header offset)
+  document.querySelectorAll('.qn-item a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('data-target');
+      const target = document.getElementById(targetId);
+      if (target) {
+        const y = target.getBoundingClientRect().top + window.pageYOffset - 16;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        // Auto-close on mobile after navigation
+        if (isMobile()) {
+          quickNav.classList.remove('mobile-open');
+          qnToggle.style.display = 'flex';
+        }
+      }
+    });
+  });
+
+  // Highlight active section while scrolling
+  const navSections = [
+    'top','tldr','countdown','editor','kpi','spotlight','achievements',
+    'network','channels','markets','automation','learning','news',
+    'people','reminders','fun','resources','feedback'
+  ];
+  function updateActiveNavLink() {
+    const scrollPos = window.scrollY + 100;
+    let activeId = navSections[0];
+    for (const id of navSections) {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollPos) activeId = id;
+    }
+    document.querySelectorAll('.qn-item a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('data-target') === activeId);
+    });
+  }
+  window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+  window.addEventListener('load', updateActiveNavLink);
+
+  // Scroll progress bar
+  const scrollProgress = document.getElementById('scrollProgress');
+  function updateScrollProgress() {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+    scrollProgress.style.width = scrolled + '%';
+  }
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+
+  // On mobile, start with nav hidden + toggle visible
+  if (isMobile()) {
+    qnToggle.style.display = 'flex';
+  }
+
   // ═══════════════ LIVE TIMEZONE CLOCKS ═══════════════
   function fmtTime(date, tz) {
     const opt = { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: true };
