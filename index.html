@@ -31,6 +31,63 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .email-wrapper { width: 100%; max-width: 100%; margin: 0; }
 
+  /* ═══════════════ EMBED MODE TOGGLES ═══════════════ */
+  body.embedded-mode .quick-nav,
+  body.embedded-mode .qn-toggle,
+  body.embedded-mode .scroll-progress {
+    display: none !important;
+  }
+  body:not(.embedded-mode) .pill-bar {
+    display: none !important;
+  }
+
+  /* ═══════════════ STICKY PILL BAR (SharePoint embed nav) ═══════════════ */
+  .pill-bar {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 24px;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+  }
+  .pill-bar-inner {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+    justify-content: center;
+  }
+  .pill-bar-inner::-webkit-scrollbar { display: none; }
+  .pill-link {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--mist);
+    border: 1px solid var(--border);
+    color: var(--slate);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+  .pill-link:hover {
+    background: var(--lilly-red-light);
+    color: var(--lilly-red);
+    border-color: rgba(213, 43, 30, 0.3);
+    transform: translateY(-1px);
+  }
+  .pill-link .pill-emoji { font-size: 14px; }
+
   /* ═══════════════ QUICK NAV (floating sidebar) ═══════════════ */
   .quick-nav {
     position: fixed;
@@ -121,7 +178,6 @@
   }
   .qn-label { flex: 1; }
 
-  /* Floating reopen button (shown when nav is collapsed) */
   .qn-toggle {
     position: fixed;
     top: 50%;
@@ -146,7 +202,6 @@
   }
   .qn-toggle.visible { display: flex; }
 
-  /* Scroll progress indicator at top */
   .scroll-progress {
     position: fixed;
     top: 0; left: 0;
@@ -158,8 +213,7 @@
     box-shadow: 0 1px 6px rgba(213, 43, 30, 0.4);
   }
 
-  /* Offset for fixed-anchor scrolling */
-  .section { scroll-margin-top: 24px; }
+  .section { scroll-margin-top: 80px; }
 
   /* ═══════════════ HEADER WITH MESH MORPHING ═══════════════ */
   .header { background: #1A2B4A; padding: 0; position: relative; overflow: hidden; }
@@ -196,7 +250,6 @@
   .admin-btn .lock-icon { font-size: 12px; }
   .admin-btn.logged-in { background: rgba(45,125,70,0.25); border-color: rgba(45,125,70,0.5); color: #7DD895; }
 
-  /* MESH MORPHING GRADIENT */
   .mesh-bg {
     position: absolute; inset: 0; z-index: 1;
     background: #1A2B4A;
@@ -294,7 +347,6 @@
   }
   .meta-item .dot { color: var(--lilly-red); font-size: 12px; }
 
-  /* CLOCKS */
   .clocks-block { display: flex; flex-direction: column; gap: 10px; }
   .clock-card {
     background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
@@ -317,7 +369,6 @@
     font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px;
   }
 
-  /* TICKER */
   .ticker-bar { background: var(--lilly-red); padding: 9px 0; overflow: hidden; white-space: nowrap; }
   .ticker-track { display: inline-flex; animation: ticker-scroll 32s linear infinite; }
   .ticker-track:hover { animation-play-state: paused; }
@@ -339,7 +390,6 @@
   .section-title { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--navy); margin-bottom: 6px; line-height: 1.2; letter-spacing: -0.01em; }
   .section-desc { color: var(--text-light); font-size: 14px; margin-bottom: 24px; }
 
-  /* ═══════════════ COUNTDOWN TIMER ═══════════════ */
   .countdown-card {
     background: linear-gradient(135deg, #1A2B4A 0%, #4A1F5C 50%, #D52B1E 150%);
     border-radius: 20px; padding: 28px 32px;
@@ -396,7 +446,6 @@
     margin-top: 4px;
   }
 
-  /* ═══════════════ 3D FLIP CARD SPOTLIGHT ═══════════════ */
   .flip-container {
     perspective: 1500px;
     width: 100%; height: 280px;
@@ -494,7 +543,6 @@
   }
   .flip-fact strong { color: white; }
 
-  /* ═══════════════ SVG ANIMATED LINE CHART ═══════════════ */
   .chart-card {
     background: var(--white); border: 1px solid var(--border);
     border-radius: 16px; padding: 22px;
@@ -523,7 +571,6 @@
   }
   .chart-dot.shown { opacity: 1; }
 
-  /* ═══════════════ EQUALIZER ═══════════════ */
   .equalizer-card {
     background: linear-gradient(135deg, #0F1F3D, #2D1B4E);
     border-radius: 14px; padding: 20px;
@@ -553,7 +600,6 @@
     100% { height: 100%; }
   }
 
-  /* ═══════════════ HEATMAP CALENDAR ═══════════════ */
   .heatmap-card {
     background: var(--white); border: 1px solid var(--border);
     border-radius: 16px; padding: 22px;
@@ -584,7 +630,6 @@
   .hm-cell.l4 { background: var(--lilly-red); color: white; font-weight: 700; }
   .hm-cell.l5 { background: #8B1A11; color: white; font-weight: 700; }
 
-  /* ═══════════════ CONSTELLATION (canvas) ═══════════════ */
   .constellation-section {
     position: relative; overflow: hidden;
     background: linear-gradient(180deg, #1A2B4A 0%, #0F1F3D 100%);
@@ -615,7 +660,6 @@
   .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: white; line-height: 1; }
   .stat-label { font-size: 11px; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px; }
 
-  /* ═══════════════ EVERYTHING ELSE (existing) ═══════════════ */
   .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .quick-card {
     background: var(--white); border: 1px solid var(--border);
@@ -827,7 +871,6 @@
   .highlight-box { background: linear-gradient(135deg, #FFF8EC, #FFF3E0); border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 14px 0; font-size: 13px; color: var(--slate); }
   .highlight-box strong { color: var(--navy); }
 
-  /* ═══════════════ ADMIN MODAL ═══════════════ */
   .modal-overlay {
     position: fixed; inset: 0;
     background: rgba(15, 23, 42, 0.75);
@@ -915,7 +958,6 @@
     padding: 28px 30px;
   }
 
-  /* PIN PAD */
   .pin-display {
     display: flex; gap: 10px; justify-content: center;
     margin-bottom: 22px;
@@ -1002,7 +1044,6 @@
     font-size: 11px;
   }
 
-  /* ADMIN DASHBOARD */
   .admin-tabs {
     display: flex;
     border-bottom: 1px solid var(--border);
@@ -1034,7 +1075,6 @@
   .admin-panel { display: none; padding: 26px 30px; max-height: 70vh; overflow-y: auto; }
   .admin-panel.active { display: block; }
 
-  /* ANALYTICS DASHBOARD */
   .analytics-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1170,7 +1210,6 @@
     border-radius: 12px;
   }
 
-  /* PUBLISH FORM */
   .publish-form { display: flex; flex-direction: column; gap: 16px; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-label {
@@ -1279,7 +1318,6 @@
   .btn-primary:hover { background: #B8241A; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(213,43,30,0.35); }
   .btn-primary:disabled { background: var(--border); color: var(--text-light); cursor: not-allowed; box-shadow: none; transform: none; }
 
-  /* SEND PROGRESS */
   .send-progress {
     background: var(--mist);
     border-radius: 12px;
@@ -1361,13 +1399,15 @@
     .flip-portrait { margin: 0 auto; }
     .section { padding: 32px 24px; }
     .modal-card.large { max-width: 100%; }
-    /* On mobile, hide the side nav by default & let users toggle via floating button */
     .quick-nav {
       transform: translateY(-50%) translateX(calc(100% + 22px));
       width: 240px;
     }
     .quick-nav.mobile-open { transform: translateY(-50%) translateX(0); }
     .qn-toggle { display: flex; }
+    .pill-bar { padding: 8px 16px; }
+    .pill-bar-inner { justify-content: flex-start; }
+    .pill-link { padding: 6px 12px; font-size: 11.5px; }
   }
 </style>
 </head>
@@ -1376,7 +1416,7 @@
 <!-- ════════ SCROLL PROGRESS BAR ════════ -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- ════════ QUICK NAVIGATION SIDEBAR ════════ -->
+<!-- ════════ QUICK NAVIGATION SIDEBAR (hides in SharePoint embed) ════════ -->
 <aside class="quick-nav" id="quickNav">
   <div class="qn-header">
     <div class="qn-title">Quick Nav</div>
@@ -1404,7 +1444,6 @@
   </ul>
 </aside>
 
-<!-- Floating reopen button -->
 <button class="qn-toggle" id="qnToggle" onclick="toggleQuickNav()" title="Show navigation">☰</button>
 
 <div class="email-wrapper" id="top">
@@ -1471,6 +1510,19 @@
     </div>
   </div>
 
+  <!-- ════════ STICKY PILL BAR (shows only in SharePoint embed) ════════ -->
+  <nav class="pill-bar" aria-label="Newsletter sections">
+    <div class="pill-bar-inner">
+      <a class="pill-link" href="#kpi"><span class="pill-emoji">📊</span> KPIs</a>
+      <a class="pill-link" href="#spotlight"><span class="pill-emoji">🌟</span> Spotlight</a>
+      <a class="pill-link" href="#achievements"><span class="pill-emoji">🏆</span> Wins</a>
+      <a class="pill-link" href="#markets"><span class="pill-emoji">🌍</span> Markets</a>
+      <a class="pill-link" href="#automation"><span class="pill-emoji">🤖</span> AI</a>
+      <a class="pill-link" href="#people"><span class="pill-emoji">🎉</span> People</a>
+      <a class="pill-link" href="#feedback"><span class="pill-emoji">⭐</span> Rate</a>
+    </div>
+  </nav>
+
   <div class="body-content">
 
     <!-- ── PODx IN 60 SECONDS ── -->
@@ -1523,7 +1575,7 @@
       </div>
     </div>
 
-    <!-- ── KPI DASHBOARD with ANIMATED LINE CHART ── -->
+    <!-- ── KPI DASHBOARD ── -->
     <div class="section section-mist reveal" id="kpi">
       <div class="section-label">TEST UPDATE : IBU at a Glance</div>
       <h2 class="section-title">April 2026 KPI Dashboard 📊</h2>
@@ -1536,7 +1588,6 @@
         <div class="kpi-card" style="--accent:#C8943A;--icon-bg:#FFF8EC;"><div class="kpi-icon">⚡</div><div class="kpi-value" data-target="14" data-suffix=" Mkts">0</div><div class="kpi-label">Markets Live on NBA</div><div class="kpi-delta delta-flat">→ +2 in Q3</div></div>
       </div>
 
-      <!-- ANIMATED SVG LINE CHART -->
       <div class="chart-card" id="chartCard">
         <div class="chart-header">
           <div class="chart-title">NBA Adoption Trend · Last 6 Months</div>
@@ -1570,10 +1621,10 @@
             <text x="440" y="195" text-anchor="middle">Mar</text>
             <text x="540" y="195" text-anchor="middle">Apr</text>
           </g>
-          <path class="chart-area" id="redArea" d="M40,140 L140,125 L240,110 L340,90 L440,68 L540,44 L540,180 L40,180 Z" fill="url(#redArea)"/>
-          <path class="chart-area" id="tealArea" d="M40,160 L140,150 L240,135 L340,115 L440,95 L540,80 L540,180 L40,180 Z" fill="url(#tealArea)"/>
-          <path class="chart-line" id="redLine"  d="M40,140 L140,125 L240,110 L340,90 L440,68 L540,44"  stroke="#D52B1E"/>
-          <path class="chart-line" id="tealLine" d="M40,160 L140,150 L240,135 L340,115 L440,95 L540,80" stroke="#2B7A8C"/>
+          <path class="chart-area" d="M40,140 L140,125 L240,110 L340,90 L440,68 L540,44 L540,180 L40,180 Z" fill="url(#redArea)"/>
+          <path class="chart-area" d="M40,160 L140,150 L240,135 L340,115 L440,95 L540,80 L540,180 L40,180 Z" fill="url(#tealArea)"/>
+          <path class="chart-line" d="M40,140 L140,125 L240,110 L340,90 L440,68 L540,44"  stroke="#D52B1E"/>
+          <path class="chart-line" d="M40,160 L140,150 L240,135 L340,115 L440,95 L540,80" stroke="#2B7A8C"/>
           <g id="chartDots">
             <circle class="chart-dot" cx="40"  cy="140" r="4" fill="#D52B1E"/>
             <circle class="chart-dot" cx="140" cy="125" r="4" fill="#D52B1E"/>
@@ -1629,7 +1680,7 @@
       </div>
     </div>
 
-    <!-- ── 3D FLIP SPOTLIGHT ── -->
+    <!-- ── SPOTLIGHT ── -->
     <div class="section section-white reveal" id="spotlight">
       <div class="section-label">Spotlight</div>
       <h2 class="section-title">Person of the Month 🌟</h2>
@@ -1675,7 +1726,7 @@
       </div>
     </div>
 
-    <!-- ── CONSTELLATION SECTION ── -->
+    <!-- ── CONSTELLATION ── -->
     <div class="section constellation-section reveal" id="network">
       <canvas class="constellation-canvas" id="constellation"></canvas>
       <div class="section-content">
@@ -1737,7 +1788,7 @@
       </div>
     </div>
 
-    <!-- ── AUTOMATION SPOTLIGHT ── -->
+    <!-- ── AUTOMATION ── -->
     <div class="section section-white reveal" id="automation">
       <div class="section-label">Automation Spotlight</div>
       <h2 class="section-title">AI & Automation Corner 🤖</h2>
@@ -1757,7 +1808,7 @@
       </div>
     </div>
 
-    <!-- ── KNOWLEDGE & LEARNING ── -->
+    <!-- ── LEARNING ── -->
     <div class="section section-mist reveal" id="learning">
       <div class="section-label">Knowledge & Learning</div>
       <h2 class="section-title">Level Up 📚</h2>
@@ -1772,7 +1823,7 @@
       </div>
     </div>
 
-    <!-- ── HAPPENING IN LILLY ── -->
+    <!-- ── NEWS ── -->
     <div class="section section-white reveal" id="news">
       <div class="section-label">What's Happening in Lilly</div>
       <h2 class="section-title">Around the Company 📣</h2>
@@ -1880,9 +1931,7 @@
 
 </div>
 
-<!-- ════════════════════════════════════════════════ -->
-<!-- ════════ ADMIN LOGIN MODAL ═══════════════════ -->
-<!-- ════════════════════════════════════════════════ -->
+<!-- ════════ ADMIN LOGIN MODAL ════════ -->
 <div class="modal-overlay" id="loginModal">
   <div class="modal-card">
     <div class="modal-header">
@@ -1918,9 +1967,7 @@
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════ -->
-<!-- ════════ ADMIN DASHBOARD MODAL ═══════════════ -->
-<!-- ════════════════════════════════════════════════ -->
+<!-- ════════ ADMIN DASHBOARD MODAL ════════ -->
 <div class="modal-overlay" id="dashboardModal">
   <div class="modal-card large">
     <div class="modal-header dashboard">
@@ -1935,7 +1982,6 @@
       <button class="admin-tab" onclick="switchAdminTab(this,'panelHistory')">🕓 History</button>
     </div>
 
-    <!-- ANALYTICS PANEL -->
     <div class="admin-panel active" id="panelAnalytics">
       <div class="analytics-grid">
         <div class="analytics-stat" style="--accent:#D52B1E;">
@@ -1966,105 +2012,45 @@
 
       <div class="analytics-section-title">Star Rating Distribution</div>
       <div class="rating-breakdown">
-        <div class="rating-row">
-          <span class="rating-label">5 ★</span>
-          <div class="rating-bar"><div class="rating-bar-fill" style="width:62%;"></div></div>
-          <span class="rating-count">68%</span>
-        </div>
-        <div class="rating-row">
-          <span class="rating-label">4 ★</span>
-          <div class="rating-bar"><div class="rating-bar-fill" style="width:42%;"></div></div>
-          <span class="rating-count">22%</span>
-        </div>
-        <div class="rating-row">
-          <span class="rating-label">3 ★</span>
-          <div class="rating-bar"><div class="rating-bar-fill" style="width:18%;"></div></div>
-          <span class="rating-count">7%</span>
-        </div>
-        <div class="rating-row">
-          <span class="rating-label">2 ★</span>
-          <div class="rating-bar"><div class="rating-bar-fill" style="width:8%;"></div></div>
-          <span class="rating-count">2%</span>
-        </div>
-        <div class="rating-row">
-          <span class="rating-label">1 ★</span>
-          <div class="rating-bar"><div class="rating-bar-fill" style="width:4%;"></div></div>
-          <span class="rating-count">1%</span>
-        </div>
+        <div class="rating-row"><span class="rating-label">5 ★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:62%;"></div></div><span class="rating-count">68%</span></div>
+        <div class="rating-row"><span class="rating-label">4 ★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:42%;"></div></div><span class="rating-count">22%</span></div>
+        <div class="rating-row"><span class="rating-label">3 ★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:18%;"></div></div><span class="rating-count">7%</span></div>
+        <div class="rating-row"><span class="rating-label">2 ★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:8%;"></div></div><span class="rating-count">2%</span></div>
+        <div class="rating-row"><span class="rating-label">1 ★</span><div class="rating-bar"><div class="rating-bar-fill" style="width:4%;"></div></div><span class="rating-count">1%</span></div>
       </div>
 
       <div class="analytics-section-title">Most Engaging Sections</div>
       <div class="top-sections-list">
-        <div class="top-section-row">
-          <span class="top-section-rank">1</span>
-          <span class="top-section-name">🌟 Person of the Month (Spotlight)</span>
-          <span class="top-section-views">298 views</span>
-        </div>
-        <div class="top-section-row">
-          <span class="top-section-rank">2</span>
-          <span class="top-section-name">📊 KPI Dashboard</span>
-          <span class="top-section-views">271 views</span>
-        </div>
-        <div class="top-section-row">
-          <span class="top-section-rank">3</span>
-          <span class="top-section-name">🏆 Quarterly Wins</span>
-          <span class="top-section-views">244 views</span>
-        </div>
-        <div class="top-section-row">
-          <span class="top-section-rank">4</span>
-          <span class="top-section-name">🤖 AI & Automation Corner</span>
-          <span class="top-section-views">218 views</span>
-        </div>
-        <div class="top-section-row">
-          <span class="top-section-rank">5</span>
-          <span class="top-section-name">😄 Joke of the Month</span>
-          <span class="top-section-views">196 views</span>
-        </div>
+        <div class="top-section-row"><span class="top-section-rank">1</span><span class="top-section-name">🌟 Person of the Month (Spotlight)</span><span class="top-section-views">298 views</span></div>
+        <div class="top-section-row"><span class="top-section-rank">2</span><span class="top-section-name">📊 KPI Dashboard</span><span class="top-section-views">271 views</span></div>
+        <div class="top-section-row"><span class="top-section-rank">3</span><span class="top-section-name">🏆 Quarterly Wins</span><span class="top-section-views">244 views</span></div>
+        <div class="top-section-row"><span class="top-section-rank">4</span><span class="top-section-name">🤖 AI & Automation Corner</span><span class="top-section-views">218 views</span></div>
+        <div class="top-section-row"><span class="top-section-rank">5</span><span class="top-section-name">😄 Joke of the Month</span><span class="top-section-views">196 views</span></div>
       </div>
 
       <div class="analytics-section-title">Engagement by Region</div>
       <div class="rating-breakdown">
-        <div class="rating-row">
-          <span class="rating-label" style="width:90px;">🇮🇳 BLR</span>
-          <div class="rating-bar"><div class="rating-bar-fill" style="width:88%;background:linear-gradient(90deg,#D52B1E,#FF6B6B);"></div></div>
-          <span class="rating-count">186</span>
-        </div>
-        <div class="rating-row">
-          <span class="rating-label" style="width:90px;">🇺🇸 Indy</span>
-          <div class="rating-bar"><div class="rating-bar-fill" style="width:54%;background:linear-gradient(90deg,#2B7A8C,#5BB5C9);"></div></div>
-          <span class="rating-count">94</span>
-        </div>
-        <div class="rating-row">
-          <span class="rating-label" style="width:90px;">🇬🇧 EU M5</span>
-          <div class="rating-bar"><div class="rating-bar-fill" style="width:18%;background:linear-gradient(90deg,#2D7D46,#4ECDC4);"></div></div>
-          <span class="rating-count">22</span>
-        </div>
-        <div class="rating-row">
-          <span class="rating-label" style="width:90px;">🌍 Other</span>
-          <div class="rating-bar"><div class="rating-bar-fill" style="width:8%;background:linear-gradient(90deg,#5B4FBE,#8B80F9);"></div></div>
-          <span class="rating-count">10</span>
-        </div>
+        <div class="rating-row"><span class="rating-label" style="width:90px;">🇮🇳 BLR</span><div class="rating-bar"><div class="rating-bar-fill" style="width:88%;background:linear-gradient(90deg,#D52B1E,#FF6B6B);"></div></div><span class="rating-count">186</span></div>
+        <div class="rating-row"><span class="rating-label" style="width:90px;">🇺🇸 Indy</span><div class="rating-bar"><div class="rating-bar-fill" style="width:54%;background:linear-gradient(90deg,#2B7A8C,#5BB5C9);"></div></div><span class="rating-count">94</span></div>
+        <div class="rating-row"><span class="rating-label" style="width:90px;">🇬🇧 EU M5</span><div class="rating-bar"><div class="rating-bar-fill" style="width:18%;background:linear-gradient(90deg,#2D7D46,#4ECDC4);"></div></div><span class="rating-count">22</span></div>
+        <div class="rating-row"><span class="rating-label" style="width:90px;">🌍 Other</span><div class="rating-bar"><div class="rating-bar-fill" style="width:8%;background:linear-gradient(90deg,#5B4FBE,#8B80F9);"></div></div><span class="rating-count">10</span></div>
       </div>
     </div>
 
-    <!-- PUBLISH PANEL -->
     <div class="admin-panel" id="panelPublish">
       <div class="publish-form">
         <div class="form-group">
           <label class="form-label">Subject Line <span class="helper">Shows in inbox</span></label>
           <input type="text" class="form-input" id="emailSubject" value="📰 PODx Newsletter — April 2026 Edition is here!">
         </div>
-
         <div class="form-group">
           <label class="form-label">Sender <span class="helper">From address</span></label>
           <input type="text" class="form-input" id="emailFrom" value="podx-newsletter@lilly.com">
         </div>
-
         <div class="form-group">
           <label class="form-label">Pre-header <span class="helper">Inbox preview text (~100 chars)</span></label>
           <textarea class="form-textarea" id="emailPreheader">The wins, the work, and the people behind them. Your monthly dose of IBU updates is here.</textarea>
         </div>
-
         <div class="form-group">
           <label class="form-label">Recipients <span class="helper" id="recipientCount">0 selected</span></label>
           <div class="recipient-controls">
@@ -2073,11 +2059,8 @@
             <button type="button" class="ctrl-btn" onclick="selectByGroup('blr')">BLR team</button>
             <button type="button" class="ctrl-btn" onclick="selectByGroup('lead')">Leadership</button>
           </div>
-          <div class="recipient-list" id="recipientList">
-            <!-- populated by JS -->
-          </div>
+          <div class="recipient-list" id="recipientList"></div>
         </div>
-
         <div class="form-group">
           <label class="form-label">Schedule <span class="helper">Pick a delivery time</span></label>
           <select class="form-select" id="emailSchedule">
@@ -2087,13 +2070,10 @@
             <option value="custom">Custom (next iteration)</option>
           </select>
         </div>
-
         <div class="form-footer">
           <button class="btn btn-secondary" onclick="closeDashboardModal()">Cancel</button>
           <button class="btn btn-primary" id="sendBtn" onclick="publishNewsletter()">📨 Publish Newsletter</button>
         </div>
-
-        <!-- Send progress -->
         <div class="send-progress" id="sendProgress">
           <div class="send-bar-track"><div class="send-bar-fill" id="sendBarFill"></div></div>
           <div class="send-status">
@@ -2102,8 +2082,6 @@
           </div>
           <div class="send-log" id="sendLog"></div>
         </div>
-
-        <!-- Send success -->
         <div class="send-success" id="sendSuccess">
           <div class="send-success-icon">✅</div>
           <div class="send-success-title">Newsletter Published!</div>
@@ -2112,7 +2090,6 @@
       </div>
     </div>
 
-    <!-- HISTORY PANEL -->
     <div class="admin-panel" id="panelHistory">
       <div class="analytics-section-title">Recent Sends</div>
       <div class="top-sections-list" id="historyList">
@@ -2129,6 +2106,24 @@
 </div>
 
 <script>
+  // ═══════════════ EMBED DETECTION ═══════════════
+  // Detect if running inside an iframe (e.g. SharePoint Embed web part).
+  // When embedded: hide floating Quick Nav + scroll progress bar, show sticky pill bar.
+  // When standalone (GitHub Pages): show original Quick Nav, hide pill bar.
+  (function detectEmbedContext() {
+    try {
+      if (window.self !== window.top) {
+        document.body.classList.add('embedded-mode');
+      }
+    } catch (e) {
+      document.body.classList.add('embedded-mode');
+    }
+  })();
+  // Force embed mode via ?embed=1 for testing on GitHub Pages
+  if (new URLSearchParams(window.location.search).get('embed') === '1') {
+    document.body.classList.add('embedded-mode');
+  }
+
   // ═══════════════ QUICK NAV ═══════════════
   const quickNav = document.getElementById('quickNav');
   const qnToggle = document.getElementById('qnToggle');
@@ -2144,7 +2139,6 @@
     }
   }
 
-  // Smooth scroll for quick-nav links (handles potential header offset)
   document.querySelectorAll('.qn-item a').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -2153,7 +2147,6 @@
       if (target) {
         const y = target.getBoundingClientRect().top + window.pageYOffset - 16;
         window.scrollTo({ top: y, behavior: 'smooth' });
-        // Auto-close on mobile after navigation
         if (isMobile()) {
           quickNav.classList.remove('mobile-open');
           qnToggle.style.display = 'flex';
@@ -2162,7 +2155,6 @@
     });
   });
 
-  // Highlight active section while scrolling
   const navSections = [
     'top','tldr','countdown','editor','kpi','spotlight','achievements',
     'network','channels','markets','automation','learning','news',
@@ -2182,7 +2174,6 @@
   window.addEventListener('scroll', updateActiveNavLink, { passive: true });
   window.addEventListener('load', updateActiveNavLink);
 
-  // Scroll progress bar
   const scrollProgress = document.getElementById('scrollProgress');
   function updateScrollProgress() {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -2191,7 +2182,6 @@
   }
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
 
-  // On mobile, start with nav hidden + toggle visible
   if (isMobile()) {
     qnToggle.style.display = 'flex';
   }
@@ -2263,7 +2253,7 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // ═══════════════ EQUALIZER BARS ═══════════════
+  // ═══════════════ EQUALIZER ═══════════════
   const eqBars = document.getElementById('eqBars');
   for (let i = 0; i < 20; i++) {
     const bar = document.createElement('div');
@@ -2278,7 +2268,7 @@
     eqStatus.textContent = `${v}K events / hr`;
   }, 2000);
 
-  // ═══════════════ HEATMAP CALENDAR ═══════════════
+  // ═══════════════ HEATMAP ═══════════════
   const heatmapGrid = document.getElementById('heatmapGrid');
   const dayLabels = ['M','T','W','T','F','S','S'];
   dayLabels.forEach(d => {
@@ -2365,7 +2355,7 @@
   }
   drawConstellation();
 
-  // ═══════════════ ANIMATED CHART ═══════════════
+  // ═══════════════ CHART ANIMATION ═══════════════
   const chartObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -2383,7 +2373,7 @@
   const chartCard = document.getElementById('chartCard');
   if (chartCard) chartObserver.observe(chartCard);
 
-  // ═══════════════ SCROLL REVEAL ═══════════════
+  // ═══════════════ REVEAL / COUNTERS / RINGS / BARS ═══════════════
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
@@ -2395,7 +2385,6 @@
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
 
-  // ═══════════════ COUNTERS / RINGS / BARS ═══════════════
   function animateCounters() {
     document.querySelectorAll('[data-target]').forEach(el => {
       const target = parseFloat(el.dataset.target);
@@ -2462,9 +2451,7 @@
     }
   }
 
-  // ════════════════════════════════════════════════
-  // ════════ ADMIN LOGIN SYSTEM ═══════════════════
-  // ════════════════════════════════════════════════
+  // ═══════════════ ADMIN LOGIN ═══════════════
   const ADMIN_CODE = '1234';
   let isLoggedIn = false;
   let currentPin = '';
@@ -2477,7 +2464,6 @@
 
   function openAdminModal() {
     if (isLoggedIn) {
-      // Already logged in → open dashboard directly
       dashboardModal.classList.add('active');
       return;
     }
@@ -2516,7 +2502,6 @@
         dashboardModal.classList.add('active');
       }, 200);
     } else {
-      // Wrong code
       pinDisplay.querySelectorAll('.pin-dot').forEach(d => d.classList.add('error'));
       pinError.textContent = '❌ Incorrect code. Try again.';
       setTimeout(() => {
@@ -2526,7 +2511,6 @@
       }, 900);
     }
   }
-  // Pin pad clicks
   document.getElementById('pinPad').addEventListener('click', (e) => {
     const k = e.target.closest('.pin-key');
     if (!k) return;
@@ -2546,7 +2530,6 @@
       }
     }
   });
-  // Keyboard support
   document.addEventListener('keydown', (e) => {
     if (!loginModal.classList.contains('active')) return;
     if (/^\d$/.test(e.key) && currentPin.length < 4) {
@@ -2560,13 +2543,9 @@
       closeAdminModal();
     }
   });
-  // Click overlay to close
   loginModal.addEventListener('click', (e) => { if (e.target === loginModal) closeAdminModal(); });
   dashboardModal.addEventListener('click', (e) => { if (e.target === dashboardModal) closeDashboardModal(); });
 
-  // ════════════════════════════════════════════════
-  // ════════ ADMIN DASHBOARD - TABS ═══════════════
-  // ════════════════════════════════════════════════
   function switchAdminTab(btn, panelId) {
     document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
@@ -2574,9 +2553,7 @@
     document.getElementById(panelId).classList.add('active');
   }
 
-  // ════════════════════════════════════════════════
-  // ════════ PUBLISH NEWSLETTER ═══════════════════
-  // ════════════════════════════════════════════════
+  // ═══════════════ PUBLISH NEWSLETTER ═══════════════
   const teamMembers = [
     { name: 'Vaibhav Rachalwar', email: 'vaibhav.rachalwar@lilly.com', group: ['blr','lead'] },
     { name: 'Shruti Choubey',    email: 'shruti.choubey@lilly.com',    group: ['blr','lead'] },
@@ -2630,7 +2607,6 @@
   }
   renderRecipients();
 
-  // History tracking
   const sendHistory = [];
 
   function publishNewsletter() {
@@ -2641,7 +2617,6 @@
     const subject = document.getElementById('emailSubject').value.trim();
     const schedule = document.getElementById('emailSchedule').value;
 
-    // Reset UI
     document.getElementById('sendBtn').disabled = true;
     document.getElementById('sendSuccess').classList.remove('active');
     const progressBox = document.getElementById('sendProgress');
@@ -2653,7 +2628,6 @@
     sendLog.innerHTML = '';
     barFill.style.width = '0%';
 
-    // Pseudo-send simulation
     const total = selected.length;
     let sent = 0;
     const startTime = Date.now();
@@ -2683,7 +2657,6 @@
           document.getElementById('sendSuccessMsg').textContent =
             `Delivered to ${total} recipient${total>1?'s':''} ${schedule==='now' ? 'just now' : '(scheduled)'} • ${elapsed}s`;
 
-          // Add to history
           sendHistory.unshift({
             ts: new Date(),
             count: total,
@@ -2692,7 +2665,6 @@
           });
           renderHistory();
 
-          // Confetti for celebration
           spawnConfetti();
           document.getElementById('sendBtn').disabled = false;
           return;
