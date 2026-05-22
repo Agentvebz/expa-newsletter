@@ -42,7 +42,7 @@
     background: var(--cream);
     color: var(--text);
     line-height: 1.6;
-    padding: 24px 16px 60px;
+    padding: 24px 16px 100px;
   }
 
   /* ============== NEWSLETTER CONTAINER ============== */
@@ -2463,6 +2463,51 @@
   /* ============================================================
      PODx NEWSLETTER · ALL INTERACTIVITY
      ============================================================ */
+
+  /* ═══ IFRAME HEIGHT HELPER ═══
+     - Logs the measured page height to console (so you can read it in DevTools
+       and update your SharePoint iframe height attribute to match).
+     - Also posts the height to the parent window via postMessage, so any
+       parent page that listens can auto-resize the iframe. Harmless if no
+       listener exists (SharePoint's default Embed web part doesn't listen,
+       but custom SPFx web parts can).
+     - Re-measures on resize, font load, and after a short delay (to catch
+       late-loading content like the AI Digest chart bars). */
+  (function(){
+    function measure() {
+      const h = Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      );
+      // Log for SharePoint admins reading DevTools
+      console.log('[PODx newsletter] measured page height:', h + 'px',
+                  '— set your iframe height attribute to at least this value');
+      // Post to parent in case anyone is listening (SPFx custom web parts, etc.)
+      try {
+        window.parent.postMessage({
+          type: 'podx-newsletter-height',
+          height: h
+        }, '*');
+      } catch (e) { /* cross-origin blocked, ignore */ }
+    }
+    // Run on load, after fonts load, and on window resize
+    window.addEventListener('load', () => {
+      measure();
+      // Re-measure after a beat (catches lazy-rendered content)
+      setTimeout(measure, 1500);
+      setTimeout(measure, 4000);
+    });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(measure);
+    }
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(measure, 250);
+    });
+  })();
 
   /* ═══ MASTHEAD — LIVE TIMEZONE CLOCKS (Indianapolis + Bengaluru) ═══ */
   (function(){
