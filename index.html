@@ -1362,94 +1362,289 @@
     </div>
   </section>
 
-  <!-- ════════════ SECTION 06 · TIPS (Slide 18 — Tip Cards over Bubble Field) ════════════ -->
+  <!-- ════════════ SECTION 06 · TIPS JAR (cookie jar · pull · drag-carousel) ════════════ -->
   <style>
     .s06-stage {
       position: relative; border-radius: 16px; overflow: hidden;
       background: linear-gradient(135deg, var(--lilly-red-soft) 0%, var(--gold-soft) 100%);
-      padding: 32px;
-      min-height: 360px;
+      padding: 26px 30px 30px;
+      min-height: 440px;
     }
-    .s06-bubbles {
-      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+    /* faint shelf wash so the jar feels like it sits on a surface */
+    .s06-shelf {
+      position: absolute; left: 0; right: 0; bottom: 96px; height: 1px;
+      background: rgba(180, 150, 110, 0.22);
+      z-index: 1; pointer-events: none;
     }
-    .s06-bubble {
-      position: absolute; bottom: -100px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.55), rgba(213,43,30,0.12));
-      animation: s06BubbleRise 22s linear infinite;
-      opacity: 0;
+    /* ambient drifting paper specks */
+    .s06-specks { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+    .s06-speck {
+      position: absolute; width: 7px; height: 9px; border-radius: 2px;
+      background: rgba(255,255,255,0.55);
+      box-shadow: 0 1px 2px rgba(26,43,74,0.10);
+      opacity: 0; will-change: transform;
     }
-    @keyframes s06BubbleRise {
-      0% { bottom: -120px; opacity: 0; transform: translateX(0) scale(0.6); }
-      10% { opacity: 0.75; }
-      50% { transform: translateX(30px) scale(1); }
-      90% { opacity: 0.75; }
-      100% { bottom: calc(100% + 100px); opacity: 0; transform: translateX(-20px) scale(1.1); }
+    .s06-content { position: relative; z-index: 3; }
+
+    /* compact single-row header */
+    .s06-head {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 4px;
     }
-    .s06-content { position: relative; z-index: 2; }
-    .s06-tips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 22px; }
-    .s06-tip {
-      background: white;
-      border-radius: 12px;
-      padding: 22px 20px;
-      border: 1px solid var(--border-soft);
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
+    .s06-head-icon { font-size: 20px; }
+    .s06-head-title {
+      font-family: 'DM Serif Display', serif; font-size: 24px;
+      color: var(--navy); line-height: 1;
     }
-    .s06-tip:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(26, 43, 74, 0.1); }
-    .s06-tip-num {
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--lilly-red); font-weight: 700; font-size: 13px;
-      letter-spacing: 0.1em;
-    }
-    .s06-tip-icon {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--lilly-red-soft); color: var(--lilly-red);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; margin: 10px 0 14px 0;
-    }
-    .s06-tip-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 18px; color: var(--navy);
-      margin-bottom: 8px; line-height: 1.25;
-    }
-    .s06-tip-desc {
-      font-size: 13px; color: var(--slate); line-height: 1.55;
+    .s06-head-title .accent { color: var(--lilly-red); font-style: italic; }
+    .s06-head-hint {
+      margin-left: auto; font-size: 11px; color: var(--slate);
+      font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em;
+      opacity: 0.8;
     }
 
-    @media (max-width: 720px) { .s06-tips { grid-template-columns: 1fr; } }
+    /* main two-column layout: jar | pulled-papers carousel */
+    .s06-layout {
+      display: grid; grid-template-columns: 300px 1fr; gap: 28px;
+      align-items: center; margin-top: 18px;
+    }
+
+    /* ── JAR COLUMN ── */
+    .s06-jar-col { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .s06-jar-wrap {
+      position: relative; width: 220px; height: 250px;
+      cursor: pointer; outline: none;
+      transform-origin: 50% 90%;
+    }
+    .s06-jar-wrap:focus-visible { box-shadow: 0 0 0 3px rgba(213,43,30,0.4); border-radius: 18px; }
+    .s06-jar-svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    /* the lid group sits slightly lifted on idle hover, pops fully on pull */
+    .s06-lid {
+      transform-box: fill-box; transform-origin: 50% 100%;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .s06-jar-wrap:hover .s06-lid { transform: translateY(-3px); }
+    .s06-jar-wrap.pulling { animation: s06Shake 0.5s ease-in-out; }
+    .s06-jar-wrap.pulling .s06-lid { transform: translateY(-22px) rotate(-7deg); }
+    @keyframes s06Shake {
+      0%, 100% { transform: translate(0,0) rotate(0); }
+      15% { transform: translate(-4px, 1px) rotate(-2deg); }
+      30% { transform: translate(4px, -1px) rotate(2deg); }
+      45% { transform: translate(-3px, 0) rotate(-1.5deg); }
+      60% { transform: translate(3px, 1px) rotate(1.5deg); }
+      80% { transform: translate(-1px, 0) rotate(-0.5deg); }
+    }
+    /* crumpled papers inside the jar (toggled via .gone) */
+    .s06-crumb { transition: opacity 0.4s, transform 0.4s; }
+    .s06-crumb.gone { opacity: 0; transform: translateY(6px) scale(0.6); }
+
+    /* number plate on the jar */
+    .s06-jar-count {
+      position: absolute; left: 50%; top: 57%;
+      transform: translate(-50%, -50%);
+      text-align: center; pointer-events: none;
+    }
+    .s06-jar-count-num {
+      font-family: 'DM Serif Display', serif; font-size: 30px;
+      color: var(--lilly-red-deeper); line-height: 1;
+      display: inline-block; transition: transform 0.25s, opacity 0.25s;
+    }
+    .s06-jar-count-num.flip { transform: translateY(-6px); opacity: 0; }
+    .s06-jar-count-label {
+      font-size: 8px; letter-spacing: 0.18em; font-weight: 700;
+      color: var(--slate); margin-top: 2px;
+    }
+    .s06-pull-cue {
+      font-size: 12px; color: var(--lilly-red); font-weight: 700;
+      letter-spacing: 0.06em; font-family: 'JetBrains Mono', monospace;
+      animation: s06CuePulse 2.4s ease-in-out infinite;
+    }
+    @keyframes s06CuePulse { 0%,100% { opacity: 0.55; } 50% { opacity: 1; } }
+
+    /* ── PAPERS / CAROUSEL COLUMN ── */
+    .s06-papers {
+      position: relative; min-height: 300px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .s06-empty-note {
+      font-size: 13px; color: var(--slate); text-align: center;
+      max-width: 240px; line-height: 1.5; font-style: italic;
+    }
+    .s06-track {
+      position: relative; width: 100%; height: 280px;
+      display: none;
+    }
+    .s06-track.active { display: block; }
+    /* each pulled tip is an absolutely-stacked card; active one centered */
+    .s06-paper {
+      position: absolute; top: 50%; left: 50%;
+      width: 250px;
+      background: var(--paper, #FFFDF7);
+      border-radius: 12px;
+      padding: 20px 20px 16px;
+      box-shadow: 0 10px 30px rgba(26,43,74,0.16);
+      border: 1px solid #EFE7D6;
+      transition: transform 0.45s cubic-bezier(0.25,0.8,0.3,1), opacity 0.45s;
+      transform-origin: 50% 50%;
+      will-change: transform, opacity;
+    }
+    .s06-paper::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+      background: linear-gradient(90deg, var(--lilly-red), var(--gold));
+      border-radius: 12px 12px 0 0;
+    }
+    .s06-paper-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px;
+    }
+    .s06-paper-num {
+      font-family: 'JetBrains Mono', monospace; font-weight: 700;
+      font-size: 12px; color: var(--lilly-red); letter-spacing: 0.08em;
+    }
+    .s06-paper-time { font-size: 10px; color: var(--text-light); font-family: 'JetBrains Mono', monospace; }
+    .s06-paper-icon {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--lilly-red-soft); color: var(--lilly-red);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; margin-bottom: 10px;
+    }
+    .s06-paper-title {
+      font-family: 'DM Serif Display', serif; font-size: 17px;
+      color: var(--navy); line-height: 1.25; margin-bottom: 7px;
+    }
+    .s06-paper-desc { font-size: 12.5px; color: var(--slate); line-height: 1.5; }
+
+    /* unfurl animation when a fresh paper lands */
+    @keyframes s06Unfurl {
+      0%   { transform: translate(-50%, -120px) scale(0.2) rotate(-18deg); opacity: 0; }
+      55%  { opacity: 1; }
+      75%  { transform: translate(-50%, -50%) scale(1.06) rotate(2deg); }
+      100% { transform: translate(-50%, -50%) scale(1) rotate(var(--r, 0deg)); opacity: 1; }
+    }
+    .s06-paper.landing { animation: s06Unfurl 0.6s cubic-bezier(0.2,0.8,0.3,1) both; }
+
+    /* carousel controls */
+    .s06-carousel-bar {
+      display: none; align-items: center; justify-content: center; gap: 14px;
+      margin-top: 14px;
+    }
+    .s06-carousel-bar.active { display: flex; }
+    .s06-arrow {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--border); background: white;
+      color: var(--navy); font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .s06-arrow:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(26,43,74,0.12); }
+    .s06-dots { display: flex; gap: 6px; }
+    .s06-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(26,43,74,0.2); transition: all 0.25s; cursor: pointer;
+    }
+    .s06-dot.on { background: var(--lilly-red); transform: scale(1.35); }
+
+    .s06-flying {
+      position: fixed; z-index: 9999; width: 16px; height: 20px;
+      background: var(--paper, #FFFDF7); border: 1px solid #E4D9C2;
+      border-radius: 3px; pointer-events: none;
+      box-shadow: 0 4px 10px rgba(26,43,74,0.2);
+    }
+
+    @media (max-width: 720px) {
+      .s06-layout { grid-template-columns: 1fr; gap: 16px; }
+      .s06-jar-col { order: 1; }
+      .s06-papers { order: 2; min-height: 300px; }
+      .s06-head-hint { display: none; }
+    }
   </style>
   <section class="nl-section" id="sec-06">
     <div class="nl-ribbon">
-      <span><span class="nl-pulse"></span>SECTION 06 · TIPS</span>
-      <span>SMALL HABITS, BIG PAYOFF</span>
+      <span><span class="nl-pulse"></span>SECTION 06 · TIPS JAR</span>
+      <span>REACH IN · PICK ONE</span>
     </div>
     <div class="nl-section-body">
       <div class="s06-stage">
-        <div class="s06-bubbles" id="s06-bubbles"></div>
+        <div class="s06-shelf"></div>
+        <div class="s06-specks" id="s06-specks"></div>
         <div class="s06-content">
-          <div class="nl-eyebrow">THIS MONTH'S TIPS</div>
-          <h2 class="nl-h1">Three habits.<br><span class="accent">Pick one.</span></h2>
-          <div class="s06-tips">
-            <div class="s06-tip">
-              <div class="s06-tip-num">01</div>
-              <div class="s06-tip-icon">⏱</div>
-              <div class="s06-tip-title">Block 'no-meeting' hours</div>
-              <div class="s06-tip-desc">Reserve a 2-hour focus block on your calendar each morning. Decline anything that overlaps. Your future self debugging an NBA model at 11pm thanks you.</div>
+          <div class="s06-head">
+            <span class="s06-head-icon">🍪</span>
+            <span class="s06-head-title">Tips <span class="accent">jar.</span></span>
+            <span class="s06-head-hint" id="s06-hint">TAP THE JAR →</span>
+          </div>
+
+          <div class="s06-layout">
+            <!-- JAR -->
+            <div class="s06-jar-col">
+              <div class="s06-jar-wrap" id="s06-jar" tabindex="0" role="button" aria-label="Pull a tip from the jar">
+                <svg class="s06-jar-svg" viewBox="0 0 220 250" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="s06glass" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#EAF2F6" stop-opacity="0.85"/>
+                      <stop offset="45%" stop-color="#CFE0EA" stop-opacity="0.55"/>
+                      <stop offset="100%" stop-color="#B7CCDB" stop-opacity="0.7"/>
+                    </linearGradient>
+                    <linearGradient id="s06lid" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#E5483B"/>
+                      <stop offset="100%" stop-color="#A8221A"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- jar body: rounded cookie-jar silhouette -->
+                  <path d="M40 80
+                           Q40 70 52 68
+                           L168 68
+                           Q180 70 180 80
+                           L180 210
+                           Q180 234 150 238
+                           L70 238
+                           Q40 234 40 210 Z"
+                        fill="url(#s06glass)" stroke="#9FB8C8" stroke-width="2"/>
+                  <!-- glass highlight -->
+                  <path d="M58 92 Q54 150 64 210" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="6" stroke-linecap="round"/>
+                  <!-- crumpled papers inside (decrement via .gone) -->
+                  <g id="s06-crumbs">
+                    <circle class="s06-crumb" data-i="0" cx="78"  cy="200" r="13" fill="#FFF6E2"/>
+                    <circle class="s06-crumb" data-i="1" cx="108" cy="206" r="14" fill="#FFFBF0"/>
+                    <circle class="s06-crumb" data-i="2" cx="140" cy="201" r="13" fill="#FFF3DA"/>
+                    <circle class="s06-crumb" data-i="3" cx="92"  cy="178" r="12" fill="#FFFAEE"/>
+                    <circle class="s06-crumb" data-i="4" cx="124" cy="180" r="13" fill="#FFF6E2"/>
+                    <circle class="s06-crumb" data-i="5" cx="150" cy="178" r="11" fill="#FFFBF0"/>
+                    <circle class="s06-crumb" data-i="6" cx="76"  cy="160" r="11" fill="#FFF3DA"/>
+                    <circle class="s06-crumb" data-i="7" cx="106" cy="158" r="12" fill="#FFFAEE"/>
+                    <circle class="s06-crumb" data-i="8" cx="136" cy="159" r="11" fill="#FFF6E2"/>
+                    <circle class="s06-crumb" data-i="9" cx="110" cy="140" r="10" fill="#FFFBF0"/>
+                  </g>
+                  <!-- glass rim -->
+                  <rect x="38" y="62" width="144" height="12" rx="6" fill="#C2D6E2" stroke="#9FB8C8" stroke-width="1.5"/>
+                  <!-- lid group (animated) -->
+                  <g class="s06-lid">
+                    <rect x="46" y="40" width="128" height="22" rx="9" fill="url(#s06lid)"/>
+                    <rect x="86" y="28" width="48" height="16" rx="8" fill="url(#s06lid)"/>
+                    <ellipse cx="110" cy="40" rx="64" ry="7" fill="#C0302480"/>
+                  </g>
+                </svg>
+                <div class="s06-jar-count">
+                  <span class="s06-jar-count-num" id="s06-count-num">10</span>
+                  <div class="s06-jar-count-label">TIPS INSIDE</div>
+                </div>
+              </div>
+              <div class="s06-pull-cue" id="s06-cue">🍪 Tap to pull a tip</div>
             </div>
-            <div class="s06-tip">
-              <div class="s06-tip-num">02</div>
-              <div class="s06-tip-icon">✎</div>
-              <div class="s06-tip-title">Write before you message</div>
-              <div class="s06-tip-desc">Draft a 5-line summary before pinging your team. Half the time you'll answer your own question. The other half, the answer comes back ten times faster.</div>
+
+            <!-- PULLED PAPERS / CAROUSEL -->
+            <div class="s06-papers">
+              <div class="s06-empty-note" id="s06-empty">
+                The jar's full of small habits with big payoff.<br>Tap it to pull your first tip.
+              </div>
+              <div class="s06-track" id="s06-track"></div>
             </div>
-            <div class="s06-tip">
-              <div class="s06-tip-num">03</div>
-              <div class="s06-tip-icon">↺</div>
-              <div class="s06-tip-title">Run a weekly retro — solo</div>
-              <div class="s06-tip-desc">Friday afternoon: list what worked, what didn't, what's next. Ten minutes, every week. Compounds faster than any process you'll roll out.</div>
-            </div>
+          </div>
+
+          <!-- carousel controls (appear once you have ≥2 pulled) -->
+          <div class="s06-carousel-bar" id="s06-carousel">
+            <button class="s06-arrow" id="s06-prev" aria-label="Previous tip">‹</button>
+            <div class="s06-dots" id="s06-dots"></div>
+            <button class="s06-arrow" id="s06-next" aria-label="Next tip">›</button>
           </div>
         </div>
       </div>
@@ -2303,11 +2498,71 @@
     }
     .s09-nova-btn:hover { background: var(--gold); color: var(--navy-deep); }
 
+    /* ── EXPANDER: collapsed bar → full stories ── */
+    .s09-expander-bar {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      padding: 16px 20px;
+      cursor: pointer; position: relative; overflow: hidden;
+      transition: background 0.25s, border-color 0.25s, transform 0.2s;
+      margin-bottom: 4px;
+    }
+    .s09-expander-bar:hover { background: rgba(255,255,255,0.09); border-color: rgba(200,148,58,0.5); }
+    .s09-expander-bar:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    /* gold shimmer that traces across every 4s */
+    .s09-expander-bar::after {
+      content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(200,148,58,0.18), transparent);
+      animation: s09Shimmer 4s ease-in-out infinite;
+    }
+    @keyframes s09Shimmer { 0% { left: -60%; } 55%,100% { left: 130%; } }
+    .s09-exp-dot {
+      width: 9px; height: 9px; border-radius: 50%; background: var(--gold);
+      flex-shrink: 0; box-shadow: 0 0 0 0 rgba(200,148,58,0.6);
+      animation: s09LiveDot 2s ease-out infinite; position: relative; z-index: 2;
+    }
+    @keyframes s09LiveDot {
+      0% { box-shadow: 0 0 0 0 rgba(200,148,58,0.55); }
+      70% { box-shadow: 0 0 0 9px rgba(200,148,58,0); }
+      100% { box-shadow: 0 0 0 0 rgba(200,148,58,0); }
+    }
+    .s09-exp-label { position: relative; z-index: 2; flex: 1; min-width: 0; }
+    .s09-exp-eye {
+      font-size: 10px; letter-spacing: 0.18em; font-weight: 700;
+      color: var(--gold); margin-bottom: 3px;
+    }
+    .s09-exp-title {
+      font-family: 'DM Serif Display', serif; font-size: 18px; color: white; line-height: 1.1;
+    }
+    .s09-exp-teaser { font-size: 11.5px; opacity: 0.6; margin-top: 2px; }
+    .s09-exp-chevron {
+      position: relative; z-index: 2; flex-shrink: 0;
+      width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; color: var(--gold);
+      transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1);
+    }
+    .s09-expander-bar[aria-expanded="true"] .s09-exp-chevron { transform: rotate(180deg); }
+    .s09-expander-bar[aria-expanded="true"] .s09-exp-teaser { opacity: 0.35; }
+
+    .s09-collapse {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s, margin 0.4s;
+      opacity: 0; margin-top: 0;
+    }
+    .s09-collapse.open { opacity: 1; margin-top: 22px; }
+
+    .s09-nova-block { margin-top: 26px; }
+
     @media (max-width: 720px) {
       .s09-header { grid-template-columns: 1fr; }
       .s09-mast-meta { text-align: left; }
       .s09-story { grid-template-columns: 1fr; }
       .s09-story-num { padding-top: 0; }
+      .s09-exp-title { font-size: 16px; }
     }
   </style>
   <section class="nl-section" id="sec-ai">
@@ -2342,6 +2597,19 @@
           </div>
           <div class="s09-intro">Welcome, humans. Here's what mattered in AI this week — three Claude stories, one big enterprise move, and one Lilly-grown next step. Let's go.</div>
 
+          <!-- COLLAPSED BAR — click to expand the four stories -->
+          <div class="s09-expander-bar" id="s09-exp-bar" role="button" tabindex="0" aria-expanded="false" aria-controls="s09-collapse">
+            <span class="s09-exp-dot"></span>
+            <span class="s09-exp-label">
+              <span class="s09-exp-eye">4 STORIES · LIVE</span>
+              <span class="s09-exp-title">This week in AI — tap to read</span>
+              <span class="s09-exp-teaser">Claude #1 · KPMG 276K · Karpathy · Skills</span>
+            </span>
+            <span class="s09-exp-chevron">⌄</span>
+          </div>
+
+          <!-- EXPANDABLE — the four interactive stories live in here -->
+          <div class="s09-collapse" id="s09-collapse">
           <div class="s09-stories">
             <!-- STORY 1 — Claude #1 -->
             <div class="s09-story">
@@ -2421,8 +2689,11 @@
                 <div class="s09-story-p" style="font-style: italic; opacity: 0.7;">Rule of thumb: build a Skill only when the task is recurring, structured, and has a consistent output format. Otherwise a saved prompt is fine.</div>
               </div>
             </div>
+          </div><!-- /.s09-stories -->
+          </div><!-- /.s09-collapse -->
 
-            <!-- STORY 5 — NOVA -->
+            <!-- STORY 5 — NOVA · always visible, OUTSIDE the expander -->
+            <div class="s09-nova-block">
             <div class="s09-story">
               <div class="s09-story-num">05</div>
               <div class="s09-story-body">
@@ -2437,7 +2708,7 @@
                 </div>
               </div>
             </div>
-          </div>
+            </div><!-- /.s09-nova-block -->
         </div>
       </div>
     </div>
@@ -2974,24 +3245,6 @@
     });
   })();
 
-  /* ═══ SECTION 06 — BUBBLE FIELD population ═══ */
-  (function(){
-    const container = document.getElementById('s06-bubbles');
-    if (!container) return;
-    const N = 14;
-    for (let i = 0; i < N; i++) {
-      const b = document.createElement('div');
-      b.className = 's06-bubble';
-      const size = 24 + Math.random() * 90;
-      b.style.width = size + 'px';
-      b.style.height = size + 'px';
-      b.style.left = (Math.random() * 100) + '%';
-      b.style.animationDelay = (Math.random() * 22) + 's';
-      b.style.animationDuration = (16 + Math.random() * 14) + 's';
-      container.appendChild(b);
-    }
-  })();
-
   /* ═══ SECTION 07 — CROSSWORD CELLS: typing, auto-advance, validation ═══ */
   (function(){
     const grid = document.getElementById('s07-grid');
@@ -3402,6 +3655,314 @@
     }, { threshold: 0.35 });
     io.observe(chart);
   })();
+
+  /* ═══ AI DIGEST — EXPANDER (collapsed bar → four stories) ═══ */
+  (function(){
+    const bar = document.getElementById('s09-exp-bar');
+    const panel = document.getElementById('s09-collapse');
+    if (!bar || !panel) return;
+
+    function setMax() {
+      // set to content height so the transition animates smoothly
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+
+    function open() {
+      bar.setAttribute('aria-expanded', 'true');
+      panel.classList.add('open');
+      setMax();
+      // after transition, allow natural height (so inner animations/resizes fit)
+      const onEnd = () => {
+        if (bar.getAttribute('aria-expanded') === 'true') panel.style.maxHeight = 'none';
+        panel.removeEventListener('transitionend', onEnd);
+      };
+      panel.addEventListener('transitionend', onEnd);
+      // re-fire the chart bar animation each time it opens
+      const bars = panel.querySelectorAll('.s09-chart-bar');
+      bars.forEach((b, i) => {
+        b.style.width = '0';
+        const w = b.dataset.w;
+        setTimeout(() => { b.style.width = w + '%'; }, 250 + i * 200);
+      });
+    }
+
+    function close() {
+      bar.setAttribute('aria-expanded', 'false');
+      // pin current height first so the collapse animates from a number, not 'none'
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        panel.classList.remove('open');
+        panel.style.maxHeight = '0';
+      });
+    }
+
+    function toggle() {
+      if (bar.getAttribute('aria-expanded') === 'true') close(); else open();
+    }
+
+    bar.addEventListener('click', toggle);
+    bar.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+    // keep height correct if the window resizes while open
+    window.addEventListener('resize', () => {
+      if (bar.getAttribute('aria-expanded') === 'true') panel.style.maxHeight = 'none';
+    });
+  })();
+
+  /* ═══ SECTION 06 — TIPS JAR (pull · decrement · drag-carousel) ═══ */
+  (function(){
+    const jar      = document.getElementById('s06-jar');
+    const track    = document.getElementById('s06-track');
+    const emptyNote= document.getElementById('s06-empty');
+    const countNum = document.getElementById('s06-count-num');
+    const cue      = document.getElementById('s06-cue');
+    const hint     = document.getElementById('s06-hint');
+    const carousel = document.getElementById('s06-carousel');
+    const dotsWrap = document.getElementById('s06-dots');
+    const prevBtn  = document.getElementById('s06-prev');
+    const nextBtn  = document.getElementById('s06-next');
+    const speckBox = document.getElementById('s06-specks');
+    if (!jar || !track) return;
+
+    /* ── The 10 tips. Monthly refresh = just swap this array (per SKILL.md). ── */
+    const TIPS = [
+      { icon: '⏱', title: "Block 'no-meeting' hours", desc: "Reserve a 2-hour focus block each morning. Decline anything that overlaps. Your future self debugging an NBA model at 11pm thanks you." },
+      { icon: '✎', title: "Write before you message", desc: "Draft a 5-line summary before pinging your team. Half the time you'll answer your own question; the other half, the answer comes back ten times faster." },
+      { icon: '↺', title: "Run a weekly retro — solo", desc: "Friday afternoon: what worked, what didn't, what's next. Ten minutes, every week. Compounds faster than any process you'll roll out." },
+      { icon: '◎', title: "Name the metric before the model", desc: "Decide what success looks like — and how you'll measure it — before you write a line of training code. Saves you a re-run." },
+      { icon: '⚑', title: "Ship the boring version first", desc: "A working baseline beats a perfect notebook nobody's seen. Get it in front of a stakeholder, then iterate on real feedback." },
+      { icon: '☷', title: "Version your prompts like code", desc: "Save the prompt, the model, and the date alongside the output. 'It worked last week' is not a reproducible result." },
+      { icon: '☎', title: "Default to a 15-min call", desc: "If a thread crosses 4 replies, hop on a quick call. The async tax on a tangled decision is higher than the calendar cost." },
+      { icon: '✓', title: "Close one loop a day", desc: "Pick the oldest open item on your list and finish it. Momentum comes from closing, not from starting." },
+      { icon: '◇', title: "Document the why, not the what", desc: "Code says what it does. Your comment should say why it exists. The next person — often you — needs the reasoning." },
+      { icon: '✦', title: "Steal a tip, leave a tip", desc: "Found a workflow that saved you an hour? Drop it in next month's PODx form. The jar refills because people share." },
+    ];
+
+    const TOTAL = TIPS.length;
+    let pool = [];          // indices not yet pulled this cycle
+    let pulled = [];        // {tip, n, time} in pull order
+    let current = 0;        // active carousel index
+    let busy = false;
+
+    function resetPool() {
+      pool = TIPS.map((_, i) => i);
+      // Fisher-Yates shuffle so order varies each session
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+    }
+    resetPool();
+
+    function nowLabel() {
+      try {
+        return new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date());
+      } catch (e) { return ''; }
+    }
+
+    function updateCount() {
+      const remaining = TOTAL - pulled.length;
+      countNum.classList.add('flip');
+      setTimeout(() => {
+        countNum.textContent = remaining;
+        countNum.classList.remove('flip');
+      }, 200);
+      // decrement crumbs inside the jar
+      const crumbs = document.querySelectorAll('.s06-crumb');
+      crumbs.forEach(c => {
+        const idx = parseInt(c.dataset.i, 10);
+        c.classList.toggle('gone', idx >= remaining);
+      });
+      if (remaining === 0) {
+        cue.textContent = '✦ Jar empty — drag the stack to re-read';
+      } else {
+        cue.textContent = '🍪 Tap to pull a tip';
+      }
+    }
+
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      pulled.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 's06-dot' + (i === current ? ' on' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(d);
+      });
+    }
+
+    function layoutStack() {
+      // active card centered; others fanned slightly behind, faded
+      const cards = Array.from(track.children);
+      cards.forEach((card, i) => {
+        const offset = i - current;
+        if (offset === 0) {
+          card.style.transform = `translate(-50%, -50%) rotate(${card._r}deg) scale(1)`;
+          card.style.opacity = '1';
+          card.style.zIndex = 50;
+        } else {
+          const dir = offset < 0 ? -1 : 1;
+          const dist = Math.min(Math.abs(offset), 3);
+          card.style.transform =
+            `translate(calc(-50% + ${dir * (40 + dist * 8)}px), -50%) rotate(${dir * 4}deg) scale(${1 - dist * 0.06})`;
+          card.style.opacity = dist >= 3 ? '0' : String(0.5 - dist * 0.12);
+          card.style.zIndex = 50 - dist;
+        }
+      });
+      Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('on', i === current));
+    }
+
+    function goTo(i) {
+      const n = pulled.length;
+      if (n === 0) return;
+      current = ((i % n) + n) % n;   // wrap-around loop
+      layoutStack();
+      buildDots();
+    }
+
+    function addCard(entry, landing) {
+      const card = document.createElement('div');
+      card.className = 's06-paper' + (landing ? ' landing' : '');
+      card._r = (Math.random() * 6 - 3);  // hand-tossed rotation
+      card.style.setProperty('--r', card._r + 'deg');
+      card.innerHTML =
+        '<div class="s06-paper-meta">' +
+          '<span class="s06-paper-num">TIP #' + String(entry.n).padStart(2,'0') + '</span>' +
+          '<span class="s06-paper-time">' + entry.time + '</span>' +
+        '</div>' +
+        '<div class="s06-paper-icon">' + entry.tip.icon + '</div>' +
+        '<div class="s06-paper-title">' + entry.tip.title + '</div>' +
+        '<div class="s06-paper-desc">' + entry.tip.desc + '</div>';
+      track.appendChild(card);
+      return card;
+    }
+
+    /* small paper flying from jar lid to the papers column */
+    function flyPaper() {
+      const jr = jar.getBoundingClientRect();
+      const tr = track.getBoundingClientRect();
+      const f = document.createElement('div');
+      f.className = 's06-flying';
+      const sx = jr.left + jr.width * 0.5;
+      const sy = jr.top + 30;
+      const ex = tr.left + tr.width * 0.5;
+      const ey = tr.top + tr.height * 0.5;
+      f.style.left = sx + 'px';
+      f.style.top = sy + 'px';
+      document.body.appendChild(f);
+      f.animate([
+        { transform: 'translate(-50%,-50%) scale(0.6) rotate(0deg)', opacity: 0 },
+        { transform: `translate(${(ex-sx)*0.5}px, ${-60}px) scale(1) rotate(140deg)`, opacity: 1, offset: 0.5 },
+        { transform: `translate(${ex-sx}px, ${ey-sy}px) scale(0.9) rotate(300deg)`, opacity: 0 }
+      ], { duration: 600, easing: 'cubic-bezier(0.3,0.7,0.3,1)' }).onfinish = () => f.remove();
+    }
+
+    function emitSpecksBurst() {
+      const jr = jar.getBoundingClientRect();
+      const st = speckBox.getBoundingClientRect();
+      const ox = jr.left - st.left + jr.width * 0.5;
+      const oy = jr.top - st.top + 24;
+      for (let i = 0; i < 5; i++) {
+        const s = document.createElement('div');
+        s.className = 's06-speck';
+        s.style.left = ox + 'px';
+        s.style.top = oy + 'px';
+        speckBox.appendChild(s);
+        const ang = -Math.PI/2 + (Math.random() - 0.5) * Math.PI;   // upward fan
+        const dist = 60 + Math.random() * 90;
+        const dx = Math.cos(ang) * dist;
+        const dy = Math.sin(ang) * dist;
+        s.animate([
+          { transform: 'translate(0,0) rotate(0)', opacity: 0 },
+          { transform: `translate(${dx*0.5}px, ${dy*0.7}px) rotate(120deg)`, opacity: 0.8, offset: 0.4 },
+          { transform: `translate(${dx}px, ${dy - 30}px) rotate(300deg)`, opacity: 0 }
+        ], { duration: 2000 + Math.random()*600, delay: i*25, easing: 'cubic-bezier(0.2,0.6,0.4,1)' })
+          .onfinish = () => s.remove();
+      }
+    }
+
+    function pull() {
+      if (busy) return;
+      // refill the pool when exhausted so the jar can keep giving
+      if (pool.length === 0) {
+        // jar is "empty" — tapping just cycles the existing stack instead
+        if (pulled.length) goTo(current + 1);
+        return;
+      }
+      busy = true;
+      hint.style.display = 'none';
+      jar.classList.add('pulling');
+
+      const idx = pool.pop();
+      const entry = { tip: TIPS[idx], n: pulled.length + 1, time: nowLabel() };
+
+      setTimeout(emitSpecksBurst, 240);
+      setTimeout(flyPaper, 250);
+
+      setTimeout(() => {
+        if (emptyNote) emptyNote.style.display = 'none';
+        track.classList.add('active');
+        pulled.push(entry);
+        const card = addCard(entry, true);
+        current = pulled.length - 1;
+        buildDots();
+        // settle the stack after the landing animation
+        setTimeout(() => { card.classList.remove('landing'); layoutStack(); }, 600);
+        updateCount();
+        if (pulled.length >= 2) carousel.classList.add('active');
+      }, 760);
+
+      setTimeout(() => {
+        jar.classList.remove('pulling');
+        busy = false;
+      }, 760);
+    }
+
+    jar.addEventListener('click', pull);
+    jar.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pull(); }
+    });
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    /* ── drag / swipe through the stack ── */
+    let dragStartX = 0, dragging = false;
+    function onDown(x) { if (pulled.length < 2) return; dragging = true; dragStartX = x; }
+    function onUp(x) {
+      if (!dragging) return;
+      dragging = false;
+      const dx = x - dragStartX;
+      if (Math.abs(dx) > 45) goTo(current + (dx < 0 ? 1 : -1));
+    }
+    track.addEventListener('mousedown', e => onDown(e.clientX));
+    window.addEventListener('mouseup', e => onUp(e.clientX));
+    track.addEventListener('touchstart', e => onDown(e.touches[0].clientX), { passive: true });
+    track.addEventListener('touchend', e => onUp((e.changedTouches[0]||{}).clientX || dragStartX));
+
+    /* ── ambient drifting specks (8, out of phase) ── */
+    (function ambient(){
+      const N = 8;
+      for (let i = 0; i < N; i++) {
+        const s = document.createElement('div');
+        s.className = 's06-speck';
+        const startX = Math.random() * 100;
+        s.style.left = startX + '%';
+        s.style.bottom = '-20px';
+        speckBox.appendChild(s);
+        const dur = 14000 + Math.random() * 10000;
+        const drift = (Math.random() * 60 - 30);
+        s.animate([
+          { transform: 'translate(0,0) rotate(0)', opacity: 0 },
+          { opacity: 0.5, offset: 0.15 },
+          { opacity: 0.5, offset: 0.85 },
+          { transform: `translate(${drift}px, -420px) rotate(220deg)`, opacity: 0 }
+        ], { duration: dur, delay: -Math.random()*dur, iterations: Infinity, easing: 'linear' });
+      }
+    })();
+
+    updateCount();
+  })();
+
 </script>
 
 </body>
