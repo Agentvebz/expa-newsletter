@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PODx · April 2026</title>
+<title>PODx · Jan–May 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -550,8 +550,8 @@
   }
 
   .crumple { transform-origin: center; transform-box: fill-box; }
-  /* 4 tips this month — show only the first 4 crumpled papers in the jar */
-  .crumple[data-i="4"], .crumple[data-i="5"], .crumple[data-i="6"],
+  /* 5 tips this month — show only the first 5 crumpled papers in the jar */
+  .crumple[data-i="5"], .crumple[data-i="6"],
   .crumple[data-i="7"], .crumple[data-i="8"], .crumple[data-i="9"] { display: none; }
   .jar-wrapper.shake .crumple {
     animation: crumple-jiggle 0.7s var(--ease-in-out-weighted);
@@ -1430,6 +1430,7 @@
   .team-pill-de   { background:#DCEEF1; color:#1A5C6B; border:1px solid #2B7A8C33; }
   .team-pill-pers { background:var(--lilly-red-soft); color:var(--lilly-red-deeper); border:1px solid #D52B1E33; }
   .team-pill-omni { background:#E8EDF5; color:var(--navy); border:1px solid #1A2B4A33; }
+  .team-pill-gmcxo { background:#EEEAFB; color:var(--purple); border:1px solid #5B4FBE33; }
   .team-pill::before { content:''; width:6px; height:6px; border-radius:50%; background:currentColor; flex-shrink:0; }
 
   /* ── SEC 01 team boxes ── */
@@ -1450,6 +1451,7 @@
   .s03-team-tab.de      { background:#DCEEF1; color:#1A5C6B; border-color:#2B7A8C44; }
   .s03-team-tab.pers    { background:var(--lilly-red-soft); color:var(--lilly-red-deeper); border-color:#D52B1E44; }
   .s03-team-tab.omni    { background:#E8EDF5; color:var(--navy); border-color:#1A2B4A44; }
+  .s03-team-tab.gmcxo   { background:#EEEAFB; color:var(--purple); border-color:#5B4FBE44; }
   .s03-team-tab:hover   { opacity:0.8; transform:translateY(-1px); }
   .s03-team-tab.active  { box-shadow:0 0 0 2px rgba(26,43,74,0.25); }
 
@@ -1529,6 +1531,10 @@
   .s03-person-card[data-team="omni"] .s03-person-card-foot { border-top-color: rgba(26,43,74,0.1); background: #E8EDF566; }
   .s03-person-card[data-team="de"]   .s03-person-readmore { color: #1A5C6B; }
   .s03-person-card[data-team="omni"] .s03-person-readmore { color: var(--navy); }
+  .s03-person-card[data-team="gmcxo"] { border-color:rgba(91,79,190,0.25); }
+  .s03-person-card[data-team="gmcxo"]::before { background: linear-gradient(90deg, var(--purple), #8A7FE0); }
+  .s03-person-card[data-team="gmcxo"] .s03-person-card-foot { border-top-color: rgba(91,79,190,0.12); background:#EEEAFB66; }
+  .s03-person-card[data-team="gmcxo"] .s03-person-readmore { color: var(--purple); }
   .s03-person-card-top { padding:18px 16px 12px; display:flex; flex-direction:column; align-items:center; text-align:center; }
   .s03-person-photo { width:62px; height:62px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--lilly-red)); display:flex; align-items:center; justify-content:center; font-family:'DM Serif Display',serif; font-size:22px; color:white; margin-bottom:10px; border:2px solid var(--border); flex-shrink:0; background-size:cover; background-position:center; }
   .s03-person-name { font-size:13px; font-weight:700; color:var(--navy); line-height:1.2; margin-bottom:3px; }
@@ -1732,8 +1738,8 @@
           <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:0.12em;background:#DCEEF1;color:#1A5C6B;border:1px solid #2B7A8C44;">
             <span style="width:6px;height:6px;border-radius:50%;background:#2B7A8C;display:inline-block;"></span>DIGITAL ENGAGEMENT
           </span>
-          <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:0.12em;background:#F5E6E5;color:#A8221A;border:1px solid #D52B1E44;">
-            <span style="width:6px;height:6px;border-radius:50%;background:#D52B1E;display:inline-block;"></span>PERSONALIZATION
+          <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:0.12em;background:#E3F0E6;color:#1E5631;border:1px solid #2D7D4644;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#2D7D46;display:inline-block;"></span>PERSONALIZATION
           </span>
           <span style="display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:0.12em;background:#E8EDF5;color:#1A2B4A;border:1px solid #1A2B4A44;">
             <span style="width:6px;height:6px;border-radius:50%;background:#1A2B4A;display:inline-block;"></span>OMNICHANNEL
@@ -1838,12 +1844,12 @@
     </div>
     <div class="nl-eyebrow">TEAM HIGHLIGHTS</div>
     <h2 class="nl-h1">Wins worth <span class="accent">celebrating.</span></h2>
-    <p class="nl-lede">The Digital Engagement team shipped big this month — from AI tools to awards. Filter by team or browse all.</p>
+    <p class="nl-lede">Wins from across Digital Engagement, Omnichannel, and Medical Omnichannel — AI tools, pipeline speed-ups, and awards. Filter by team or browse all.</p>
     <div class="s03-team-tabs">
       <button class="s03-team-tab all active" onclick="s03Filter('all',this)">ALL TEAMS</button>
       <button class="s03-team-tab de" onclick="s03Filter('de',this)">Digital Engagement</button>
-      <button class="s03-team-tab pers" onclick="s03Filter('pers',this)">Personalization</button>
       <button class="s03-team-tab omni" onclick="s03Filter('omni',this)">Omnichannel</button>
+      <button class="s03-team-tab gmcxo" onclick="s03Filter('gmcxo',this)">Medical Omnichannel</button>
     </div>
     <div class="s03-people-grid" id="s03-grid">
 
@@ -1942,59 +1948,225 @@
         </div>
       </div>
 
-      <!-- Card 6 — Anika Patel -->
-      <div class="s03-person-card" data-team="pers">
-        <div class="s03-person-card-top">
-          <div class="s03-person-name">Anika Patel</div>
-          <div class="s03-person-role">Senior Manager · Personalization</div>
-          <span class="team-pill team-pill-pers" style="margin-bottom:8px;">Personalization</span>
-          <div class="s03-person-achievement">Launched Foundayo HCP journey reaching 235K healthcare professionals in Q1, with a 26% open rate.</div>
-        </div>
-        <div class="s03-person-card-foot">
-          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
-        </div>
-        <div class="s03-person-detail">
-          <div class="s03-person-detail-inner">
-            <strong>Project:</strong> Foundayo™ HCP Email Journey<br>
-            Built the full AJO orchestration — 12-touch email sequence with dynamic content blocks, CEI-based send-time optimization, and A/B subject line testing. Open rate hit 26%, well above the 18% benchmark. Currently running a RelayHub agent vs LLM chatbot A/B test on foundayo.lilly.com.
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 7 — Shiti Pandey -->
-      <div class="s03-person-card" data-team="pers">
-        <div class="s03-person-card-top">
-          <div class="s03-person-name">Shiti Pandey</div>
-          <div class="s03-person-role">Associate Director · Personalization Ops</div>
-          <span class="team-pill team-pill-pers" style="margin-bottom:8px;">Personalization</span>
-          <div class="s03-person-achievement">Shipped 15 POCs in Q1 — quiet hours, SMS short URLs, voucher codes, frequency capping, and journey splits.</div>
-        </div>
-        <div class="s03-person-card-foot">
-          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
-        </div>
-        <div class="s03-person-detail">
-          <div class="s03-person-detail-inner">
-            <strong>Project:</strong> AJO POC Programme<br>
-            Ran 15 proof-of-concept experiments in Q1. 9 of 15 are now in productionisation queue. Shortest time from POC to production: 11 days.
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 8 — Rania Marwa -->
+      <!-- ===== Omnichannel team highlights (from workbook) ===== -->
       <div class="s03-person-card" data-team="omni">
         <div class="s03-person-card-top">
-          <div class="s03-person-name">Rania Marwa</div>
-          <div class="s03-person-role">Associate Director · Omnichannel META</div>
+          <div class="s03-person-name">Japan Pipeline Optimization</div>
+          <div class="s03-person-role">Project · Omnichannel</div>
           <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
-          <div class="s03-person-achievement">CEI-driven rep prioritization delivered 2.4× efficiency gain across the META region.</div>
+          <div class="s03-person-achievement">Runtime cut from 7h to 4h per run — execution moved sequential → parallel.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Project:</strong> META Rep Prioritization Engine<br>
-            Integrated CEI scores into rep CRM daily views across META. Time-to-action on high-value HCPs dropped by more than half. Piloted in UAE, now rolling to KSA and Egypt in Q2.
+            <strong>Project: Japan Pipeline Optimization<br></strong> Runtime reduced 7h → 4h per run. Execution moved from sequential to parallel Algo-flow models, with large-file handling optimized.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="omni">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">Sugg Mocking for iPad</div>
+          <div class="s03-person-role">Project · Omnichannel</div>
+          <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
+          <div class="s03-person-achievement">~4h saved per sprint by automating mock-data generation for iPad testing.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Project: Sugg Mocking for iPad<br></strong> Automated mock-data generation for iPad testing replaces manual suggestion mocking — about 4 hours saved every sprint.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="omni">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">Europe Pipeline Split</div>
+          <div class="s03-person-role">Project · Omnichannel</div>
+          <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
+          <div class="s03-person-achievement">Runtime cut from 7h to 3.5h per run by splitting the EU pipeline in two.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Project: Europe Pipeline Split<br></strong> A single EU pipeline was split into two parallel pipelines for faster execution — runtime reduced 7h → 3.5h per run.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="omni">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">STREAM Framework</div>
+          <div class="s03-person-role">Project · Omnichannel</div>
+          <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
+          <div class="s03-person-achievement">~90% model data-prep time reduction — ~1 week → ~6 hrs, ~50 FTE hours saved per use case.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Project: STREAM Framework<br></strong> End-to-end ML data-prep automation using a multi-tool approach. Prep time drops from roughly a week to about 6 hours — around 50 FTE hours saved per use case.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="omni">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">Cross-Team Collaboration</div>
+          <div class="s03-person-role">Initiative · Omnichannel</div>
+          <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
+          <div class="s03-person-achievement">10–15% story-points cut per year — one PoC now covers the whole request.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Initiative: Cross-Team Collaboration<br></strong> A single PoC now covers the entire request instead of separate OC and DT PoCs, cutting an estimated 10–15% of story-points per year.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="omni">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">IBU Chat Buddy</div>
+          <div class="s03-person-role">AI Agent · Omnichannel</div>
+          <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
+          <div class="s03-person-achievement">~20% effort reduction — a Copilot-powered agent tuned for IBU Omnichannel.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Project: IBU Chat Buddy<br></strong> A Copilot-powered agent tuned for IBU Omnichannel, giving quicker turnaround on affiliate queries and roughly a 20% effort reduction for users.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="omni">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">Accelerating IBU with AI</div>
+          <div class="s03-person-role">Initiative · Omnichannel</div>
+          <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
+          <div class="s03-person-achievement">~40% effort saved per task across data inventory, EDA, mock data, and ML metadata.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Initiative: Accelerating IBU with AI<br></strong> Data Inventory Dashboard, EDA, Mock Data Generator, and an ML metadata process — together saving about 40% effort per task.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="omni">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">New Teams Site</div>
+          <div class="s03-person-role">Enablement · Omnichannel</div>
+          <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
+          <div class="s03-person-achievement">Covers all IBU regions — documentation centralized in one place.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Project: New IBU Teams Site<br></strong> The new IBU Teams site centralizes documentation across all IBU regions, with weekly Ops suggestion summaries shared in one place.
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Medical Omnichannel · GMCxO highlights (from workbook) ===== -->
+      <div class="s03-person-card" data-team="gmcxo">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">Adobe Transition Readiness</div>
+          <div class="s03-person-role">GMCxO · Medical Omnichannel</div>
+          <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
+          <div class="s03-person-achievement">Readiness for the Adobe CSC model — training, Workfront onboarding, and RACI refinement underway.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Programme: Adobe Transition Readiness<br></strong> HQ email base-send training scoped for Q3 (SFMC-to-AJO migration end-to-end); Workfront onboarding underway for engagement planning and use-case intake; RACI refinement in progress as Medical moves to the Adobe CSC model; and a fast-lane process established to speed handoffs for Unified Experience migration brands.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="gmcxo">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">Go Global — Orfo 10x &amp; SR Scaling</div>
+          <div class="s03-person-role">Q2 · GMCxO</div>
+          <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
+          <div class="s03-person-achievement">IBU Orfo 10x acceleration plan live; SR Suggestions scaling to LatAm.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Q2 · Go Global<br></strong> The 10x Acceleration Plan pilot has been refined for IBU Orfo with Medscape HCP-level data sharing, while SR Suggestions launch in Mexico and Brazil via the IBU Zaidyn engines.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="gmcxo">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">Medical ServiceNow (SNow)</div>
+          <div class="s03-person-role">Operations · GMCxO</div>
+          <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
+          <div class="s03-person-achievement">Service Request Catalog live for Global Medical Orchestration — one structured front door.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Operations: Medical ServiceNow<br></strong> A Service Request Catalog go-live gives Global Medical Orchestration a single, structured front door for service intake — sharper routing, clearer ownership, and a foundation to scale alongside the Adobe transition.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="gmcxo">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">Vansh Arora</div>
+          <div class="s03-person-role">O2 Medical Ops · GMCxO</div>
+          <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
+          <div class="s03-person-achievement">Claude Code wired into the pipeline — day-long debugging now ~15-min automated RCA.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Project: Claude Code × Pipeline Infrastructure<br></strong> Vansh integrated Claude Code with our data pipeline infrastructure, turning day-long manual debugging into roughly 15-minute automated root-cause analysis. When an APAC process failed, Claude Code traced the failure end-to-end and surfaced a latent bug still affecting EUCAN. Failed-job RCA now takes under 3 minutes instead of hours.
+          </div>
+        </div>
+      </div>
+
+      <div class="s03-person-card" data-team="gmcxo">
+        <div class="s03-person-card-top">
+          <div class="s03-person-name">Sanjib</div>
+          <div class="s03-person-role">GMCxO · Medical Omnichannel</div>
+          <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
+          <div class="s03-person-achievement">Reusable plugin — /validate, /debug-job, /query, /s3-copy collapse the whole ops workflow into plain English.</div>
+        </div>
+        <div class="s03-person-card-foot">
+          <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
+        </div>
+        <div class="s03-person-detail">
+          <div class="s03-person-detail-inner">
+            <strong>Project: Pipeline Ops Plugin<br></strong> Sanjib turned the pipeline learnings into a reusable plugin — /validate, /debug-job, /query, /s3-copy — collapsing VDI logins, Hive loading, log hunting, and PROD-to-Stage refreshes into plain-English commands. A dedicated log-analyzer agent reads 100K+ line YARN logs and returns structured RCA reports. Anyone on the team can now go from failed job to root cause in minutes.
           </div>
         </div>
       </div>
@@ -2107,7 +2279,7 @@
       <canvas class="s02-canvas" id="s02-canvas"></canvas>
       <div class="s02-content">
         <div class="s02-head">
-          <div class="s02-portrait">SK</div>
+          <div class="s02-portrait" data-photo="https://collab.lilly.com/_layouts/15/userphoto.aspx?size=L&amp;accountname=kashyap_seema@lilly.com">SK</div>
           <div>
             <div class="s02-tag">◆ 3 QUESTIONS WITH</div>
             <div class="s02-leader-name">Seema Kashyap</div>
@@ -2448,46 +2620,72 @@
   </div>
 </section>
 
-<!-- SECTION 08 — INTERACTIVE CALENDAR (new design, lighter theme) -->
+<!-- SECTION 08 — UPCOMING (date-list + meteor live element · light theme, ported) -->
 <section class="nl-section" id="sec-08">
+  <style>
+    #sec-08 .s08-cal-stage { position: relative; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%); border: 1.5px solid var(--border); box-shadow: 0 2px 14px rgba(26,43,74,0.05); color: var(--navy); padding: 24px 22px; min-height: 320px; }
+    #sec-08 .s08-meteor { position: absolute; width: 2px; height: 2px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 8px rgba(200,148,58,0.45); animation: s08MeteorFall 9s linear infinite; z-index: 1; }
+    #sec-08 .s08-meteor::after { content: ''; position: absolute; top: 50%; right: 0; width: 70px; height: 1px; background: linear-gradient(to right, transparent, rgba(200,148,58,0.45)); transform-origin: right center; }
+    #sec-08 .s08-meteor:nth-child(odd) { background: var(--teal); box-shadow: 0 0 8px rgba(43,122,140,0.4); }
+    #sec-08 .s08-meteor:nth-child(odd)::after { background: linear-gradient(to right, transparent, rgba(43,122,140,0.45)); }
+    @keyframes s08MeteorFall { 0% { transform: translate(0,0) rotate(215deg); opacity: 0; } 12% { opacity: 0.85; } 88% { opacity: 0.85; } 100% { transform: translate(-440px,440px) rotate(215deg); opacity: 0; } }
+    #sec-08 .s08-cal-content { position: relative; z-index: 5; }
+    #sec-08 .s08-cal-eye { color: var(--lilly-red); margin-bottom: 8px; font-size: 10px; letter-spacing: 0.2em; font-weight: 700; }
+    #sec-08 .s08-cal-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--navy); margin-bottom: 16px; }
+    #sec-08 .s08-cal-list { display: flex; flex-direction: column; gap: 9px; }
+    #sec-08 .s08-cal-item { display: grid; grid-template-columns: 46px 1fr auto; gap: 12px; padding: 11px 12px; background: var(--mist); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 8px; align-items: center; transition: transform .16s ease, box-shadow .16s ease; }
+    #sec-08 .s08-cal-item:hover { transform: translateX(3px); box-shadow: 0 3px 12px rgba(26,43,74,0.08); }
+    #sec-08 .s08-cal-date { text-align: center; font-family: 'DM Serif Display', serif; }
+    #sec-08 .s08-cal-date-d { font-size: 22px; line-height: 1; color: var(--navy); }
+    #sec-08 .s08-cal-date-m { font-size: 9px; letter-spacing: 0.14em; color: var(--lilly-red); font-weight: 700; text-transform: uppercase; margin-top: 4px; }
+    #sec-08 .s08-cal-name { font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+    #sec-08 .s08-cal-meta { font-size: 10.5px; color: var(--slate); margin-top: 2px; }
+    #sec-08 .s08-cal-loc { font-size: 8.5px; padding: 4px 9px; background: var(--white); border: 1px solid var(--border); color: var(--slate); border-radius: 10px; letter-spacing: 0.1em; font-weight: 700; white-space: nowrap; }
+    @media (max-width: 540px) { #sec-08 .s08-cal-item { grid-template-columns: 42px 1fr; } #sec-08 .s08-cal-loc { display: none; } }
+  </style>
   <div class="nl-ribbon">
     <span><span class="nl-pulse"></span>SECTION 06 · UPDATES</span>
-    <span>WHAT'S COMING NEXT</span>
+    <span>WHAT'S COMING UP</span>
   </div>
   <div class="nl-section-body" style="padding: 20px 20px 18px;">
-    <div class="s08-stage">
-      <div class="s08-cal-hover" id="s08-cal-hover" aria-hidden="true">
-        <div class="s08-cal-hover-badge" id="s08-cal-hover-badge"></div>
-        <div class="s08-cal-hover-title" id="s08-cal-hover-title"></div>
-        <div class="s08-cal-hover-meta" id="s08-cal-hover-meta"></div>
-      </div>
-      <div class="s08-cal-header">
-        <div class="s08-cal-eye">◆ MAY &amp; JUNE 2026</div>
+    <div class="s08-cal-stage" id="s08-cal-stage">
+      <div class="s08-cal-content">
+        <div class="s08-cal-eye">&#9670; UPCOMING — MAY &amp; JUNE 2026</div>
         <div class="s08-cal-title">Mark your calendar.</div>
-        <div class="s08-cal-sub">Click a highlighted date — or an event below — to reveal the details. They stack as you explore.</div>
-      </div>
-      <div class="s08-cal-grid-wrap">
-        <div class="s08-cal-nav">
-          <button class="s08-cal-nav-btn" id="s08-prev-month" aria-label="Previous month">‹</button>
-          <div class="s08-cal-month-label" id="s08-month-label">April 2026</div>
-          <button class="s08-cal-nav-btn" id="s08-next-month" aria-label="Next month">›</button>
+        <div class="s08-cal-list">
+          <div class="s08-cal-item" style="border-left-color:var(--teal);">
+            <div class="s08-cal-date"><div class="s08-cal-date-d">14</div><div class="s08-cal-date-m" style="color:var(--teal);">MAY</div></div>
+            <div>
+              <div class="s08-cal-name">Tagging Team joins Personalization</div>
+              <div class="s08-cal-meta">IBU &middot; Announcement</div>
+            </div>
+            <div class="s08-cal-loc" style="color:var(--teal);">TEAM</div>
+          </div>
+          <div class="s08-cal-item" style="border-left-color:var(--lilly-red);">
+            <div class="s08-cal-date"><div class="s08-cal-date-d">22</div><div class="s08-cal-date-m">MAY</div></div>
+            <div>
+              <div class="s08-cal-name">150 Years of Lilly — celebrations</div>
+              <div class="s08-cal-meta">Company milestone</div>
+            </div>
+            <div class="s08-cal-loc" style="color:var(--lilly-red);">&#9733; 150 YRS</div>
+          </div>
+          <div class="s08-cal-item" style="border-left-color:var(--navy);">
+            <div class="s08-cal-date"><div class="s08-cal-date-d" style="font-size:17px;">1&ndash;4</div><div class="s08-cal-date-m" style="color:var(--navy);">JUN</div></div>
+            <div>
+              <div class="s08-cal-name">IBU Affiliate Workshops</div>
+              <div class="s08-cal-meta">1 June &rarr; 4 June &middot; Cross-market series</div>
+            </div>
+            <div class="s08-cal-loc">WORKSHOP</div>
+          </div>
+          <div class="s08-cal-item" style="border-left-color:var(--gold);">
+            <div class="s08-cal-date"><div class="s08-cal-date-d">11</div><div class="s08-cal-date-m" style="color:var(--gold);">JUN</div></div>
+            <div>
+              <div class="s08-cal-name">Team Outing — Torque</div>
+              <div class="s08-cal-meta">3:00 PM &ndash; 9:00 PM &middot; Venue: Torque 🎉</div>
+            </div>
+            <div class="s08-cal-loc" style="color:var(--gold);">&#9733; OUTING</div>
+          </div>
         </div>
-        <div class="s08-cal-dow">
-          <div class="s08-cal-dow-cell">SUN</div>
-          <div class="s08-cal-dow-cell">MON</div>
-          <div class="s08-cal-dow-cell">TUE</div>
-          <div class="s08-cal-dow-cell">WED</div>
-          <div class="s08-cal-dow-cell">THU</div>
-          <div class="s08-cal-dow-cell">FRI</div>
-          <div class="s08-cal-dow-cell">SAT</div>
-        </div>
-        <div class="s08-cal-days" id="s08-cal-days"></div>
-      </div>
-      <div class="s08-event-list" id="s08-event-list"></div>
-      <div class="s08-reveal" id="s08-reveal">
-        <div class="s08-reveal-empty" id="s08-reveal-empty">Click a highlighted date or an event below to reveal the details.</div>
-        <div class="s08-reveal-stack" id="s08-reveal-stack"></div>
-        <button class="s08-reveal-clear" id="s08-reveal-clear" type="button" hidden>↺ clear</button>
       </div>
     </div>
   </div>
@@ -2500,7 +2698,7 @@
 <section class="nl-section" id="sec-ai">
   <div class="nl-ribbon">
     <span><span class="nl-pulse"></span>SPECIAL · THE LILLY AI DIGEST</span>
-    <span>WEEK OF MAY 21, 2026</span>
+    <span>JUNE 2026 · LAUNCH ISSUE</span>
   </div>
   <div class="nl-section-body">
     <div class="s09-stage">
@@ -2519,17 +2717,17 @@
           </div>
           <div>
             <div class="s09-mast">The Lilly <span class="accent">AI Digest.</span></div>
-            <div class="s09-mast-sub">Five stories that mattered in AI this week — curated for the IBU.</div>
+            <div class="s09-mast-sub">The stories that mattered in AI lately — curated for the IBU.</div>
           </div>
-          <div class="s09-mast-meta">ISSUE · 02<br>WEEK OF <strong>MAY 21, 2026</strong><br>~4 MIN READ</div>
+          <div class="s09-mast-meta">ISSUE · 02<br><strong>JUNE 2026</strong><br>~7 MIN READ</div>
         </div>
-        <div class="s09-intro">Welcome, humans. Here's what mattered in AI this week — three Claude stories, one big enterprise move, and one Lilly-grown next step. Let's go.</div>
+        <div class="s09-intro">Welcome, humans. Here's the latest that mattered in AI — the Claude stories, the big enterprise moves, a pharma signal, and one Lilly-grown next step. Let's go.</div>
         <div class="s09-expander-bar" id="s09-exp-bar" role="button" tabindex="0" aria-expanded="false" aria-controls="s09-collapse">
           <span class="s09-exp-dot"></span>
           <span class="s09-exp-label">
-            <span class="s09-exp-eye">4 STORIES · LIVE</span>
+            <span class="s09-exp-eye">9 STORIES · LIVE</span>
             <span class="s09-exp-title">This week in AI — tap to read</span>
-            <span class="s09-exp-teaser">Claude #1 · KPMG 276K · Karpathy · Skills</span>
+            <span class="s09-exp-teaser">Claude #1 · KPMG · Karpathy · $965B · Pharma · Opus 4.8 · +3</span>
           </span>
           <span class="s09-exp-chevron">⌄</span>
         </div>
@@ -2581,16 +2779,67 @@
             <div class="s09-story">
               <div class="s09-story-num">04</div>
               <div class="s09-story-body">
-                <div class="s09-story-h">🎓 Skill of the week: stop saving prompts in Docs</div>
-                <div class="s09-story-p">If you've been pasting your "best prompt for X" into a Google Doc and copying it back every time — there's a much better way. <strong>Claude Skills</strong> are reusable instruction sets you save once and trigger with a slash command in any chat.</div>
-                <div class="s09-code"><span class="k">Setup:</span> Customize → + → Create Skill<br><span class="k">Three parts:</span><br>  1. Description + when Claude should fire it<br>  2. Instructions<br>  3. Two or three example outputs<br><span class="k">Activate:</span> type <span class="a">/[skill-name]</span> anywhere</div>
+                <div class="s09-story-h">💰 Anthropic is now the most valuable private AI company</div>
+                <div class="s09-story-p">Anthropic closed a <strong>$65B round at a $965B valuation</strong> — overtaking OpenAI (~$852B) to become the most valuable private AI company in the world.</div>
+                <div class="s09-story-p">Annualized revenue is tracking past <strong>$45B</strong>, roughly 5× where it sat at the end of 2024. Momentum, in one number.</div>
+                <div class="s09-chart" id="s09-chart-val">
+                  <div class="s09-chart-title">PRIVATE AI VALUATION · LATEST ROUND</div>
+                  <div class="s09-chart-row">
+                    <div class="s09-chart-when">Now</div>
+                    <div class="s09-chart-pair">
+                      <div class="s09-chart-pair-row"><div class="s09-chart-name" style="color:var(--gold);">Anthropic ★</div><div class="s09-chart-bar-bg"><div class="s09-chart-bar" data-w="96.5" style="background:linear-gradient(90deg,var(--gold),#F0C66B);"></div></div></div>
+                      <div class="s09-chart-pair-row"><div class="s09-chart-name" style="color:#E5A8A0;">OpenAI</div><div class="s09-chart-bar-bg"><div class="s09-chart-bar" data-w="85.2" style="background:linear-gradient(90deg,#E5A8A0,var(--lilly-red));"></div></div></div>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div style="font-size:10px;opacity:0.55;letter-spacing:0.1em;margin-top:12px;text-align:center;">ANTHROPIC <strong style="color:var(--gold);">$965B</strong> · OPENAI <strong>$852B</strong></div>
+                </div>
+                <div class="s09-callout"><strong>Why it matters for us:</strong> the platform several of our tools run on just became the best-capitalized one in the field.</div>
+              </div>
+            </div>
+            <div class="s09-story">
+              <div class="s09-story-num">05</div>
+              <div class="s09-story-body">
+                <div class="s09-story-h">🧬 Anthropic is leaning hard into life sciences</div>
+                <div class="s09-story-p">Anthropic acquired AI-for-biology firm <strong>Coefficient Bio</strong> (~$400M), deepening its <strong>Claude for Life Sciences</strong> push. Pharma names already piloting Claude across R&amp;D and ops include Sanofi, Novo Nordisk, AbbVie, and Genmab.</div>
+                <div class="s09-callout"><strong>Why it matters for us:</strong> the same model is being purpose-built for regulated pharma workflows — closer to home than generic enterprise AI.</div>
+              </div>
+            </div>
+            <div class="s09-story">
+              <div class="s09-story-num">06</div>
+              <div class="s09-story-body">
+                <div class="s09-story-h">⚙️ Claude Opus 4.8 shipped — with effort controls</div>
+                <div class="s09-story-p">Anthropic released <strong>Claude Opus 4.8</strong>, adding "effort controls" (dial reasoning depth up or down per task) and a roughly <strong>3× cheaper fast mode</strong>. Worth knowing, since it's the model behind this newsletter and several of our team tools.</div>
+              </div>
+            </div>
+            <div class="s09-story">
+              <div class="s09-story-num">07</div>
+              <div class="s09-story-body">
+                <div class="s09-story-h">🧩 Microsoft is bundling Copilot into one "super app"</div>
+                <div class="s09-story-p">Microsoft is reportedly merging GitHub Copilot, Copilot Chat, and a new agentic "Autopilot" feature into a single app, targeting a summer launch — a push to lift adoption past the <strong>under-4.5%</strong> of its 450M Microsoft 365 users who currently touch any Copilot feature.</div>
+                <div class="s09-callout"><strong>The read:</strong> even the biggest vendors are still fighting the last-mile adoption problem. Distribution &gt; features.</div>
+              </div>
+            </div>
+            <div class="s09-story">
+              <div class="s09-story-num">08</div>
+              <div class="s09-story-body">
+                <div class="s09-story-h">🤔 Developers now refuse to code without AI</div>
+                <div class="s09-story-p">Engineers won't give up AI assistants even briefly for research — despite a 2025 METR study that found AI <em>slowed</em> experienced devs by ~19% on familiar codebases. One company reportedly burned its entire 2026 AI budget by April.</div>
+                <div class="s09-callout"><strong>For an ML team:</strong> a clean reminder that perceived productivity and measured productivity aren't the same thing — worth measuring our own.</div>
+              </div>
+            </div>
+            <div class="s09-story">
+              <div class="s09-story-num">09</div>
+              <div class="s09-story-body">
+                <div class="s09-story-h">🔎 AI search is reshuffling the deck</div>
+                <div class="s09-story-p">After Google replaced its classic results page with an AI-first conversational engine, privacy-search rival DuckDuckGo saw US app installs jump roughly <strong>30%</strong> in a week. The takeaway for our Search/GEO work: how answers get surfaced is changing fast.</div>
               </div>
             </div>
           </div>
         </div>
         <div class="s09-nova-block">
           <div class="s09-story">
-            <div class="s09-story-num">05</div>
+            <div class="s09-story-num">10</div>
             <div class="s09-story-body">
               <div class="s09-story-h">🎯 Your move next: NOVA is live</div>
               <div class="s09-nova">
@@ -2629,7 +2878,7 @@
           <div style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);line-height:1.2;">Did this spark joy? Confuse you? Make you slightly hungry?</div>
           <div style="font-size:12px;color:var(--slate);margin-top:4px;">Tell us — it takes 60 seconds and helps us make the next one better.</div>
         </div>
-        <a href="#feedback-link-placeholder" style="background:var(--lilly-red);color:white;text-decoration:none;padding:10px 20px;border-radius:99px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.05em;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;" onmouseover="this.style.background='#A8221A'" onmouseout="this.style.background='#D52B1E'">Share feedback →</a>
+        <a href="https://forms.office.com/pages/responsepage.aspx?id=gZqlGKjuMEyUitiCTNwlgBPe7T7QIrxOtI54vh2UjTBUMEE5TjdXNkVaTFlOU1JRVzhIMDZKUlZQMS4u&route=shorturl" target="_blank" rel="noopener" style="background:var(--lilly-red);color:white;text-decoration:none;padding:10px 20px;border-radius:99px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.05em;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;" onmouseover="this.style.background='#A8221A'" onmouseout="this.style.background='#D52B1E'">Share feedback →</a>
       </div>
     </div>
     <div style="text-align:right;padding-top:4px;">
@@ -3098,6 +3347,15 @@
   });
 })();
 
+/* ══ S02 LOAD LEADERSHIP PORTRAIT (Seema) — same graceful fallback as S04 ══ */
+(function(){
+  const el=document.querySelector('.s02-portrait[data-photo]');if(!el)return;
+  const url=el.dataset.photo;if(!url)return;
+  const img=new Image();
+  img.onload=()=>{el.style.backgroundImage='url("'+url+'")';el.style.backgroundSize='cover';el.style.backgroundPosition='center';el.style.color='transparent';};
+  img.src=url;
+})();
+
 /* ══ S04 CTA CONFETTI ══ */
 (function(){
   const btn=document.getElementById('s04-cta-btn');if(!btn)return;
@@ -3454,6 +3712,21 @@ function s03Toggle(btn) {
   new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){bars.forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+'%',i*200));}});},{threshold:0.35}).observe(chart);
 })();
 
+/* ══ SECTION 08 — METEOR RAIN (live element on the light calendar) ══ */
+(function(){
+  const stage=document.getElementById('s08-cal-stage');if(!stage)return;
+  const N=8;
+  for(let i=0;i<N;i++){
+    const m=document.createElement('div');
+    m.className='s08-meteor';
+    m.style.top=(-20+Math.random()*60)+'%';
+    m.style.left=(60+Math.random()*50)+'%';
+    m.style.animationDelay=(Math.random()*9)+'s';
+    m.style.animationDuration=(7+Math.random()*5)+'s';
+    stage.insertBefore(m, stage.firstChild);
+  }
+})();
+
 /* ══ AI DIGEST EXPANDER ══ */
 (function(){
   const bar=document.getElementById('s09-exp-bar'),panel=document.getElementById('s09-collapse');
@@ -3481,10 +3754,11 @@ function s03Toggle(btn) {
     { title: "📊 HCP open rates peak Tuesday–Thursday, 7–9 AM", body: "Analysis of 2M+ medical emails shows HCP open rates are 23% higher mid-week mornings vs Monday/Friday. Send times matter — especially for event invites or new evidence alerts. Use AJO send-time optimization when possible; otherwise default to Tuesday 8 AM local time. Source: Internal GMAO analytics, Q1 2026." },
     { title: "📑 Physicians trust peer-reviewed content 3× more", body: "A 2025 Journal of Medical Internet Research study found HCPs are 3× more likely to engage with content citing peer-reviewed sources vs company-generated materials. Lead with evidence, cite journals, and save branding for footer-level attribution. Credibility drives engagement." },
     { title: "⚡ Command Post — your M365 intelligence briefing", body: "Say \"Catch me up\" and get a PDB-style report scanning 7 days of emails, tasks, approvals, and follow-ups across M365. Surfaces buried action items in under a minute. Built by Ethan Whitaker. → Download: collab.lilly.com/sites/LillyClaudeSkillsHub (ID=14)" },
-    { title: "✂️ Token Efficient Responses — get to the point faster", body: "Instructs Claude to lead with the answer, cut preamble, and match length to task complexity. Reduces output tokens without losing quality. Best for everyday Q&A, summaries, and rewrites. Built by AJ Lahade. → collab.lilly.com/sites/LillyClaudeSkillsHub (ID=45)" }
+    { title: "✂️ Token Efficient Responses — get to the point faster", body: "Instructs Claude to lead with the answer, cut preamble, and match length to task complexity. Reduces output tokens without losing quality. Best for everyday Q&A, summaries, and rewrites. Built by AJ Lahade. → collab.lilly.com/sites/LillyClaudeSkillsHub (ID=45)" },
+    { title: "🎓 Stop saving prompts in Google Docs — use Skills", body: "If you keep pasting your \"best prompt for X\" into a Doc and copying it back, there's a better way. Claude Skills are reusable instruction sets you save once and trigger with a slash command in any chat. Setup: Customize → + → Create Skill (1. description + when to fire it, 2. instructions, 3. two or three example outputs). Activate by typing /[skill-name] anywhere." }
   ];
 
-  const crumpleOrder = [3, 1, 2, 0];
+  const crumpleOrder = [4, 3, 1, 2, 0];
   let crumplesRemovedCount = 0;
 
   let availableIndices = TIPS.map((_, i) => i);
