@@ -1203,10 +1203,6 @@
     font-weight: 700; color: var(--text-light);
     padding: 3px 0;
   }
-  .s08-cal-days {
-    display: grid; grid-template-columns: repeat(7,1fr);
-    gap: 3px;
-  }
   .s08-day {
     height: 36px;
     border-radius: 6px;
@@ -1428,7 +1424,7 @@
   /* ── TEAM COLOUR PILLS (shared sec-01 / 03 / 04) ── */
   .team-pill { display:inline-flex; align-items:center; gap:6px; padding:3px 10px; border-radius:99px; font-size:9px; letter-spacing:0.14em; font-weight:700; text-transform:uppercase; }
   .team-pill-de   { background:#DCEEF1; color:#1A5C6B; border:1px solid #2B7A8C33; }
-  .team-pill-pers { background:var(--lilly-red-soft); color:var(--lilly-red-deeper); border:1px solid #D52B1E33; }
+  .team-pill-pers { background:#E3F0E6; color:#1E5631; border:1px solid #2D7D4633; }
   .team-pill-omni { background:#E8EDF5; color:var(--navy); border:1px solid #1A2B4A33; }
   .team-pill-gmcxo { background:#EEEAFB; color:var(--purple); border:1px solid #5B4FBE33; }
   .team-pill::before { content:''; width:6px; height:6px; border-radius:50%; background:currentColor; flex-shrink:0; }
@@ -1437,7 +1433,7 @@
   .s01-teams { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px; }
   .s01-team-box { border-radius:12px; padding:14px 16px; border:1.5px solid; }
   .s01-team-box-de   { background:#DCEEF1; border-color:#2B7A8C44; }
-  .s01-team-box-pers { background:var(--lilly-red-soft); border-color:#D52B1E44; }
+  .s01-team-box-pers { background:#E3F0E6; border-color:#2D7D4644; }
   .s01-team-box-omni { background:#E8EDF5; border-color:#1A2B4A44; }
   .s01-team-box-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
   .s01-team-box-name { font-family:'DM Serif Display',serif; font-size:15px; color:var(--navy); }
@@ -2589,7 +2585,7 @@
       <!-- COUNTER PILL — sits below the jar, animated ticker -->
       <div class="counter-pill" id="counterPill">
         <span class="ticker-stage" id="tickerWrap">
-          <span class="ticker-num" id="tickerNum">4</span>
+          <span class="ticker-num" id="tickerNum">5</span>
         </span>
         <span>TIPS LEFT</span>
       </div>
@@ -3036,124 +3032,96 @@
     </div>
   </div>
   <div class="nl-section-cta" style="padding:10px 18px;">
-    <p class="nl-cta-text" style="font-size:12px;"></p>
+    <p class="nl-cta-text" style="font-size:12px;">Email answers to #podx-fun by May 31</p>
     <a href="#" class="nl-cta-btn" style="font-size:11px;padding:7px 14px;">View leaderboard →</a>
   </div>
 </section>
 
-<!-- PAST EDITIONS TAB + DRAWER -->
-<button class="pe-tab" id="pe-tab" onclick="peOpen()" aria-label="View past editions">
-  <span class="pe-tab-dot"></span>
-  PAST EDITIONS
-</button>
-
-<div class="pe-overlay" id="pe-overlay" onclick="peClose()"></div>
-
-<div class="pe-drawer" id="pe-drawer" role="dialog" aria-modal="true" aria-label="Past Editions">
-  <div class="pe-drawer-header">
-    <div>
-      <div class="pe-drawer-title">Past <span class="accent">Editions.</span></div>
-      <div class="pe-drawer-sub">VOLUME 01 · JAN–MAY 2026</div>
-    </div>
-    <button class="pe-drawer-close" onclick="peClose()" aria-label="Close">×</button>
-  </div>
-
-  <!-- FILTERS -->
-  <div class="pe-filters" id="pe-filters">
-    <div class="pe-filter-row">
-      <div class="pe-filter-label">YEAR</div>
-      <div class="pe-filter-pills" id="pe-year-pills">
-        <button class="pe-pill active" data-filter="year" data-val="all" onclick="peFilter('year','all',this)">All</button>
-        <button class="pe-pill" data-filter="year" data-val="2026" onclick="peFilter('year','2026',this)">2026</button>
-      </div>
-    </div>
-    <div class="pe-filter-row">
-      <div class="pe-filter-label">MONTH</div>
-      <div class="pe-filter-pills" id="pe-month-pills">
-        <button class="pe-pill active" data-filter="month" data-val="all" onclick="peFilter('month','all',this)">All</button>
-        <button class="pe-pill" data-filter="month" data-val="01" onclick="peFilter('month','01',this)">Jan</button>
-        <button class="pe-pill" data-filter="month" data-val="02" onclick="peFilter('month','02',this)">Feb</button>
-        <button class="pe-pill" data-filter="month" data-val="03" onclick="peFilter('month','03',this)">Mar</button>
-        <button class="pe-pill" data-filter="month" data-val="04" onclick="peFilter('month','04',this)">Apr</button>
-        <button class="pe-pill" data-filter="month" data-val="05" onclick="peFilter('month','05',this)">May</button>
-      </div>
-    </div>
-    <div class="pe-results-count" id="pe-results-count">Showing 5 editions</div>
-  </div>
-
-  <div class="pe-drawer-body" id="pe-drawer-body">
-
-    <div class="pe-card current" data-year="2026" data-month="05">
-      <div class="pe-card-bar"></div>
-      <div class="pe-card-body">
-        <div class="pe-card-badge"><span class="pe-card-badge-issue">05</span><span class="pe-card-badge-label">ISSUE</span></div>
-        <div class="pe-card-info">
-          <div class="pe-card-month">MAY 2026 · VOL 01</div>
-          <div class="pe-card-title">DE Awards, AI Tools &amp; Jan–May Wrap-Up</div>
-          <div class="pe-card-desc">DE awards, AI analytics tools, Beaver Award, team outing and the full Volume 01 close-out.</div>
+<!-- PAST EDITIONS — inline pill expander (below Fun Corner) -->
+<style>
+  .pe2-wrap { max-width: 760px; margin: 30px auto 4px; }
+  .pe2-pill { width: 100%; display: flex; align-items: center; gap: 12px; background: var(--navy); color: #fff; border: none; cursor: pointer; padding: 16px 22px; border-radius: 99px; box-shadow: 0 6px 22px rgba(26,43,74,0.18); transition: background .2s, border-radius .25s; font-family: 'DM Sans', sans-serif; text-align: left; }
+  .pe2-pill:hover { background: var(--navy-deep); }
+  .pe2-pill[aria-expanded="true"] { border-radius: 18px 18px 0 0; }
+  .pe2-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; box-shadow: 0 0 0 4px rgba(200,148,58,0.22); }
+  .pe2-pill-label { font-size: 14px; font-weight: 700; letter-spacing: 0.02em; }
+  .pe2-pill-meta { font-size: 10px; color: rgba(255,255,255,0.6); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; }
+  .pe2-pill-chevron { margin-left: auto; font-size: 20px; line-height: 1; transition: transform .25s; opacity: 0.85; }
+  .pe2-pill[aria-expanded="true"] .pe2-pill-chevron { transform: rotate(180deg); }
+  .pe2-panel { max-height: 0; overflow: hidden; transition: max-height .42s cubic-bezier(.4,0,.2,1); background: var(--white); border-radius: 0 0 18px 18px; border: 1px solid var(--border); border-top: none; }
+  .pe2-panel.open { max-height: 1600px; }
+  .pe2-panel-inner { padding: 14px; display: flex; flex-direction: column; gap: 9px; }
+  .pe2-card { display: grid; grid-template-columns: 46px 1fr auto; gap: 14px; align-items: center; text-decoration: none; padding: 12px 14px; background: var(--mist); border: 1px solid var(--border); border-left: 3px solid var(--navy); border-radius: 10px; transition: transform .16s, box-shadow .16s, border-color .16s; }
+  .pe2-card:hover { transform: translateX(3px); box-shadow: 0 4px 14px rgba(26,43,74,0.1); border-left-color: var(--lilly-red); }
+  .pe2-card.current { border-left-color: var(--gold); background: var(--gold-soft); }
+  .pe2-badge { text-align: center; font-family: 'DM Serif Display', serif; }
+  .pe2-badge-num { font-size: 22px; color: var(--navy); line-height: 1; }
+  .pe2-badge-lbl { font-size: 8px; letter-spacing: 0.14em; color: var(--text-light); font-weight: 700; margin-top: 3px; }
+  .pe2-info-month { font-size: 9.5px; letter-spacing: 0.12em; color: var(--lilly-red); font-weight: 700; text-transform: uppercase; }
+  .pe2-info-title { font-size: 13.5px; font-weight: 700; color: var(--navy); margin: 2px 0; line-height: 1.25; }
+  .pe2-info-desc { font-size: 11px; color: var(--slate); line-height: 1.4; }
+  .pe2-go { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--navy); white-space: nowrap; }
+  .pe2-card.current .pe2-go { color: var(--gold); }
+  .pe2-archive { display: block; text-align: center; text-decoration: none; margin-top: 4px; padding: 12px; border-radius: 10px; border: 1.5px dashed var(--border); color: var(--navy); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; transition: background .16s, border-color .16s, color .16s; }
+  .pe2-archive:hover { background: var(--mist); border-color: var(--lilly-red); color: var(--lilly-red); }
+  @media (max-width: 540px) { .pe2-card { grid-template-columns: 40px 1fr; } .pe2-go { display: none; } .pe2-pill-meta { display: none; } }
+</style>
+<div class="pe2-wrap">
+  <button class="pe2-pill" id="pe2-pill" onclick="pe2Toggle()" aria-expanded="false" aria-controls="pe2-panel">
+    <span class="pe2-pill-dot"></span>
+    <span class="pe2-pill-label">📚 Past Editions</span>
+    <span class="pe2-pill-meta">VOL 01 · JAN–MAY 2026</span>
+    <span class="pe2-pill-chevron">⌄</span>
+  </button>
+  <div class="pe2-panel" id="pe2-panel">
+    <div class="pe2-panel-inner">
+      <a class="pe2-card current" href="https://agentvebz.github.io/ibu-podx-newsletter/editions/2026-05-may.html" target="_blank" rel="noopener">
+        <div class="pe2-badge"><div class="pe2-badge-num">05</div><div class="pe2-badge-lbl">ISSUE</div></div>
+        <div>
+          <div class="pe2-info-month">May 2026 · Vol 01</div>
+          <div class="pe2-info-title">DE Awards, AI Tools &amp; Jan–May Wrap-Up</div>
+          <div class="pe2-info-desc">DE awards, AI analytics tools, Beaver Award, team outing and the full Volume 01 close-out.</div>
         </div>
-        <div class="pe-card-action"><span class="pe-card-link">CURRENT</span></div>
-      </div>
-    </div>
-
-    <div class="pe-card" data-year="2026" data-month="04">
-      <div class="pe-card-bar"></div>
-      <div class="pe-card-body">
-        <div class="pe-card-badge"><span class="pe-card-badge-issue">04</span><span class="pe-card-badge-label">ISSUE</span></div>
-        <div class="pe-card-info">
-          <div class="pe-card-month">APR 2026 · VOL 01</div>
-          <div class="pe-card-title">Foundayo Launch &amp; Follow the Sun</div>
-          <div class="pe-card-desc">Foundayo goes live. 244K visits in week one, and the search team's 24-hour coverage model.</div>
+        <div class="pe2-go">CURRENT</div>
+      </a>
+      <a class="pe2-card" href="https://agentvebz.github.io/ibu-podx-newsletter/editions/2026-04-april.html" target="_blank" rel="noopener">
+        <div class="pe2-badge"><div class="pe2-badge-num">04</div><div class="pe2-badge-lbl">ISSUE</div></div>
+        <div>
+          <div class="pe2-info-month">Apr 2026 · Vol 01</div>
+          <div class="pe2-info-title">Foundayo Launch &amp; Follow the Sun</div>
+          <div class="pe2-info-desc">Foundayo goes live. 244K visits in week one, and the search team's 24-hour coverage model.</div>
         </div>
-        <div class="pe-card-action"><a href="#" class="pe-card-link">READ →</a></div>
-      </div>
-    </div>
-
-    <div class="pe-card" data-year="2026" data-month="03">
-      <div class="pe-card-bar"></div>
-      <div class="pe-card-body">
-        <div class="pe-card-badge"><span class="pe-card-badge-issue">03</span><span class="pe-card-badge-label">ISSUE</span></div>
-        <div class="pe-card-info">
-          <div class="pe-card-month">MAR 2026 · VOL 01</div>
-          <div class="pe-card-title">Mid-Quarter Momentum</div>
-          <div class="pe-card-desc">Search Buddy debut, Foundayo build updates, and the POC pipeline hitting its stride.</div>
+        <div class="pe2-go">READ →</div>
+      </a>
+      <a class="pe2-card" href="https://agentvebz.github.io/ibu-podx-newsletter/editions/2026-03-march.html" target="_blank" rel="noopener">
+        <div class="pe2-badge"><div class="pe2-badge-num">03</div><div class="pe2-badge-lbl">ISSUE</div></div>
+        <div>
+          <div class="pe2-info-month">Mar 2026 · Vol 01</div>
+          <div class="pe2-info-title">Mid-Quarter Momentum</div>
+          <div class="pe2-info-desc">Search Buddy debut, Foundayo build updates, and the POC pipeline hitting its stride.</div>
         </div>
-        <div class="pe-card-action"><a href="#" class="pe-card-link">READ →</a></div>
-      </div>
-    </div>
-
-    <div class="pe-card" data-year="2026" data-month="02">
-      <div class="pe-card-bar"></div>
-      <div class="pe-card-body">
-        <div class="pe-card-badge"><span class="pe-card-badge-issue">02</span><span class="pe-card-badge-label">ISSUE</span></div>
-        <div class="pe-card-info">
-          <div class="pe-card-month">FEB 2026 · VOL 01</div>
-          <div class="pe-card-title">Q4 Wrap-Up &amp; Early Launches</div>
-          <div class="pe-card-desc">Q4 results, early 2026 brand launches, and the teams hitting their stride.</div>
+        <div class="pe2-go">READ →</div>
+      </a>
+      <a class="pe2-card" href="https://agentvebz.github.io/ibu-podx-newsletter/editions/2026-02-february.html" target="_blank" rel="noopener">
+        <div class="pe2-badge"><div class="pe2-badge-num">02</div><div class="pe2-badge-lbl">ISSUE</div></div>
+        <div>
+          <div class="pe2-info-month">Feb 2026 · Vol 01</div>
+          <div class="pe2-info-title">Q4 Wrap-Up &amp; Early Launches</div>
+          <div class="pe2-info-desc">Q4 results, early 2026 brand launches, and the teams hitting their stride.</div>
         </div>
-        <div class="pe-card-action"><a href="#" class="pe-card-link">READ →</a></div>
-      </div>
-    </div>
-
-    <div class="pe-card" data-year="2026" data-month="01">
-      <div class="pe-card-bar"></div>
-      <div class="pe-card-body">
-        <div class="pe-card-badge"><span class="pe-card-badge-issue">01</span><span class="pe-card-badge-label">ISSUE</span></div>
-        <div class="pe-card-info">
-          <div class="pe-card-month">JAN 2026 · VOL 01</div>
-          <div class="pe-card-title">The Inaugural Edition</div>
-          <div class="pe-card-desc">Team intros, first highlights, and what PODx is all about. Where it all began.</div>
+        <div class="pe2-go">READ →</div>
+      </a>
+      <a class="pe2-card" href="https://agentvebz.github.io/ibu-podx-newsletter/editions/2026-01-january.html" target="_blank" rel="noopener">
+        <div class="pe2-badge"><div class="pe2-badge-num">01</div><div class="pe2-badge-lbl">ISSUE</div></div>
+        <div>
+          <div class="pe2-info-month">Jan 2026 · Vol 01</div>
+          <div class="pe2-info-title">The Inaugural Edition</div>
+          <div class="pe2-info-desc">Team intros, first highlights, and what PODx is all about. Where it all began.</div>
         </div>
-        <div class="pe-card-action"><a href="#" class="pe-card-link">READ →</a></div>
-      </div>
+        <div class="pe2-go">READ →</div>
+      </a>
+      <a class="pe2-archive" href="https://agentvebz.github.io/ibu-podx-newsletter/archive.html" target="_blank" rel="noopener">View the full archive →</a>
     </div>
-
-    <div class="pe-empty" id="pe-empty" style="display:none;">
-      <div style="font-size:28px;margin-bottom:10px;">📭</div>
-      <div style="font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);margin-bottom:6px;">No editions found.</div>
-      <div style="font-size:12px;color:var(--slate);">Try a different filter combination.</div>
-    </div>
-
   </div>
 </div>
 
@@ -3384,201 +3352,6 @@
   function anim(){raf=null;dx+=(mx-dx)*.22;dy+=(my-dy)*.22;dot.style.left=dx+'px';dot.style.top=dy+'px';if(Math.abs(mx-dx)>.5||Math.abs(my-dy)>.5)raf=requestAnimationFrame(anim);}
 })();
 
-/* ══ SECTION 08 — INTERACTIVE CALENDAR (month-nav · expanding inline cards · stack) ══ */
-(function(){
-  const EVENTS = {
-    '2026-5-14': { title:'Tagging Team joins Personalization', meta:'IBU · Announcement', desc:'The Tagging team officially became a part of the Personalization team — expanding capability and capacity for data collection, audience building, and journey measurement.', color:'teal', bg:'#2B7A8C', fg:'white' },
-    '2026-6-11': { title:'Team Outing — Torque', meta:'All team · 3:00 PM – 9:00 PM · In-Person', desc:'Our team outing is happening at Torque! Come ready for a great evening. Venue: Torque. Time: 3:00 PM – 9:00 PM. Don\'t miss it — mark your calendars! 🎉', color:'gold', bg:'#C8943A', fg:'white' },
-  };
-
-  const daysEl=document.getElementById('s08-cal-days');
-  const monthLabel=document.getElementById('s08-month-label');
-  const prevBtn=document.getElementById('s08-prev-month');
-  const nextBtn=document.getElementById('s08-next-month');
-  const eventList=document.getElementById('s08-event-list');
-  const stack=document.getElementById('s08-reveal-stack');
-  const empty=document.getElementById('s08-reveal-empty');
-  const clearBtn=document.getElementById('s08-reveal-clear');
-  const hoverEl=document.getElementById('s08-cal-hover');
-  const hoverBadge=document.getElementById('s08-cal-hover-badge');
-  const hoverTitle=document.getElementById('s08-cal-hover-title');
-  const hoverMeta=document.getElementById('s08-cal-hover-meta');
-  const stageEl=document.querySelector('#sec-08 .s08-stage');
-
-  if(!daysEl)return;
-  let curYear=2026, curMonth=4; // 4 = May (0-indexed) — default month
-  const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const MSHORT=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-
-  const EVENT_SHORT = {
-    '2026-5-14': 'TEAM',
-    '2026-6-11': '★ OUTING',
-  };
-
-  const shown = new Set();  // keys already expanded onto the stack
-
-  function key(y,m,d){ return y+'-'+(m+1)+'-'+d; }
-
-  function showHover(k, cell){
-    const ev=EVENTS[k]; if(!ev||!hoverEl||!stageEl) return;
-    const[y,m,d]=k.split('-').map(Number);
-    hoverBadge.textContent=d+' '+MSHORT[m-1];
-    hoverBadge.style.background=ev.bg; hoverBadge.style.color=ev.fg;
-    hoverTitle.textContent=ev.title;
-    hoverMeta.textContent=ev.meta;
-    // position above the hovered cell, clamped within the stage
-    const sr=stageEl.getBoundingClientRect();
-    const cr=cell.getBoundingClientRect();
-    hoverEl.style.left='0px'; hoverEl.style.top='0px';
-    hoverEl.classList.add('show'); // measure with layout applied
-    const hw=hoverEl.offsetWidth, hh=hoverEl.offsetHeight;
-    let left=(cr.left-sr.left)+(cr.width/2)-(hw/2);
-    left=Math.max(6, Math.min(left, sr.width-hw-6));
-    let top=(cr.top-sr.top)-hh-8;
-    if(top<2) top=(cr.bottom-sr.top)+8; // flip below if no room above
-    hoverEl.style.left=left+'px';
-    hoverEl.style.top=top+'px';
-  }
-  function hideHover(){ if(hoverEl) hoverEl.classList.remove('show'); }
-
-  function buildCalendar(){
-    const firstDay=new Date(curYear,curMonth,1).getDay();
-    const daysInMonth=new Date(curYear,curMonth+1,0).getDate();
-    const prevDays=new Date(curYear,curMonth,0).getDate();
-    const today=new Date();
-    monthLabel.textContent=MONTHS[curMonth]+' '+curYear;
-    daysEl.innerHTML='';
-
-    for(let i=firstDay-1;i>=0;i--){
-      const d=document.createElement('div');d.className='s08-day other-month';
-      d.innerHTML='<span class="s08-day-num">'+(prevDays-i)+'</span>';daysEl.appendChild(d);
-    }
-    for(let day=1;day<=daysInMonth;day++){
-      const d=document.createElement('div');
-      const isToday=today.getFullYear()===curYear&&today.getMonth()===curMonth&&today.getDate()===day;
-      const k=key(curYear,curMonth,day);
-      const ev=EVENTS[k];
-      const dow=new Date(curYear,curMonth,day).getDay();
-      const isWeekend=dow===0||dow===6;
-      let cls='s08-day'+(isToday?' today':'')+(ev?' has-event event-'+ev.color:(!isToday&&isWeekend?' weekend':''));
-      d.className=cls;
-      const label=EVENT_SHORT[k]||'';
-      d.innerHTML='<span class="s08-day-num">'+day+'</span>'+(label?'<span class="s08-day-label">'+label+'</span>':'');
-      if(ev){
-        d.setAttribute('role','button');
-        d.setAttribute('tabindex','0');
-        d.setAttribute('aria-label',day+' '+MONTHS[curMonth]+' — '+ev.title);
-        d.addEventListener('click',()=>revealEvent(k,d));
-        d.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); revealEvent(k,d); } });
-        d.addEventListener('mouseenter',()=>{ showHover(k,d); revealEvent(k,d); });
-        d.addEventListener('mouseleave',hideHover);
-        d.addEventListener('focus',()=>{ showHover(k,d); revealEvent(k,d); });
-        d.addEventListener('blur',hideHover);
-      }
-      daysEl.appendChild(d);
-    }
-    const totalCells=Math.ceil((firstDay+daysInMonth)/7)*7;
-    for(let i=1;i<=totalCells-(firstDay+daysInMonth);i++){
-      const d=document.createElement('div');d.className='s08-day other-month';
-      d.innerHTML='<span class="s08-day-num">'+i+'</span>';daysEl.appendChild(d);
-    }
-    syncActiveCells();
-    buildEventList();
-  }
-
-  function buildEventList(){
-    eventList.innerHTML='<div class="s08-event-list-title">Upcoming events</div>';
-    const sorted=Object.keys(EVENTS).sort((a,b)=>{
-      const [ay,am,ad]=a.split('-').map(Number);
-      const [by,bm,bd]=b.split('-').map(Number);
-      return (ay*10000+am*100+ad)-(by*10000+bm*100+bd);
-    });
-    sorted.forEach(k=>{
-      const ev=EVENTS[k];
-      const[y,m,d]=k.split('-').map(Number);
-      const item=document.createElement('div');item.className='s08-event-item';
-      item.dataset.key=k;
-      item.innerHTML=
-        '<div class="s08-event-badge" style="background:'+ev.bg+';color:'+ev.fg+'">'+
-          '<span class="s08-event-badge-d">'+d+'</span>'+
-          '<span class="s08-event-badge-m">'+MSHORT[m-1]+'</span>'+
-        '</div>'+
-        '<div class="s08-event-info">'+
-          '<div class="s08-event-name">'+ev.title+'</div>'+
-          '<div class="s08-event-sub">'+ev.meta+'</div>'+
-        '</div>'+
-        '<span class="s08-event-arrow">→</span>';
-      item.addEventListener('click',()=>revealEvent(k));
-      eventList.appendChild(item);
-    });
-    syncListActive();
-  }
-
-  // Expanding inline card — appears below the grid and stacks (newest on top)
-  function revealEvent(k, cell){
-    const ev=EVENTS[k]; if(!ev) return;
-    if(shown.has(k)){
-      // already expanded — pulse it so the click still feels responsive
-      const existing=stack.querySelector('.s08-ecard[data-key="'+k+'"]');
-      if(existing){ existing.classList.remove('pulse'); void existing.offsetWidth; existing.classList.add('pulse'); }
-      return;
-    }
-    shown.add(k);
-    if(empty) empty.style.display='none';
-    if(clearBtn) clearBtn.hidden=false;
-
-    const[y,m,d]=k.split('-').map(Number);
-    const card=document.createElement('div');
-    card.className='s08-ecard';
-    card.dataset.key=k;
-    card.style.borderLeftColor=ev.bg;
-    card.innerHTML=
-      '<div class="s08-ecard-head">'+
-        '<div class="s08-ecard-badge" style="background:'+ev.bg+';color:'+ev.fg+'">'+
-          '<span class="s08-ecard-badge-d">'+d+'</span>'+
-          '<span class="s08-ecard-badge-m">'+MSHORT[m-1]+' '+y+'</span>'+
-        '</div>'+
-        '<div class="s08-ecard-title">'+ev.title+'</div>'+
-      '</div>'+
-      '<div class="s08-ecard-meta">'+ev.meta+'</div>'+
-      '<div class="s08-ecard-desc">'+ev.desc+'</div>';
-    stack.insertBefore(card, stack.firstChild);
-
-    if(cell) cell.classList.add('active');
-    syncActiveCells();
-    syncListActive();
-  }
-
-  function syncActiveCells(){
-    daysEl.querySelectorAll('.s08-day.has-event').forEach(c=>{
-      const day=c.querySelector('.s08-day-num');
-      if(!day) return;
-      const k=key(curYear,curMonth,parseInt(day.textContent,10));
-      c.classList.toggle('active', shown.has(k));
-    });
-  }
-  function syncListActive(){
-    eventList.querySelectorAll('.s08-event-item').forEach(it=>{
-      it.classList.toggle('active', shown.has(it.dataset.key));
-    });
-  }
-
-  if(clearBtn){
-    clearBtn.addEventListener('click',()=>{
-      shown.clear();
-      stack.innerHTML='';
-      if(empty) empty.style.display='';
-      clearBtn.hidden=true;
-      syncActiveCells();
-      syncListActive();
-    });
-  }
-
-  prevBtn.addEventListener('click',()=>{curMonth--;if(curMonth<0){curMonth=11;curYear--;}buildCalendar();});
-  nextBtn.addEventListener('click',()=>{curMonth++;if(curMonth>11){curMonth=0;curYear++;}buildCalendar();});
-  try { buildCalendar(); } catch(e) { console.error('Calendar error:', e); }
-})();
-
 /* ══ S07 CROSSWORD ══ */
 (function(){
   const grid=document.getElementById('s07-grid');if(!grid)return;
@@ -3762,6 +3535,8 @@ function s03Toggle(btn) {
   let crumplesRemovedCount = 0;
 
   let availableIndices = TIPS.map((_, i) => i);
+  // Dynamic initial "TIPS LEFT" count — always reflects the tips array length
+  (function(){ const tn = document.getElementById('tickerNum'); if (tn) tn.textContent = availableIndices.length; })();
   let pulledTips = [];
   let lastPulledIndex = -1;
   let isAnimating = false;
@@ -4146,43 +3921,14 @@ function s03Toggle(btn) {
 })();
 
 /* ══ PAST EDITIONS TAB + DRAWER ══ */
-function peOpen(){
-  document.getElementById('pe-overlay').classList.add('open');
-  document.getElementById('pe-drawer').classList.add('open');
-  document.getElementById('pe-tab').style.display='none';
-}
-function peClose(){
-  document.getElementById('pe-overlay').classList.remove('open');
-  document.getElementById('pe-drawer').classList.remove('open');
-  document.getElementById('pe-tab').style.display='';
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')peClose();});
-
-/* ── FILTER STATE ── */
-const peState = { year: 'all', month: 'all' };
-
-function peFilter(type, val, btn) {
-  peState[type] = val;
-  // Update pill active states for this filter type
-  document.querySelectorAll(`.pe-pill[data-filter="${type}"]`).forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  peApplyFilters();
-}
-
-function peApplyFilters() {
-  const cards = document.querySelectorAll('#pe-drawer-body .pe-card');
-  let visible = 0;
-  cards.forEach(card => {
-    const yearMatch = peState.year === 'all' || card.dataset.year === peState.year;
-    const monthMatch = peState.month === 'all' || card.dataset.month === peState.month;
-    const show = yearMatch && monthMatch;
-    card.style.display = show ? '' : 'none';
-    if (show) visible++;
-  });
-  const empty = document.getElementById('pe-empty');
-  const count = document.getElementById('pe-results-count');
-  if (empty) empty.style.display = visible === 0 ? 'flex' : 'none';
-  if (count) count.textContent = visible === 1 ? 'Showing 1 edition' : `Showing ${visible} edition${visible === 0 ? 's' : 's'}`;
+/* ══ PAST EDITIONS — pill expander toggle ══ */
+function pe2Toggle(){
+  const pill=document.getElementById('pe2-pill');
+  const panel=document.getElementById('pe2-panel');
+  if(!pill||!panel)return;
+  const isOpen=pill.getAttribute('aria-expanded')==='true';
+  pill.setAttribute('aria-expanded', isOpen?'false':'true');
+  panel.classList.toggle('open', !isOpen);
 }
 </script>
 </body>
