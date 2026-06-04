@@ -60,7 +60,7 @@
   }
   .nl-masthead-mesh { position: absolute; inset: 0; z-index: 0; }
   .nl-masthead-blob { position: absolute; border-radius: 50%; filter: blur(90px); mix-blend-mode: multiply; will-change: transform; }
-  /* Very soft blobs: light rose and warm cream — multiply on white keeps them subtle */
+  /* Very soft blobs: light rose and warm cream, multiply on white keeps them subtle */
   .nl-masthead-blob-1 { width: 500px; height: 500px; background: #EFBBBB; top: -180px; left: -120px; opacity: 0.55; animation: mhBlob1 10s ease-in-out infinite; }
   .nl-masthead-blob-2 { width: 380px; height: 380px; background: #F5D4D4; top: -80px; right: -100px; opacity: 0.50; animation: mhBlob2 13s ease-in-out infinite; }
   .nl-masthead-blob-3 { width: 340px; height: 340px; background: #F9E8E8; bottom: -120px; left: 22%; opacity: 0.60; animation: mhBlob3 11s ease-in-out infinite; }
@@ -156,7 +156,7 @@
   .s02-a-label { font-size: 10px; letter-spacing: 0.18em; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
   .s02-a-text { font-size: 13px; line-height: 1.55; flex: 1; opacity: 0.9; }
 
-  /* SECTION 03 — CARD STACK */
+  /* SECTION 03, CARD STACK */
   .s03-stage { background: linear-gradient(135deg,var(--mist) 0%,var(--gold-soft) 100%); border-radius: 14px; padding: 32px; position: relative; overflow: hidden; min-height: 480px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
   .s03-waves-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
   .s03-wave-path { fill: none; stroke-width: 1.2; opacity: 0.35; animation: s03WaveDrift 22s ease-in-out infinite alternate; }
@@ -238,15 +238,15 @@
   .s04-leader-photo { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 14px; background: linear-gradient(135deg,var(--gold),var(--lilly-red)); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display',serif; font-weight: 400; font-size: 26px; color: white; border: 2px solid var(--navy); transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1); will-change: transform; }
   .s04-leader-name { font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 4px; }
   .s04-leader-role { font-size: 10px; letter-spacing: 0.12em; color: var(--text-light); text-transform: uppercase; font-weight: 600; }
-  .s04-popover { position: absolute; z-index: 30; width: 260px; background: white; color: var(--navy); border: 1.5px solid var(--navy); border-radius: 14px; padding: 14px; box-shadow: 0 16px 36px rgba(0,0,0,0.25); opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity 0.22s, transform 0.22s; }
+  .s04-popover { position: fixed; z-index: 9999; width: 260px; background: white; color: var(--navy); border: 1.5px solid var(--navy); border-radius: 14px; padding: 14px; box-shadow: 0 16px 36px rgba(0,0,0,0.25); opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity 0.22s, transform 0.22s; }
   .s04-popover.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
   .s04-pop-close { position: absolute; top: 6px; right: 6px; width: 22px; height: 22px; border-radius: 50%; background: var(--mist); border: none; cursor: pointer; font-size: 14px; line-height: 1; display: flex; align-items: center; justify-content: center; color: var(--navy); transition: background 0.2s, color 0.2s; }
-  .s04-pop-close:hover { background: var(--lilly-red); color: white; }
+  .s04-pop-close:hover { background: #2D7D46; color: white; }
   .s04-pop-photo { width: 50px; height: 50px; border-radius: 50%; margin: 0 auto 8px; border: 2px solid var(--navy); background: linear-gradient(135deg,var(--gold),var(--lilly-red)); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display',serif; font-weight: 400; font-size: 18px; color: white; }
   .s04-pop-name { font-family: 'DM Serif Display',serif; font-size: 15px; text-align: center; margin: 0 0 2px; }
-  .s04-pop-role { font-size: 10px; text-align: center; color: var(--lilly-red); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 10px; }
+  .s04-pop-role { font-size: 10px; text-align: center; color: #1E5631; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 10px; }
   .s04-pop-fact { background: var(--mist); border-radius: 8px; padding: 9px 11px; font-size: 11.5px; line-height: 1.45; color: var(--navy); }
-  .s04-pop-fact::before { content: '★ Fun fact'; display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.15em; color: var(--lilly-red); margin-bottom: 3px; text-transform: uppercase; }
+  .s04-pop-fact::before { content: '★ Fun fact'; display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.15em; color: #2D7D46; margin-bottom: 3px; text-transform: uppercase; }
 
   /* COMBINED LAYOUT: SEC06 + SEC08 side by side */
   .s06s08-wrapper {
@@ -301,14 +301,14 @@
     background: linear-gradient(135deg, #FBEAE8 0%, #FAF2DC 100%);
     padding: 8px 6px 4px; }
 
-  /* SHELF WASH — soft cream graduation at the bottom, giving the jar a surface to sit on */
+  /* SHELF WASH, soft cream graduation at the bottom, giving the jar a surface to sit on */
   .tj9::before {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 60%;
     background:
-      /* The shelf line — hairline horizontal at the jar's base */
+      /* The shelf line, hairline horizontal at the jar's base */
       linear-gradient(to bottom,
         transparent 0%,
         transparent calc(100% - 90px),
@@ -340,7 +340,7 @@
   /* Ensure all interactive content sits above background layers */
   .jar-stage { position: relative; z-index: 2; }
 
-  /* PAPER-SPECK CONSTELLATION — drifts across the whole background */
+  /* PAPER-SPECK CONSTELLATION, drifts across the whole background */
   .paper-speck {
     position: absolute;
     background: linear-gradient(135deg, #FAF1D8 0%, #E8D9B0 100%);
@@ -394,7 +394,7 @@
     animation-play-state: paused;
   }
 
-  /* BURST SPECKS — emit from jar rim when lid pops, then settle into ambient */
+  /* BURST SPECKS, emit from jar rim when lid pops, then settle into ambient */
   .burst-speck {
     position: absolute;
     background: linear-gradient(135deg, #FAF1D8 0%, #E8D9B0 100%);
@@ -459,7 +459,7 @@
   .jar-wrapper.empty:hover .jar-lid-group { animation: none; }
   .jar-wrapper.empty:hover .glass-glint { animation: none; }
 
-  /* IDLE WOBBLE — every 5s, more noticeable, only when truly idle */
+  /* IDLE WOBBLE, every 5s, more noticeable, only when truly idle */
   .jar-wrapper:not(.empty):not(:hover):not(.pressed):not(.shake):not(.popping) .jar-body-group {
     animation: idle-wobble 5s ease-in-out infinite;
     animation-delay: 3s;
@@ -550,9 +550,8 @@
   }
 
   .crumple { transform-origin: center; transform-box: fill-box; }
-  /* 5 tips this month — show only the first 5 crumpled papers in the jar */
-  .crumple[data-i="5"], .crumple[data-i="6"],
-  .crumple[data-i="7"], .crumple[data-i="8"], .crumple[data-i="9"] { display: none; }
+  /* 8 tips this month, show only the first 8 crumpled papers in the jar */
+  .crumple[data-i="8"], .crumple[data-i="9"] { display: none; }
   .jar-wrapper.shake .crumple {
     animation: crumple-jiggle 0.7s var(--ease-in-out-weighted);
   }
@@ -585,7 +584,7 @@
     70%  { opacity: 0.6; transform: translate(2px, -50px) scale(0.55) rotate(15deg); }
     100% { opacity: 0; transform: translate(0, -70px) scale(0.3) rotate(0deg); }
   }
-  /* RIM SHIMMER — sweeps across lid every 12s */
+  /* RIM SHIMMER, sweeps across lid every 12s */
   .lid-shimmer {
     opacity: 0;
     transform-origin: center;
@@ -603,7 +602,7 @@
 
   .crumple.gone { display: none !important; }
 
-  /* DUST MOTES — drift slowly inside jar, pause on hover. Darker so they're visible against light glass. */
+  /* DUST MOTES, drift slowly inside jar, pause on hover. Darker so they're visible against light glass. */
   .dust-mote {
     fill: rgba(140, 110, 70, 0.7);
     transform-origin: center;
@@ -671,7 +670,7 @@
     100% { opacity: 0; transform: translateY(-14px) scale(1.7); }
   }
 
-  /* TICKER badge below jar (HTML, not SVG — easier animation) */
+  /* TICKER badge below jar (HTML, not SVG, easier animation) */
   .counter-pill {
     margin-top: 12px;
     font-family: 'Inter', sans-serif;
@@ -710,7 +709,7 @@
     letter-spacing: 0.06em;
   }
 
-  /* FIRST-PULL HINT — appears 2s after load, disappears on interaction */
+  /* FIRST-PULL HINT, appears 2s after load, disappears on interaction */
   .first-pull-hint {
     position: absolute;
     top: 50%;
@@ -765,7 +764,7 @@
   .ticker-num.out-up { transform: translateY(-110%); opacity: 0; }
   .ticker-num.in-from-below { transform: translateY(110%); opacity: 0; }
 
-  /* Flying paper — smaller arc */
+  /* Flying paper, smaller arc */
   .flying-paper-container {
     position: absolute;
     top: 30px;
@@ -850,7 +849,7 @@
     overflow: hidden; border-radius: 6px;
   }
 
-  /* Arrival pulse — warm radial glow when a new card lands */
+  /* Arrival pulse, warm radial glow when a new card lands */
   .arrival-pulse {
     position: absolute;
     top: 50%; left: 50%;
@@ -957,7 +956,7 @@
     animation: card-arrive 0.85s var(--ease-out-back) both;
   }
   @keyframes card-arrive {
-    /* Stays within viewport bounds — uses scale + opacity for the "drop in" feel */
+    /* Stays within viewport bounds, uses scale + opacity for the "drop in" feel */
     0%   { transform: translate(-50%, -10px) scale(0.25) rotate(-18deg); opacity: 0; }
     25%  { transform: translate(-50%, -5px) scale(0.5) rotate(-8deg); opacity: 0.4; }
     50%  { transform: translate(-50%, 6px) scale(0.92) rotate(3deg);  opacity: 1; }
@@ -1081,7 +1080,7 @@
   @media (min-width: 721px) {
     .tj9 .jar-stage { grid-template-columns: 1fr; gap: 8px; min-height: 0; }
   }
-  /* Calendar — expanding inline cards (replaces popup) */
+  /* Calendar, expanding inline cards (replaces popup) */
   .s08-reveal { margin-top: 14px; }
   .s08-reveal-empty {
     font-size: 12px; color: var(--slate); font-style: italic;
@@ -1138,7 +1137,7 @@
   .s08-day.has-event.active { outline: 2px solid var(--navy); outline-offset: 1px; }
   .s08-event-item.active { border-color: var(--navy); box-shadow: 0 3px 10px rgba(26,43,74,0.12); }
 
-  /* Calendar — floating hover popup */
+  /* Calendar, floating hover popup */
   .s08-stage { position: relative; }
   .s08-cal-hover {
     position: absolute; z-index: 60; pointer-events: none;
@@ -1158,7 +1157,7 @@
   .s08-cal-hover-title { font-family: 'DM Serif Display', serif; font-size: 14px; color: var(--navy); line-height: 1.25; margin-bottom: 4px; }
   .s08-cal-hover-meta { font-size: 10px; color: var(--text-light); font-family: 'JetBrains Mono', monospace; line-height: 1.4; }
 
-  /* SECTION 08 — INTERACTIVE CALENDAR */
+  /* SECTION 08, INTERACTIVE CALENDAR */
   .s08-stage {
     background: linear-gradient(135deg, var(--mist) 0%, var(--gold-soft) 100%);
     border-radius: 14px;
@@ -1277,7 +1276,7 @@
   .s08-event-sub { font-size: 10px; color: var(--text-light); font-family: 'JetBrains Mono',monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .s08-event-arrow { font-size: 12px; color: var(--text-light); }
 
-  /* AI DIGEST — light theme matching other sections */
+  /* AI DIGEST, light theme matching other sections */
   .s09-stage {
     background: linear-gradient(135deg, var(--white) 0%, var(--lilly-red-soft) 100%);
     color: var(--navy);
@@ -1376,12 +1375,30 @@
   .s07-content { position: relative; z-index: 2; }
   .s07-cross-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; margin: 24px 0 8px 0; background: white; border: 1px solid var(--border); border-radius: 14px; padding: 26px 28px; }
   .s07-cross-grid { display: flex; flex-direction: column; gap: 8px; }
-  .s07-cross-row { display: grid; grid-template-columns: 28px repeat(5,44px); gap: 4px; align-items: center; }
+  .s07-cross-row { display: flex; align-items: center; gap: 4px; flex-wrap: nowrap; }
   .s07-cross-num { font-family: 'JetBrains Mono',monospace; font-size: 13px; color: var(--lilly-red); font-weight: 700; text-align: center; }
-  .s07-cross-cell { width: 44px; height: 44px; background: white; border: 1.5px solid var(--navy); border-radius: 5px; font-family: 'DM Serif Display',serif; font-size: 22px; color: var(--navy); font-weight: 400; text-align: center; text-transform: uppercase; padding: 0; transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s; outline: none; }
+  .s07-cross-cell { width: 32px; height: 32px; background: white; border: 1.5px solid var(--navy); border-radius: 5px; font-family: 'DM Serif Display',serif; font-size: 17px; color: var(--navy); font-weight: 400; text-align: center; text-transform: uppercase; padding: 0; transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s; outline: none; }
   .s07-cross-cell:focus { border-color: var(--lilly-red); background: var(--lilly-red-soft); transform: scale(1.06); }
   .s07-cross-cell.correct { background: #DCFCE7; border-color: var(--green); color: var(--green); animation: s07Bounce 0.4s ease; }
   .s07-cross-cell.wrong { background: var(--lilly-red-soft); border-color: var(--lilly-red); color: var(--lilly-red); animation: s07Shake2 0.4s ease; }
+  /* SECTION 07, dynamic crossword (real interlocking grid) */
+  .s07-cw-grid { display: grid; gap: 3px; }
+  .s07-cw-block { width: 100%; height: 100%; background: var(--navy-deep); border-radius: 3px; }
+  .s07-cw-cell { position: relative; width: 100%; height: 100%; }
+  .s07-cw-inp { width: 100%; height: 100%; box-sizing: border-box; background: white; border: 1.5px solid var(--navy); border-radius: 4px; text-align: center; font-family: 'DM Serif Display',serif; font-size: 16px; color: var(--navy); text-transform: uppercase; padding: 0; outline: none; transition: border-color 0.15s, background 0.15s, color 0.15s; }
+  .s07-cw-inp:focus { border-color: var(--lilly-red); background: var(--lilly-red-soft); }
+  .s07-cw-cell.hl .s07-cw-inp { background: #FFF6D8; }
+  .s07-cw-cell.correct .s07-cw-inp { background: #DCFCE7; border-color: var(--green); color: var(--green); }
+  .s07-cw-cell.wrong .s07-cw-inp { background: var(--lilly-red-soft); border-color: var(--lilly-red); color: var(--lilly-red); }
+  .s07-cw-num { position: absolute; top: 1px; left: 2px; font-size: 8px; font-family: 'JetBrains Mono',monospace; color: var(--text-light); pointer-events: none; z-index: 1; line-height: 1; }
+  .s07-cw-clues { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+  .s07-cw-h { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; color: var(--lilly-red); border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-bottom: 6px; text-transform: uppercase; }
+  .s07-cw-clue { display: grid; grid-template-columns: 20px 1fr; gap: 6px; font-size: 12px; color: var(--navy); line-height: 1.4; padding: 3px 4px; cursor: pointer; border-radius: 4px; transition: background 0.15s; }
+  .s07-cw-clue:hover { background: var(--mist); }
+  .s07-cw-cluenum { color: var(--lilly-red); font-weight: 700; font-family: 'JetBrains Mono',monospace; }
+  .s07-cw-clue em { color: var(--text-light); font-style: normal; }
+  @media (max-width: 560px) { .s07-cw-clues { grid-template-columns: 1fr; } .s07-cw-inp { font-size: 13px; } }
+
   @keyframes s07Bounce { 0%,100%{transform:scale(1)} 50%{transform:scale(1.12)} }
   @keyframes s07Shake2 { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-3px)} 75%{transform:translateX(3px)} }
   .s07-cross-actions { margin-top: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -1550,16 +1567,15 @@
   .s04-team-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
   .s04-team-tab { padding:5px 14px; border-radius:99px; font-size:10px; font-weight:700; letter-spacing:0.1em; cursor:pointer; border:1.5px solid transparent; transition:all 0.18s; }
   .s04-team-tab.de      { background:#DCEEF1; color:#1A5C6B; border-color:#2B7A8C44; }
-  .s04-team-tab.pers    { background:var(--lilly-red-soft); color:var(--lilly-red-deeper); border-color:#D52B1E44; font-size:11px; padding:6px 16px; border-width:2px; border-color:var(--lilly-red); }
+  .s04-team-tab.pers    { background:#E3F0E6; color:#1E5631; border-color:#2D7D4644; font-size:11px; padding:6px 16px; border-width:2px; border-color:#2D7D46; }
   .s04-team-tab.omni    { background:#E8EDF5; color:var(--navy); border-color:#1A2B4A44; }
-  .s04-team-tab.spotlight { box-shadow:0 0 0 2.5px var(--lilly-red); }
+  .s04-team-tab.spotlight { box-shadow:0 0 0 2.5px #2D7D46; }
 
   @media (max-width: 720px) {
     .s07-memory-board { grid-template-columns: repeat(3,1fr); }
     .s07-memory-head { grid-template-columns: 1fr; }
     .s07-cross-wrap { grid-template-columns: 1fr; }
-    .s07-cross-row { grid-template-columns: 24px repeat(5,40px); }
-    .s07-cross-cell { width: 40px; height: 40px; font-size: 20px; }
+    .s07-cross-cell { width: 27px; height: 27px; font-size: 15px; }
   }
 
   /* ══ PAST EDITIONS TAB + DRAWER ══ */
@@ -1789,8 +1805,8 @@
         <!-- Editor letter second (swapped) -->
         <div class="s01-letter">
           <div class="s01-from">FROM THE EDITOR · JAN–MAY 2026</div>
-          <div class="s01-body" id="s01-body"><span class="s01-dropcap">H</span><span data-acc="false">ey everyone! This is it — Issue #1 is officially here! 🙌 We've been working hard to put together something that feels useful, fun, and truly ours. As we launch this first edition, we want you to know this newsletter is </span><span data-acc="true">for you</span><span data-acc="false"> — packed with mixed topics, team stories, and updates that matter. Consider this the beginning of something great. We can't wait to hear what you think, and we're already looking forward to the next one. Welcome aboard, and enjoy!</span> 🚀</div>
-          <div class="s01-sig"><strong>The PODx Team</strong> · IBU Omnichannel</div>
+          <div class="s01-body" id="s01-body"><span class="s01-dropcap">H</span><span data-acc="false">ey everyone! This is it, Issue #1 is officially here! 🙌 We've been working hard to put together something that feels useful, fun, and truly ours. As we launch this first edition, we want you to know this newsletter is </span><span data-acc="true">for you</span><span data-acc="false">, packed with mixed topics, team stories, and updates that matter. Consider this the beginning of something great. We can't wait to hear what you think, and we're already looking forward to the next one. Welcome aboard, and enjoy!</span> 🚀</div>
+          <div class="s01-sig"><strong>The PODx Team</strong></div>
 
           <!-- 3 team boxes -->
           <div class="s01-teams">
@@ -1822,7 +1838,7 @@
   </div>
 </section>
 
-<!-- SECTION 03 — TEAM HIGHLIGHTS (modified: title added, badge removed) -->
+<!-- SECTION 03, TEAM HIGHLIGHTS (modified: title added, badge removed) -->
 <section class="nl-section" id="sec-03">
   <div class="nl-ribbon">
     <span><span class="nl-pulse"></span>SECTION 03 · TEAM HIGHLIGHTS</span>
@@ -1840,7 +1856,7 @@
     </div>
     <div class="nl-eyebrow">TEAM HIGHLIGHTS</div>
     <h2 class="nl-h1">Wins worth <span class="accent">celebrating.</span></h2>
-    <p class="nl-lede">Wins from across Digital Engagement, Omnichannel, and Medical Omnichannel — AI tools, pipeline speed-ups, and awards. Filter by team or browse all.</p>
+    <p class="nl-lede">Wins from across Digital Engagement, Omnichannel, and Medical Omnichannel, AI tools, pipeline speed-ups, and awards. Filter by team or browse all.</p>
     <div class="s03-team-tabs">
       <button class="s03-team-tab all active" onclick="s03Filter('all',this)">ALL TEAMS</button>
       <button class="s03-team-tab de" onclick="s03Filter('de',this)">Digital Engagement</button>
@@ -1849,13 +1865,13 @@
     </div>
     <div class="s03-people-grid" id="s03-grid">
 
-      <!-- Card 1 — Nidhi Dalvi -->
+      <!-- Card 1, Nidhi Dalvi -->
       <div class="s03-person-card" data-team="de">
         <div class="s03-person-card-top">
           <div class="s03-person-name">Nidhi Dalvi</div>
           <div class="s03-person-role">Intern · Digital Engagement</div>
           <span class="team-pill team-pill-de" style="margin-bottom:8px;">Digital Engagement</span>
-          <div class="s03-person-achievement">Built an AI-powered analytics tool on Claude — unifying KPI setting, site performance, and business case evaluation in one interface.</div>
+          <div class="s03-person-achievement">Built an AI-powered analytics tool on Claude, unifying KPI setting, site performance, and business case evaluation in one interface.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
@@ -1863,31 +1879,31 @@
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
             <strong>Project:</strong> AI-Powered Digital Analytics Platform<br>
-            Built on Claude, the tool consolidates KPI Target Setting, Website Performance Analysis, Business Case Justification, and an AI Conversational Assistant into a single interface. It derives KPI targets through a five-step population funnel, delivers source-cited performance insights, and evaluates business cases against the Lilly Prioritisation Framework — creating a standardised, replicable framework across brands, markets, and indications.
+            Built on Claude, the tool consolidates KPI Target Setting, Website Performance Analysis, Business Case Justification, and an AI Conversational Assistant into a single interface. It derives KPI targets through a five-step population funnel, delivers source-cited performance insights, and evaluates business cases against the Lilly Prioritisation Framework, creating a standardised, replicable framework across brands, markets, and indications.
           </div>
         </div>
       </div>
 
-      <!-- Card 2 — Search Team -->
+      <!-- Card 2, Search Team -->
       <div class="s03-person-card" data-team="de">
         <div class="s03-person-card-top">
           <div class="s03-person-name">Search Capability Team</div>
           <div class="s03-person-role">Abhishek · Darpan · Prabhanjan · Priyanka · Ranima</div>
           <span class="team-pill team-pill-de" style="margin-bottom:8px;">Digital Engagement</span>
-          <div class="s03-person-achievement">Follow the Sun model cut Foundayo issue resolution from 14–18 hrs to just 2–4 hrs — 244K visits in launch week.</div>
+          <div class="s03-person-achievement">Follow the Sun model cut Foundayo issue resolution from 14–18 hrs to just 2–4 hrs, 244K visits in launch week.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Project:</strong> Foundayo Launch — Follow the Sun SEO/SEM<br>
-            The team united U.S. and Bengaluru into a seamless 24-hour operation, eliminating overnight monitoring gaps and cutting issue resolution time from 14–18 hours down to 2–4 hours. In the first week alone, Search drove more than <strong>244K visits</strong> to Foundayo's digital front door — connecting the right information with the right audience at the right moment.
+            <strong>Project:</strong> Foundayo Launch, Follow the Sun SEO/SEM<br>
+            The team united U.S. and Bengaluru into a seamless 24-hour operation, eliminating overnight monitoring gaps and cutting issue resolution time from 14–18 hours down to 2–4 hours. In the first week alone, Search drove more than <strong>244K visits</strong> to Foundayo's digital front door, connecting the right information with the right audience at the right moment.
           </div>
         </div>
       </div>
 
-      <!-- Card 3 — Search Buddy -->
+      <!-- Card 3, Search Buddy -->
       <div class="s03-person-card" data-team="de">
         <div class="s03-person-card-top">
           <div class="s03-person-name">Search Buddy</div>
@@ -1906,32 +1922,32 @@
         </div>
       </div>
 
-      <!-- Card 4 — Ranima -->
+      <!-- Card 4, Ranima -->
       <div class="s03-person-card" data-team="de">
         <div class="s03-person-card-top">
           <div class="s03-person-name">Ranima Peethambaran</div>
           <div class="s03-person-role">Senior Consultant · Digital Engagement</div>
           <span class="team-pill team-pill-de" style="margin-bottom:8px;">Digital Engagement</span>
-          <div class="s03-person-achievement">Won the Q1 2026 Impact Award for GEO work on Mounjaro, Omvoh, and other brands — improving LLM-based customer access to product information.</div>
+          <div class="s03-person-achievement">Won the Q1 2026 Impact Award for GEO work on Mounjaro, Omvoh, and other brands, improving LLM-based customer access to product information.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Award:</strong> Q1 2026 Impact Award — Generative Engine Optimisation<br>
-            Ranima received the Q1 2026 Impact Award for her GEO efforts across Mounjaro, Omvoh, and other brands — work that directly improved customer access to accurate product information through large language models.
+            <strong>Award:</strong> Q1 2026 Impact Award, Generative Engine Optimisation<br>
+            Ranima received the Q1 2026 Impact Award for her GEO efforts across Mounjaro, Omvoh, and other brands, work that directly improved customer access to accurate product information through large language models.
           </div>
         </div>
       </div>
 
-      <!-- Card 5 — Abhishek & Priyanka -->
+      <!-- Card 5, Abhishek & Priyanka -->
       <div class="s03-person-card" data-team="de">
         <div class="s03-person-card-top">
           <div class="s03-person-name">Abhishek Singh &amp; Priyanka Parihar</div>
           <div class="s03-person-role">Consultants · Digital Engagement</div>
           <span class="team-pill team-pill-de" style="margin-bottom:8px;">Digital Engagement</span>
-          <div class="s03-person-achievement">Built an AI SEO report generator that cuts 2–4 hrs of manual work to under 3 minutes — earned the Beaver Award! 🦫</div>
+          <div class="s03-person-achievement">Built an AI SEO report generator that cuts 2–4 hrs of manual work to under 3 minutes, earned the Beaver Award! 🦫</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
@@ -1939,7 +1955,7 @@
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
             <strong>Project:</strong> Organic Performance Report Generator<br>
-            An AI-powered tool that turns raw SEO data into a complete, structured report in under 2–3 minutes — replacing 2–4 hours of manual effort. Supports monthly, quarterly, and yearly reporting with multiple export formats. Abhishek and Priyanka were honored with the <strong>Beaver Award</strong> for this innovation.
+            An AI-powered tool that turns raw SEO data into a complete, structured report in under 2–3 minutes, replacing 2–4 hours of manual effort. Supports monthly, quarterly, and yearly reporting with multiple export formats. Abhishek and Priyanka were honored with the <strong>Beaver Award</strong> for this innovation.
           </div>
         </div>
       </div>
@@ -1950,7 +1966,7 @@
           <div class="s03-person-name">Japan Pipeline Optimization</div>
           <div class="s03-person-role">Project · Omnichannel</div>
           <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
-          <div class="s03-person-achievement">Runtime cut from 7h to 4h per run — execution moved sequential → parallel.</div>
+          <div class="s03-person-achievement">Runtime cut from 7h to 4h per run, execution moved sequential → parallel.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
@@ -1974,7 +1990,7 @@
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Project: Sugg Mocking for iPad<br></strong> Automated mock-data generation for iPad testing replaces manual suggestion mocking — about 4 hours saved every sprint.
+            <strong>Project: Sugg Mocking for iPad<br></strong> Automated mock-data generation for iPad testing replaces manual suggestion mocking, about 4 hours saved every sprint.
           </div>
         </div>
       </div>
@@ -1991,7 +2007,7 @@
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Project: Europe Pipeline Split<br></strong> A single EU pipeline was split into two parallel pipelines for faster execution — runtime reduced 7h → 3.5h per run.
+            <strong>Project: Europe Pipeline Split<br></strong> A single EU pipeline was split into two parallel pipelines for faster execution, runtime reduced 7h → 3.5h per run.
           </div>
         </div>
       </div>
@@ -2001,14 +2017,14 @@
           <div class="s03-person-name">STREAM Framework</div>
           <div class="s03-person-role">Project · Omnichannel</div>
           <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
-          <div class="s03-person-achievement">~90% model data-prep time reduction — ~1 week → ~6 hrs, ~50 FTE hours saved per use case.</div>
+          <div class="s03-person-achievement">~90% model data-prep time reduction, ~1 week → ~6 hrs, ~50 FTE hours saved per use case.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Project: STREAM Framework<br></strong> End-to-end ML data-prep automation using a multi-tool approach. Prep time drops from roughly a week to about 6 hours — around 50 FTE hours saved per use case.
+            <strong>Project: STREAM Framework<br></strong> End-to-end ML data-prep automation using a multi-tool approach. Prep time drops from roughly a week to about 6 hours, around 50 FTE hours saved per use case.
           </div>
         </div>
       </div>
@@ -2018,7 +2034,7 @@
           <div class="s03-person-name">Cross-Team Collaboration</div>
           <div class="s03-person-role">Initiative · Omnichannel</div>
           <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
-          <div class="s03-person-achievement">10–15% story-points cut per year — one PoC now covers the whole request.</div>
+          <div class="s03-person-achievement">10–15% story-points cut per year, one PoC now covers the whole request.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
@@ -2035,14 +2051,14 @@
           <div class="s03-person-name">IBU Chat Buddy</div>
           <div class="s03-person-role">AI Agent · Omnichannel</div>
           <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
-          <div class="s03-person-achievement">~20% effort reduction — a Copilot-powered agent tuned for IBU Omnichannel.</div>
+          <div class="s03-person-achievement">~20% effort reduction, a Copilot-powered agent tuned for the team.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Project: IBU Chat Buddy<br></strong> A Copilot-powered agent tuned for IBU Omnichannel, giving quicker turnaround on affiliate queries and roughly a 20% effort reduction for users.
+            <strong>Project: IBU Chat Buddy<br></strong> A Copilot-powered agent tuned for the team, giving quicker turnaround on affiliate queries and roughly a 20% effort reduction for users.
           </div>
         </div>
       </div>
@@ -2059,7 +2075,7 @@
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Initiative: Accelerating IBU with AI<br></strong> Data Inventory Dashboard, EDA, Mock Data Generator, and an ML metadata process — together saving about 40% effort per task.
+            <strong>Initiative: Accelerating IBU with AI<br></strong> Data Inventory Dashboard, EDA, Mock Data Generator, and an ML metadata process, together saving about 40% effort per task.
           </div>
         </div>
       </div>
@@ -2069,7 +2085,7 @@
           <div class="s03-person-name">New Teams Site</div>
           <div class="s03-person-role">Enablement · Omnichannel</div>
           <span class="team-pill team-pill-omni" style="margin-bottom:8px;">Omnichannel</span>
-          <div class="s03-person-achievement">Covers all IBU regions — documentation centralized in one place.</div>
+          <div class="s03-person-achievement">Covers all IBU regions, documentation centralized in one place.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
@@ -2087,7 +2103,7 @@
           <div class="s03-person-name">Adobe Transition Readiness</div>
           <div class="s03-person-role">GMCxO · Medical Omnichannel</div>
           <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
-          <div class="s03-person-achievement">Readiness for the Adobe CSC model — training, Workfront onboarding, and RACI refinement underway.</div>
+          <div class="s03-person-achievement">Readiness for the Adobe CSC model, training, Workfront onboarding, and RACI refinement underway.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
@@ -2101,7 +2117,7 @@
 
       <div class="s03-person-card" data-team="gmcxo">
         <div class="s03-person-card-top">
-          <div class="s03-person-name">Go Global — Orfo 10x &amp; SR Scaling</div>
+          <div class="s03-person-name">Go Global, Orfo 10x &amp; SR Scaling</div>
           <div class="s03-person-role">Q2 · GMCxO</div>
           <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
           <div class="s03-person-achievement">IBU Orfo 10x acceleration plan live; SR Suggestions scaling to LatAm.</div>
@@ -2121,14 +2137,14 @@
           <div class="s03-person-name">Medical ServiceNow (SNow)</div>
           <div class="s03-person-role">Operations · GMCxO</div>
           <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
-          <div class="s03-person-achievement">Service Request Catalog live for Global Medical Orchestration — one structured front door.</div>
+          <div class="s03-person-achievement">Service Request Catalog live for Global Medical Orchestration, one structured front door.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Operations: Medical ServiceNow<br></strong> A Service Request Catalog go-live gives Global Medical Orchestration a single, structured front door for service intake — sharper routing, clearer ownership, and a foundation to scale alongside the Adobe transition.
+            <strong>Operations: Medical ServiceNow<br></strong> A Service Request Catalog go-live gives Global Medical Orchestration a single, structured front door for service intake, sharper routing, clearer ownership, and a foundation to scale alongside the Adobe transition.
           </div>
         </div>
       </div>
@@ -2138,7 +2154,7 @@
           <div class="s03-person-name">Vansh Arora</div>
           <div class="s03-person-role">O2 Medical Ops · GMCxO</div>
           <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
-          <div class="s03-person-achievement">Claude Code wired into the pipeline — day-long debugging now ~15-min automated RCA.</div>
+          <div class="s03-person-achievement">Claude Code wired into the pipeline, day-long debugging now ~15-min automated RCA.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
@@ -2155,14 +2171,14 @@
           <div class="s03-person-name">Sanjib</div>
           <div class="s03-person-role">GMCxO · Medical Omnichannel</div>
           <span class="team-pill team-pill-gmcxo" style="margin-bottom:8px;">Medical Omnichannel</span>
-          <div class="s03-person-achievement">Reusable plugin — /validate, /debug-job, /query, /s3-copy collapse the whole ops workflow into plain English.</div>
+          <div class="s03-person-achievement">Reusable plugin, /validate, /debug-job, /query, /s3-copy collapse the whole ops workflow into plain English.</div>
         </div>
         <div class="s03-person-card-foot">
           <button class="s03-person-readmore" onclick="s03Toggle(this)">READ MORE <span class="rm-arrow">↓</span></button>
         </div>
         <div class="s03-person-detail">
           <div class="s03-person-detail-inner">
-            <strong>Project: Pipeline Ops Plugin<br></strong> Sanjib turned the pipeline learnings into a reusable plugin — /validate, /debug-job, /query, /s3-copy — collapsing VDI logins, Hive loading, log hunting, and PROD-to-Stage refreshes into plain-English commands. A dedicated log-analyzer agent reads 100K+ line YARN logs and returns structured RCA reports. Anyone on the team can now go from failed job to root cause in minutes.
+            <strong>Project: Pipeline Ops Plugin<br></strong> Sanjib turned the pipeline learnings into a reusable plugin, /validate, /debug-job, /query, /s3-copy, collapsing VDI logins, Hive loading, log hunting, and PROD-to-Stage refreshes into plain-English commands. A dedicated log-analyzer agent reads 100K+ line YARN logs and returns structured RCA reports. Anyone on the team can now go from failed job to root cause in minutes.
           </div>
         </div>
       </div>
@@ -2171,7 +2187,7 @@
   </div>
 </section>
 
-<!-- SECTION 04 — SPOTLIGHT -->
+<!-- SECTION 04, SPOTLIGHT -->
 <section class="nl-section" id="sec-04">
   <div class="nl-ribbon">
     <span><span class="nl-pulse"></span>SECTION 04 · TEAM SPOTLIGHT</span>
@@ -2181,14 +2197,14 @@
     <!-- Team tabs with Personalization highlighted as spotlight -->
     <div class="s04-team-tabs">
       <div class="s04-team-tab de">Digital Engagement</div>
-      <div class="s04-team-tab pers spotlight">★ Personalization — In the Spotlight</div>
+      <div class="s04-team-tab pers spotlight">★ Personalization in the Spotlight</div>
       <div class="s04-team-tab omni">Omnichannel</div>
     </div>
     <div class="s04-stage">
       <div class="s04-intro">
         <div class="s04-eyebrow">BORN JANUARY 2026</div>
         <h2 class="s04-title">The Personalization <span class="accent">Team</span>.</h2>
-        <p class="s04-mission">We're the team that designs, builds, and ships personalized experiences across Lilly's brand portfolio — <strong>Foundayo, Zepbound, Ebglyss</strong>, and the brands queued up next — for both HCPs and consumers. Working across <strong>AJO, AEP, and Adobe Target</strong>, we turn behavioral signals and audience data into campaigns and site experiences that arrive at the right moment, with the right message.</p>
+        <p class="s04-mission">We're the team that designs, builds, and ships personalized experiences across Lilly's brand portfolio, <strong>Foundayo, Zepbound, Ebglyss</strong>, and the brands queued up next, for both HCPs and consumers. Working across <strong>AJO, AEP, and Adobe Target</strong>, we turn behavioral signals and audience data into campaigns and site experiences that arrive at the right moment, with the right message.</p>
         <div class="s04-meta">
           <div class="s04-meta-cell"><span class="s04-meta-label">Built on</span><span class="s04-meta-value">AJO · AEP · Adobe Target</span></div>
           <div class="s04-meta-cell gold"><span class="s04-meta-label">Crew</span><span class="s04-meta-value">21 humans &amp; counting</span></div>
@@ -2204,7 +2220,7 @@
           <div class="s04-hero-eye">LIVE &amp; SHIPPING</div>
           <span class="s04-hero-badge">★ IN MARKET</span>
           <h3 class="s04-hero-h">Foundayo™ HCP journey is live.</h3>
-          <p class="s04-hero-p">Our biggest brand launch journey in market — <strong>235K healthcare professionals reached</strong>, and counting.</p>
+          <p class="s04-hero-p">Our biggest brand launch journey in market, <strong>235K healthcare professionals reached</strong>, and counting.</p>
           <div class="s04-impact" id="s04-impact-stage">
             <div class="s04-impact-cell"><span class="s04-impact-num" data-count-to="235" data-suffix="K">0</span><span class="s04-impact-lbl">HCPs Reached</span></div>
             <div class="s04-impact-cell"><span class="s04-impact-num" data-count-to="9.8" data-suffix="K" data-decimals="1">0</span><span class="s04-impact-lbl">Clicks</span></div>
@@ -2279,7 +2295,7 @@
           <div>
             <div class="s02-tag">◆ 3 QUESTIONS WITH</div>
             <div class="s02-leader-name">Seema Kashyap</div>
-            <div class="s02-leader-role">Senior Lead · IBU Omnichannel</div>
+            <div class="s02-leader-role">Senior Lead</div>
           </div>
         </div>
         <div class="s02-qa-grid">
@@ -2305,7 +2321,7 @@
               </div>
               <div class="s02-flip-face s02-flip-back">
                 <div class="s02-a-label">A · 02</div>
-                <div class="s02-a-text">Cross-market CEI harmonization. Each region built it slightly differently — now we're aligning without losing local intelligence. Hard but necessary work.</div>
+                <div class="s02-a-text">Cross-market CEI harmonization. Each region built it slightly differently, now we're aligning without losing local intelligence. Hard but necessary work.</div>
               </div>
             </div>
           </div>
@@ -2331,8 +2347,8 @@
 <!-- SECTIONS 06 + 08 SIDE BY SIDE -->
 <div class="s06s08-wrapper">
 
-<!-- SECTION 06 — TIPS JAR -->
-<!-- SECTION 06 — TIPS JAR (v9 jar transplanted · compact for side-by-side) -->
+<!-- SECTION 06, TIPS JAR -->
+<!-- SECTION 06, TIPS JAR (v9 jar transplanted · compact for side-by-side) -->
 <section class="nl-section" id="sec-06">
   <div class="nl-ribbon">
     <span><span class="nl-pulse"></span>SECTION 05 · TIPS JAR</span>
@@ -2359,7 +2375,7 @@
   <div class="paper-speck s17"></div>
   <div class="paper-speck s18"></div>
 
-  <!-- Burst container — populated on each jar pull, specks emerge from jar rim -->
+  <!-- Burst container, populated on each jar pull, specks emerge from jar rim -->
   <div id="burstContainer" style="position:absolute; inset:0; pointer-events:none; z-index:3;"></div>
 
   <div class="jar-stage">
@@ -2419,7 +2435,7 @@
               <stop offset="50%" stop-color="rgba(255,255,255,0.55)" />
               <stop offset="100%" stop-color="rgba(255,255,255,0)" />
             </linearGradient>
-            <!-- Lid shimmer — vertical sweep band of warm light -->
+            <!-- Lid shimmer, vertical sweep band of warm light -->
             <linearGradient id="shimmerGrad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%"   stop-color="rgba(255,235,200,0)" />
               <stop offset="45%"  stop-color="rgba(255,245,220,0.4)" />
@@ -2550,7 +2566,7 @@
             <path d="M 46 96 L 46 76 Q 46 70, 50 68 L 230 68 Q 234 70, 234 76 L 234 96 Q 230 102, 140 102 Q 50 102, 46 96 Z" fill="url(#lidBand)" />
             <path d="M 50 76 Q 50 44, 140 38 Q 230 44, 230 76 Q 230 82, 140 84 Q 50 82, 50 76 Z" fill="url(#lidMetal)" />
 
-            <!-- Rim shimmer — sweeps across the lid every 12s -->
+            <!-- Rim shimmer, sweeps across the lid every 12s -->
             <g clip-path="url(#lidClip)">
               <rect class="lid-shimmer" x="100" y="38" width="40" height="50"
                     fill="url(#shimmerGrad)" transform="skewX(-15)" />
@@ -2578,11 +2594,11 @@
           <div class="flying-paper"></div>
         </div>
 
-        <!-- First-pull hint — appears after 2s, dismisses on first click -->
+        <!-- First-pull hint, appears after 2s, dismisses on first click -->
         <div class="first-pull-hint" id="firstPullHint">TAP TO PULL</div>
       </div>
 
-      <!-- COUNTER PILL — sits below the jar, animated ticker -->
+      <!-- COUNTER PILL, sits below the jar, animated ticker -->
       <div class="counter-pill" id="counterPill">
         <span class="ticker-stage" id="tickerWrap">
           <span class="ticker-num" id="tickerNum">5</span>
@@ -2616,7 +2632,7 @@
   </div>
 </section>
 
-<!-- SECTION 08 — UPCOMING (date-list + meteor live element · light theme, ported) -->
+<!-- SECTION 08, UPCOMING (date-list + meteor live element · light theme, ported) -->
 <section class="nl-section" id="sec-08">
   <style>
     #sec-08 .s08-cal-stage { position: relative; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%); border: 1.5px solid var(--border); box-shadow: 0 2px 14px rgba(26,43,74,0.05); color: var(--navy); padding: 24px 22px; min-height: 320px; }
@@ -2646,7 +2662,7 @@
   <div class="nl-section-body" style="padding: 20px 20px 18px;">
     <div class="s08-cal-stage" id="s08-cal-stage">
       <div class="s08-cal-content">
-        <div class="s08-cal-eye">&#9670; UPCOMING — MAY &amp; JUNE 2026</div>
+        <div class="s08-cal-eye">&#9670; UPCOMING, MAY &amp; JUNE 2026</div>
         <div class="s08-cal-title">Mark your calendar.</div>
         <div class="s08-cal-list">
           <div class="s08-cal-item" style="border-left-color:var(--teal);">
@@ -2660,7 +2676,7 @@
           <div class="s08-cal-item" style="border-left-color:var(--lilly-red);">
             <div class="s08-cal-date"><div class="s08-cal-date-d">22</div><div class="s08-cal-date-m">MAY</div></div>
             <div>
-              <div class="s08-cal-name">150 Years of Lilly — celebrations</div>
+              <div class="s08-cal-name">150 Years of Lilly, celebrations</div>
               <div class="s08-cal-meta">Company milestone</div>
             </div>
             <div class="s08-cal-loc" style="color:var(--lilly-red);">&#9733; 150 YRS</div>
@@ -2676,7 +2692,7 @@
           <div class="s08-cal-item" style="border-left-color:var(--gold);">
             <div class="s08-cal-date"><div class="s08-cal-date-d">11</div><div class="s08-cal-date-m" style="color:var(--gold);">JUN</div></div>
             <div>
-              <div class="s08-cal-name">Team Outing — Torque</div>
+              <div class="s08-cal-name">Team Outing, Torque</div>
               <div class="s08-cal-meta">3:00 PM &ndash; 9:00 PM &middot; Venue: Torque 🎉</div>
             </div>
             <div class="s08-cal-loc" style="color:var(--gold);">&#9733; OUTING</div>
@@ -2713,16 +2729,16 @@
           </div>
           <div>
             <div class="s09-mast">The Lilly <span class="accent">AI Digest.</span></div>
-            <div class="s09-mast-sub">The stories that mattered in AI lately — curated for the IBU.</div>
+            <div class="s09-mast-sub">The stories that mattered in AI lately, curated for everyone.</div>
           </div>
           <div class="s09-mast-meta">ISSUE · 02<br><strong>JUNE 2026</strong><br>~7 MIN READ</div>
         </div>
-        <div class="s09-intro">Welcome, humans. Here's the latest that mattered in AI — the Claude stories, the big enterprise moves, a pharma signal, and one Lilly-grown next step. Let's go.</div>
+        <div class="s09-intro">Welcome, humans. Here's the latest that mattered in AI, the Claude stories, the big enterprise moves, a pharma signal, and one Lilly-grown next step. Let's go.</div>
         <div class="s09-expander-bar" id="s09-exp-bar" role="button" tabindex="0" aria-expanded="false" aria-controls="s09-collapse">
           <span class="s09-exp-dot"></span>
           <span class="s09-exp-label">
             <span class="s09-exp-eye">9 STORIES · LIVE</span>
-            <span class="s09-exp-title">This week in AI — tap to read</span>
+            <span class="s09-exp-title">This week in AI, tap to read</span>
             <span class="s09-exp-teaser">Claude #1 · KPMG · Karpathy · $965B · Pharma · Opus 4.8 · +3</span>
           </span>
           <span class="s09-exp-chevron">⌄</span>
@@ -2734,7 +2750,7 @@
               <div class="s09-story-body">
                 <div class="s09-story-h">🏆 Claude just overtook OpenAI as the #1 business AI</div>
                 <div class="s09-story-p">A year ago, OpenAI owned the enterprise: <strong>32%</strong> of U.S. business adoption versus Anthropic's <strong>8%</strong>. The gap looked uncatchable.</div>
-                <div class="s09-story-p">Per Ramp's May 2026 AI Index — tracking actual corporate card spend across thousands of companies — <strong>Anthropic now sits at 34.4%, OpenAI at 32.3%</strong>. First time ever in the lead.</div>
+                <div class="s09-story-p">Per Ramp's May 2026 AI Index, tracking actual corporate card spend across thousands of companies, <strong>Anthropic now sits at 34.4%, OpenAI at 32.3%</strong>. First time ever in the lead.</div>
                 <div class="s09-chart" id="s09-chart">
                   <div class="s09-chart-title">U.S. BUSINESS AI ADOPTION · % OF CORPORATE AI SPEND</div>
                   <div class="s09-chart-row">
@@ -2769,14 +2785,14 @@
               <div class="s09-story-num">03</div>
               <div class="s09-story-body">
                 <div class="s09-story-h">🧠 Karpathy joined Anthropic</div>
-                <div class="s09-story-p">Andrej Karpathy, ex-OpenAI, ex-Tesla — arguably AI's most influential researcher — has <strong>officially joined Anthropic</strong> for frontier R&amp;D. Roughly the equivalent of Ronaldo signing for Manchester United. Talent follows momentum.</div>
+                <div class="s09-story-p">Andrej Karpathy, ex-OpenAI, ex-Tesla, arguably AI's most influential researcher, has <strong>officially joined Anthropic</strong> for frontier R&amp;D. Roughly the equivalent of Ronaldo signing for Manchester United. Talent follows momentum.</div>
               </div>
             </div>
             <div class="s09-story">
               <div class="s09-story-num">04</div>
               <div class="s09-story-body">
                 <div class="s09-story-h">💰 Anthropic is now the most valuable private AI company</div>
-                <div class="s09-story-p">Anthropic closed a <strong>$65B round at a $965B valuation</strong> — overtaking OpenAI (~$852B) to become the most valuable private AI company in the world.</div>
+                <div class="s09-story-p">Anthropic closed a <strong>$65B round at a $965B valuation</strong>, overtaking OpenAI (~$852B) to become the most valuable private AI company in the world.</div>
                 <div class="s09-story-p">Annualized revenue is tracking past <strong>$45B</strong>, roughly 5× where it sat at the end of 2024. Momentum, in one number.</div>
                 <div class="s09-chart" id="s09-chart-val">
                   <div class="s09-chart-title">PRIVATE AI VALUATION · LATEST ROUND</div>
@@ -2798,13 +2814,13 @@
               <div class="s09-story-body">
                 <div class="s09-story-h">🧬 Anthropic is leaning hard into life sciences</div>
                 <div class="s09-story-p">Anthropic acquired AI-for-biology firm <strong>Coefficient Bio</strong> (~$400M), deepening its <strong>Claude for Life Sciences</strong> push. Pharma names already piloting Claude across R&amp;D and ops include Sanofi, Novo Nordisk, AbbVie, and Genmab.</div>
-                <div class="s09-callout"><strong>Why it matters for us:</strong> the same model is being purpose-built for regulated pharma workflows — closer to home than generic enterprise AI.</div>
+                <div class="s09-callout"><strong>Why it matters for us:</strong> the same model is being purpose-built for regulated pharma workflows, closer to home than generic enterprise AI.</div>
               </div>
             </div>
             <div class="s09-story">
               <div class="s09-story-num">06</div>
               <div class="s09-story-body">
-                <div class="s09-story-h">⚙️ Claude Opus 4.8 shipped — with effort controls</div>
+                <div class="s09-story-h">⚙️ Claude Opus 4.8 shipped, with effort controls</div>
                 <div class="s09-story-p">Anthropic released <strong>Claude Opus 4.8</strong>, adding "effort controls" (dial reasoning depth up or down per task) and a roughly <strong>3× cheaper fast mode</strong>. Worth knowing, since it's the model behind this newsletter and several of our team tools.</div>
               </div>
             </div>
@@ -2812,7 +2828,7 @@
               <div class="s09-story-num">07</div>
               <div class="s09-story-body">
                 <div class="s09-story-h">🧩 Microsoft is bundling Copilot into one "super app"</div>
-                <div class="s09-story-p">Microsoft is reportedly merging GitHub Copilot, Copilot Chat, and a new agentic "Autopilot" feature into a single app, targeting a summer launch — a push to lift adoption past the <strong>under-4.5%</strong> of its 450M Microsoft 365 users who currently touch any Copilot feature.</div>
+                <div class="s09-story-p">Microsoft is reportedly merging GitHub Copilot, Copilot Chat, and a new agentic "Autopilot" feature into a single app, targeting a summer launch, a push to lift adoption past the <strong>under-4.5%</strong> of its 450M Microsoft 365 users who currently touch any Copilot feature.</div>
                 <div class="s09-callout"><strong>The read:</strong> even the biggest vendors are still fighting the last-mile adoption problem. Distribution &gt; features.</div>
               </div>
             </div>
@@ -2820,8 +2836,8 @@
               <div class="s09-story-num">08</div>
               <div class="s09-story-body">
                 <div class="s09-story-h">🤔 Developers now refuse to code without AI</div>
-                <div class="s09-story-p">Engineers won't give up AI assistants even briefly for research — despite a 2025 METR study that found AI <em>slowed</em> experienced devs by ~19% on familiar codebases. One company reportedly burned its entire 2026 AI budget by April.</div>
-                <div class="s09-callout"><strong>For an ML team:</strong> a clean reminder that perceived productivity and measured productivity aren't the same thing — worth measuring our own.</div>
+                <div class="s09-story-p">Engineers won't give up AI assistants even briefly for research, despite a 2025 METR study that found AI <em>slowed</em> experienced devs by ~19% on familiar codebases. One company reportedly burned its entire 2026 AI budget by April.</div>
+                <div class="s09-callout"><strong>For an ML team:</strong> a clean reminder that perceived productivity and measured productivity aren't the same thing, worth measuring our own.</div>
               </div>
             </div>
             <div class="s09-story">
@@ -2840,7 +2856,7 @@
               <div class="s09-story-h">🎯 Your move next: NOVA is live</div>
               <div class="s09-nova">
                 <div class="s09-nova-eye">◆ LILLY · AI UPSKILLING</div>
-                <div class="s09-story-p" style="margin-bottom:8px;">While Claude was busy winning enterprise, Lilly's own <strong>NOVA AI Upskilling Program</strong> went live earlier this month. It pairs personalized AI learning paths with <strong>Workera</strong> — a skill-assessment platform that maps your current capabilities against where you want to be — all SSO-enabled, zero friction to start.</div>
+                <div class="s09-story-p" style="margin-bottom:8px;">While Claude was busy winning enterprise, Lilly's own <strong>NOVA AI Upskilling Program</strong> went live earlier this month. It pairs personalized AI learning paths with <strong>Workera</strong>, a skill-assessment platform that maps your current capabilities against where you want to be, all SSO-enabled, zero friction to start.</div>
                 <div class="s09-nova-buttons">
                   <a href="https://collab.lilly.com/sites/CommercialAIUpskilling" class="s09-nova-btn">→ NOVA Hub</a>
                   <a href="https://collab.lilly.com/sites/CommercialAIUpskilling#frequently-asked-questions" class="s09-nova-btn">→ FAQs</a>
@@ -2864,15 +2880,15 @@
 <footer style="background: linear-gradient(135deg, var(--white) 0%, var(--lilly-red-soft) 100%); border-radius: 20px; border: 1.5px solid var(--border); padding: 32px 36px;">
   <div style="display:grid;grid-template-columns:1fr auto;gap:28px;align-items:start;flex-wrap:wrap;">
     <div>
-      <div style="font-family:'DM Serif Display',serif;font-size:30px;color:var(--navy);line-height:1.1;margin-bottom:4px;">That's a wrap — <span style="color:var(--lilly-red);font-style:italic;">see you next month.</span> ✦</div>
-      <div style="font-size:14px;color:var(--slate);font-family:'DM Serif Display',serif;font-style:italic;margin-bottom:4px;">But before you go — we left something fun at the bottom. No peeking ahead.</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:30px;color:var(--navy);line-height:1.1;margin-bottom:4px;">That's a wrap, <span style="color:var(--lilly-red);font-style:italic;">see you next month.</span> ✦</div>
+      <div style="font-size:14px;color:var(--slate);font-family:'DM Serif Display',serif;font-style:italic;margin-bottom:4px;">But before you go, we left something fun at the bottom. No peeking ahead.</div>
       <div style="font-size:12px;color:var(--text-light);letter-spacing:0.04em;margin-bottom:20px;">PODx · Eli Lilly · Issue 01 · Jan–May 2026</div>
       <!-- Feedback strip -->
       <div style="background:white;border:1.5px solid var(--border);border-left:4px solid var(--lilly-red);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;max-width:560px;">
         <div style="flex:1;min-width:200px;">
           <div style="font-size:10px;letter-spacing:0.18em;font-weight:700;color:var(--lilly-red);margin-bottom:4px;">★ YOUR TWO CENTS</div>
           <div style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);line-height:1.2;">Did this spark joy? Confuse you? Make you slightly hungry?</div>
-          <div style="font-size:12px;color:var(--slate);margin-top:4px;">Tell us — it takes 60 seconds and helps us make the next one better.</div>
+          <div style="font-size:12px;color:var(--slate);margin-top:4px;">Tell us, it takes 60 seconds and helps us make the next one better.</div>
         </div>
         <a href="https://forms.office.com/pages/responsepage.aspx?id=gZqlGKjuMEyUitiCTNwlgBPe7T7QIrxOtI54vh2UjTBUMEE5TjdXNkVaTFlOU1JRVzhIMDZKUlZQMS4u&route=shorturl" target="_blank" rel="noopener" style="background:var(--lilly-red);color:white;text-decoration:none;padding:10px 20px;border-radius:99px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.05em;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;" onmouseover="this.style.background='#A8221A'" onmouseout="this.style.background='#D52B1E'">Share feedback →</a>
       </div>
@@ -2899,7 +2915,7 @@
     </div>
     <div class="nl-eyebrow">THE PEOPLE</div>
     <h2 class="nl-h1" style="font-size:22px;margin-bottom:6px;">The team <span class="accent">behind</span> this.</h2>
-    <p style="font-size:13px;color:var(--slate);margin-bottom:18px;">The IBU PODx crew — the people who plan, build, debate the oxford comma, and occasionally stay online past midnight to get things live.</p>
+    <p style="font-size:13px;color:var(--slate);margin-bottom:18px;">The PODx crew, the people who plan, build, debate the oxford comma, and occasionally stay online past midnight to get things live.</p>
 
     <!-- GIF placeholder -->
     <div style="width:100%;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,var(--lilly-red-soft),var(--gold-soft));min-height:160px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;border:1.5px dashed var(--border);position:relative;">
@@ -2917,7 +2933,7 @@
         <div style="font-size:10px;color:var(--text-light);letter-spacing:0.06em;">Senior Consultant</div>
       </div>
       <div style="padding:8px 10px;background:var(--mist);border-radius:8px;border-left:3px solid var(--teal);">
-        <div style="font-size:12px;font-weight:700;color:var(--navy);">Vaibhav</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);">Vaibhav Rachalwar</div>
         <div style="font-size:10px;color:var(--text-light);letter-spacing:0.06em;">Consultant</div>
       </div>
       <div style="padding:8px 10px;background:var(--mist);border-radius:8px;border-left:3px solid var(--gold);">
@@ -2925,15 +2941,15 @@
         <div style="font-size:10px;color:var(--text-light);letter-spacing:0.06em;">Consultant</div>
       </div>
       <div style="padding:8px 10px;background:var(--mist);border-radius:8px;border-left:3px solid var(--lilly-red);">
-        <div style="font-size:12px;font-weight:700;color:var(--navy);">Aabha</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);">Aabha Khosla</div>
         <div style="font-size:10px;color:var(--text-light);letter-spacing:0.06em;">Senior Consultant</div>
       </div>
       <div style="padding:8px 10px;background:var(--mist);border-radius:8px;border-left:3px solid var(--teal);">
-        <div style="font-size:12px;font-weight:700;color:var(--navy);">Ranima</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);">Ranima Peethambaran</div>
         <div style="font-size:10px;color:var(--text-light);letter-spacing:0.06em;">Senior Consultant</div>
       </div>
       <div style="padding:8px 10px;background:var(--mist);border-radius:8px;border-left:3px solid var(--gold);">
-        <div style="font-size:12px;font-weight:700;color:var(--navy);">Adnan</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);">Adnan Ali Syed</div>
         <div style="font-size:10px;color:var(--text-light);letter-spacing:0.06em;">Consultant</div>
       </div>
       <div style="padding:8px 10px;background:var(--mist);border-radius:8px;border-left:3px solid var(--lilly-red);display:flex;align-items:center;gap:6px;">
@@ -2948,96 +2964,42 @@
 
 </div><!-- end team + wrap side by side -->
 
-<!-- FUN CORNER — full width at the very end -->
-<!-- FUN CORNER — moved to end -->
-<!-- SECTION 07 — FUN CORNER -->
+<!-- FUN CORNER, full width at the very end -->
+<!-- FUN CORNER, moved to end -->
+<!-- SECTION 07, FUN CORNER -->
 <section class="nl-section" id="sec-07">
   <div class="nl-ribbon">
     <span><span class="nl-pulse"></span>FUN CORNER</span>
-    <span>MINI CROSSWORD</span>
+    <span>CROSSWORD</span>
   </div>
   <div class="nl-section-body" style="padding:20px 22px 18px;">
     <div class="nl-eyebrow" style="margin-bottom:8px;">PUZZLE OF THE MONTH</div>
-    <p style="font-size:12px;color:var(--slate);margin-bottom:16px;">Solve the mini-crossword. First five to email answers to <strong style="color:var(--lilly-red);">#podx-fun</strong> win a coffee ☕</p>
+    <p style="font-size:12px;color:var(--slate);margin-bottom:16px;">Solve the crossword. First five to email answers to <strong style="color:var(--lilly-red);">#podx-fun</strong> win a coffee ☕</p>
 
-    <!-- Compact 2-col layout: grid left, clues right -->
-    <div style="display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;">
-
-      <!-- Crossword grid -->
-      <div>
-        <div class="s07-cross-grid" id="s07-grid" style="gap:5px;">
-          <div class="s07-cross-row" data-row="0" data-ans="INDIA" style="grid-template-columns:20px repeat(5,38px);gap:3px;">
-            <span class="s07-cross-num" style="font-size:11px;">1</span>
-            <input class="s07-cross-cell" maxlength="1" data-r="0" data-c="0" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="0" data-c="1" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="0" data-c="2" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="0" data-c="3" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="0" data-c="4" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-          </div>
-          <div class="s07-cross-row" data-row="1" data-ans="SCORE" style="grid-template-columns:20px repeat(5,38px);gap:3px;">
-            <span class="s07-cross-num" style="font-size:11px;">2</span>
-            <input class="s07-cross-cell" maxlength="1" data-r="1" data-c="0" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="1" data-c="1" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="1" data-c="2" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="1" data-c="3" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="1" data-c="4" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-          </div>
-          <div class="s07-cross-row" data-row="2" data-ans="TEAMS" style="grid-template-columns:20px repeat(5,38px);gap:3px;">
-            <span class="s07-cross-num" style="font-size:11px;">3</span>
-            <input class="s07-cross-cell" maxlength="1" data-r="2" data-c="0" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="2" data-c="1" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="2" data-c="2" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="2" data-c="3" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="2" data-c="4" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-          </div>
-          <div class="s07-cross-row" data-row="3" data-ans="MOVES" style="grid-template-columns:20px repeat(5,38px);gap:3px;">
-            <span class="s07-cross-num" style="font-size:11px;">4</span>
-            <input class="s07-cross-cell" maxlength="1" data-r="3" data-c="0" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="3" data-c="1" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="3" data-c="2" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="3" data-c="3" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="3" data-c="4" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-          </div>
-          <div class="s07-cross-row" data-row="4" data-ans="LILLY" style="grid-template-columns:20px repeat(5,38px);gap:3px;">
-            <span class="s07-cross-num" style="font-size:11px;">5</span>
-            <input class="s07-cross-cell" maxlength="1" data-r="4" data-c="0" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="4" data-c="1" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="4" data-c="2" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="4" data-c="3" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-            <input class="s07-cross-cell" maxlength="1" data-r="4" data-c="4" autocomplete="off" style="width:38px;height:38px;font-size:18px;">
-          </div>
-        </div>
-        <!-- Actions -->
-        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
-          <button class="s07-cross-btn" id="s07-check-btn" onclick="s07CheckAnswers()" style="font-size:11px;padding:7px 14px;">Check ✓</button>
-          <button class="s07-cross-btn s07-cross-btn-ghost" id="s07-clear-btn" onclick="s07ClearGrid()" style="font-size:11px;padding:7px 12px;">Clear</button>
-          <button class="s07-cross-btn s07-cross-btn-ghost" id="s07-reveal-btn" onclick="s07RevealAnswers()" style="font-size:11px;padding:7px 12px;">Reveal answers</button>
-        </div>
-        <div class="s07-cross-status" id="s07-status" style="margin-top:8px;font-size:10px;">Type letters, one per box.</div>
-      </div>
-
-      <!-- Clues -->
-      <div style="display:flex;flex-direction:column;gap:6px;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.16em;color:var(--lilly-red);border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:4px;">ACROSS</div>
-        <div style="font-size:12px;color:var(--navy);display:grid;grid-template-columns:18px 1fr;gap:4px;line-height:1.4;"><span style="color:var(--lilly-red);font-weight:700;font-family:'JetBrains Mono',monospace;">1</span><span>PODx home market (5)</span></div>
-        <div style="font-size:12px;color:var(--navy);display:grid;grid-template-columns:18px 1fr;gap:4px;line-height:1.4;"><span style="color:var(--lilly-red);font-weight:700;font-family:'JetBrains Mono',monospace;">2</span><span>What CEI measures (5)</span></div>
-        <div style="font-size:12px;color:var(--navy);display:grid;grid-template-columns:18px 1fr;gap:4px;line-height:1.4;"><span style="color:var(--lilly-red);font-weight:700;font-family:'JetBrains Mono',monospace;">3</span><span>Cross-market units, plural (5)</span></div>
-        <div style="font-size:12px;color:var(--navy);display:grid;grid-template-columns:18px 1fr;gap:4px;line-height:1.4;"><span style="color:var(--lilly-red);font-weight:700;font-family:'JetBrains Mono',monospace;">4</span><span>Next Best ___ (5)</span></div>
-        <div style="font-size:12px;color:var(--navy);display:grid;grid-template-columns:18px 1fr;gap:4px;line-height:1.4;"><span style="color:var(--lilly-red);font-weight:700;font-family:'JetBrains Mono',monospace;">5</span><span>Your employer (5)</span></div>
-        <div style="margin-top:10px;padding:10px 12px;background:var(--mist);border-radius:8px;border-left:3px solid var(--gold);">
-          <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;color:var(--text-light);margin-bottom:3px;">HINT</div>
-          <div style="font-size:11px;color:var(--slate);line-height:1.4;">Row 1 starts with <strong style="color:var(--navy);">I</strong>. Good luck.</div>
-        </div>
-      </div>
+    <!-- Crossword: real interlocking grid (black blocks, across + down). Built by JS from S07_PUZZLE -->
+    <div id="s07-cw-wrap" style="overflow-x:auto;padding-bottom:4px;">
+      <div class="s07-cw-grid" id="s07-cw"></div>
+    </div>
+    <!-- Actions -->
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+      <button class="s07-cross-btn" id="s07-check-btn" onclick="s07CheckAnswers()" style="font-size:11px;padding:7px 14px;">Check &#10003;</button>
+      <button class="s07-cross-btn s07-cross-btn-ghost" id="s07-clear-btn" onclick="s07ClearGrid()" style="font-size:11px;padding:7px 12px;">Clear</button>
+      <button class="s07-cross-btn s07-cross-btn-ghost" id="s07-reveal-btn" onclick="s07RevealAnswers()" style="font-size:11px;padding:7px 12px;">Reveal answers</button>
+    </div>
+    <div class="s07-cross-status" id="s07-status" style="margin-top:8px;font-size:10px;">Click a clue or a box to start. One letter per box.</div>
+    <!-- Clues: Across | Down -->
+    <div class="s07-cw-clues">
+      <div><div class="s07-cw-h">Across</div><div id="s07-across"></div></div>
+      <div><div class="s07-cw-h">Down</div><div id="s07-down"></div></div>
     </div>
   </div>
   <div class="nl-section-cta" style="padding:10px 18px;">
-    <p class="nl-cta-text" style="font-size:12px;">Email answers to #podx-fun by May 31</p>
+    <p class="nl-cta-text" style="font-size:12px;">Email answers to #podx-fun by June 30</p>
     <a href="#" class="nl-cta-btn" style="font-size:11px;padding:7px 14px;">View leaderboard →</a>
   </div>
 </section>
 
-<!-- PAST EDITIONS — inline pill expander (below Fun Corner) -->
+<!-- PAST EDITIONS, inline pill expander (below Fun Corner) -->
 <style>
   .pe2-wrap { max-width: 760px; margin: 30px auto 4px; }
   .pe2-pill { width: 100%; display: flex; align-items: center; gap: 12px; background: var(--navy); color: #fff; border: none; cursor: pointer; padding: 16px 22px; border-radius: 99px; box-shadow: 0 6px 22px rgba(26,43,74,0.18); transition: background .2s, border-radius .25s; font-family: 'DM Sans', sans-serif; text-align: left; }
@@ -3249,6 +3211,7 @@
 (function(){
   const popover=document.getElementById('s04-popover');
   if(!popover)return;
+  document.body.appendChild(popover); // escape band overflow:hidden so it's always visible
   const pName=document.getElementById('s04-pop-name'),pRole=document.getElementById('s04-pop-role'),pFact=document.getElementById('s04-pop-fact'),pPhoto=document.getElementById('s04-pop-photo');
   const closeBtn=popover.querySelector('.s04-pop-close');
   const leaders=document.querySelectorAll('.s04-leader');
@@ -3270,12 +3233,18 @@
       pPhoto.style.backgroundImage='';
       pPhoto.style.color='';
     }
-    const band=leader.closest('.s04-team-band');const lR=leader.getBoundingClientRect(),bR=band.getBoundingClientRect();
-    const pw=260,halfP=pw/2,pad=14;
-    let lx=(lR.left+lR.width/2)-bR.left;let left=lx-halfP;if(left<pad)left=pad;if(left>bR.width-pw-pad)left=bR.width-pw-pad;
-    const top=(lR.top-bR.top)-250;
-    popover.style.left=left+'px';popover.style.top=(top>10?top:(lR.top-bR.top+lR.height+12))+'px';
+    // make measurable, then place BESIDE the card (fixed = viewport coords), flipping side & clamping so it's always visible
     popover.classList.add('visible');popover.setAttribute('aria-hidden','false');
+    const lR=leader.getBoundingClientRect();
+    const vw=window.innerWidth,vh=window.innerHeight,gap=12,pad=10;
+    const popW=popover.offsetWidth||260,popH=popover.offsetHeight||220;
+    let left;
+    if(lR.right+gap+popW<=vw-pad)left=lR.right+gap;            // room on the right
+    else if(lR.left-gap-popW>=pad)left=lR.left-gap-popW;          // else flip to the left
+    else left=Math.min(Math.max(pad,lR.left+lR.width/2-popW/2),vw-popW-pad); // else center
+    let top=lR.top+lR.height/2-popH/2;                          // vertically centered on the card
+    top=Math.min(Math.max(pad,top),Math.max(pad,vh-popH-pad));
+    popover.style.left=left+'px';popover.style.top=top+'px';
   }
   function close(){popover.classList.remove('visible');popover.setAttribute('aria-hidden','true');if(active){active.classList.remove('is-active');active=null;}}
   leaders.forEach(l=>{l.addEventListener('click',e=>{e.stopPropagation();active===l?close():open(l);});});
@@ -3315,7 +3284,7 @@
   });
 })();
 
-/* ══ S02 LOAD LEADERSHIP PORTRAIT (Seema) — same graceful fallback as S04 ══ */
+/* ══ S02 LOAD LEADERSHIP PORTRAIT (Seema), same graceful fallback as S04 ══ */
 (function(){
   const el=document.querySelector('.s02-portrait[data-photo]');if(!el)return;
   const url=el.dataset.photo;if(!url)return;
@@ -3352,67 +3321,134 @@
   function anim(){raf=null;dx+=(mx-dx)*.22;dy+=(my-dy)*.22;dot.style.left=dx+'px';dot.style.top=dy+'px';if(Math.abs(mx-dx)>.5||Math.abs(my-dy)>.5)raf=requestAnimationFrame(anim);}
 })();
 
-/* ══ S07 CROSSWORD ══ */
-(function(){
-  const grid=document.getElementById('s07-grid');if(!grid)return;
-  const cells=Array.from(grid.querySelectorAll('input.s07-cross-cell'));
-  function fi(i){if(i>=0&&i<cells.length){cells[i].focus();cells[i].select();}}
-  cells.forEach((c,idx)=>{
-    c.addEventListener('input',e=>{if(window.s07Locked){c.value='';return;}let v=c.value.toUpperCase().replace(/[^A-Z]/g,'');c.value=v;c.classList.remove('correct','wrong');if(v.length===1&&idx<cells.length-1)fi(idx+1);});
-    c.addEventListener('keydown',e=>{
-      if(window.s07Locked){e.preventDefault();return;}
-      if(e.key==='Backspace'&&c.value===''&&idx>0){e.preventDefault();fi(idx-1);cells[idx-1].value='';cells[idx-1].classList.remove('correct','wrong');}
-      else if(e.key==='ArrowLeft'&&idx>0){e.preventDefault();fi(idx-1);}
-      else if(e.key==='ArrowRight'&&idx<cells.length-1){e.preventDefault();fi(idx+1);}
+/* ══ S07 CROSSWORD, dynamic: real interlocking grid (black blocks + across & down), built from S07_PUZZLE ══ */
+const S07_PUZZLE = [
+  { q: "A website's home screen is called?", a: "HOMEPAGE" },
+  { q: "What CEI measures?", a: "ENGAGEMENT" },
+  { q: "Next Best ___?", a: "MOVES" },
+  { q: "In a journey, what node splits profiles into different paths based on a rule?", a: "CONDITION" },
+  { q: "What is the unified view of a single customer in AEP called?", a: "PROFILE" }
+];
+function s07Esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function s07Generate(entries){
+  const words=entries.map((e,i)=>({clue:e.q,word:String(e.a||'').toUpperCase().replace(/[^A-Z]/g,''),id:i})).filter(w=>w.word.length>0);
+  if(!words.length)return{sol:[[]],num:[[]],rows:0,cols:0,across:[],down:[]};
+  const order=words.slice().sort((a,b)=>b.word.length-a.word.length);
+  const grid={};const key=(r,c)=>r+','+c;const placed=[];
+  function bounds(){const ks=Object.keys(grid);let mnR=1e9,mxR=-1e9,mnC=1e9,mxC=-1e9;ks.forEach(k=>{const p=k.split(',');const r=+p[0],c=+p[1];if(r<mnR)mnR=r;if(r>mxR)mxR=r;if(c<mnC)mnC=c;if(c>mxC)mxC=c;});return{mnR,mxR,mnC,mxC};}
+  function evalPlace(word,row,col,dir){
+    const dr=dir==='D'?1:0,dc=dir==='A'?1:0;
+    if(grid[key(row-dr,col-dc)]!==undefined)return null;
+    if(grid[key(row+dr*word.length,col+dc*word.length)]!==undefined)return null;
+    let crossed=0;
+    for(let i=0;i<word.length;i++){const r=row+dr*i,c=col+dc*i,cur=grid[key(r,c)];
+      if(cur!==undefined){if(cur!==word[i])return null;crossed++;}
+      else{if(dir==='A'){if(grid[key(r-1,c)]!==undefined||grid[key(r+1,c)]!==undefined)return null;}
+           else{if(grid[key(r,c-1)]!==undefined||grid[key(r,c+1)]!==undefined)return null;}}}
+    return crossed;
+  }
+  function place(word,row,col,dir){const dr=dir==='D'?1:0,dc=dir==='A'?1:0;for(let i=0;i<word.length;i++)grid[key(row+dr*i,col+dc*i)]=word[i];}
+  place(order[0].word,0,0,'A');placed.push(Object.assign({},order[0],{row:0,col:0,dir:'A'}));
+  for(let k=1;k<order.length;k++){
+    const w=order[k];let best=null;
+    for(const p of placed){const pdr=p.dir==='D'?1:0,pdc=p.dir==='A'?1:0;
+      for(let pi=0;pi<p.word.length;pi++)for(let wi=0;wi<w.word.length;wi++){
+        if(p.word[pi]!==w.word[wi])continue;
+        const cr=p.row+pdr*pi,cc=p.col+pdc*pi;const dir=p.dir==='A'?'D':'A';
+        const ddr=dir==='D'?1:0,ddc=dir==='A'?1:0;const row=cr-ddr*wi,col=cc-ddc*wi;
+        const crossed=evalPlace(w.word,row,col,dir);if(crossed===null||crossed<1)continue;
+        const b=bounds();const er=row+ddr*(w.word.length-1),ec=col+ddc*(w.word.length-1);
+        const nR=Math.max(b.mxR,row,er)-Math.min(b.mnR,row,er);
+        const nC=Math.max(b.mxC,col,ec)-Math.min(b.mnC,col,ec);
+        const score=(nR+1)*(nC+1)*100+Math.abs(nR-nC)*10-crossed;
+        if(!best||score<best.score)best={row,col,dir,score};
+      }}
+    if(best){place(w.word,best.row,best.col,best.dir);placed.push(Object.assign({},w,{row:best.row,col:best.col,dir:best.dir}));}
+    else{const b=bounds();place(w.word,b.mxR+2,b.mnC,'A');placed.push(Object.assign({},w,{row:b.mxR+2,col:b.mnC,dir:'A'}));}
+  }
+  const b=bounds();const rows=b.mxR-b.mnR+1,cols=b.mxC-b.mnC+1;
+  const sol=Array.from({length:rows},()=>Array(cols).fill(null));
+  for(const kk in grid){const p=kk.split(',');sol[+p[0]-b.mnR][+p[1]-b.mnC]=grid[kk];}
+  placed.forEach(p=>{p.row-=b.mnR;p.col-=b.mnC;});
+  const num=Array.from({length:rows},()=>Array(cols).fill(0));const across=[],down=[];
+  // Number Across clues first (grid reading order), then Down continues, so clues read 1..N top to bottom.
+  // A start-cell shared by an Across and a Down word reuses the same number.
+  const aw=placed.filter(p=>p.dir==='A').sort((a,b)=>a.row-b.row||a.col-b.col);
+  const dw=placed.filter(p=>p.dir==='D').sort((a,b)=>a.row-b.row||a.col-b.col);
+  let n=0;
+  aw.forEach(p=>{n++;num[p.row][p.col]=n;across.push({num:n,clue:p.clue,len:p.word.length});});
+  dw.forEach(p=>{let k=num[p.row][p.col];if(!k){n++;num[p.row][p.col]=n;k=n;}down.push({num:k,clue:p.clue,len:p.word.length});});
+  return {sol,num,rows,cols,across,down};
+}
+(function s07BuildCrossword(){
+  const wrap=document.getElementById('s07-cw');
+  const acrossEl=document.getElementById('s07-across');
+  const downEl=document.getElementById('s07-down');
+  if(!wrap||!acrossEl||!downEl)return;
+  const G=s07Generate(S07_PUZZLE);window.__s07G=G;
+  const avail=wrap.parentElement.clientWidth||560;
+  let cw=Math.floor((avail-(G.cols-1)*3)/G.cols);cw=Math.max(22,Math.min(36,cw));
+  wrap.style.display='grid';wrap.style.gridTemplateColumns='repeat('+G.cols+','+cw+'px)';wrap.style.gridAutoRows=cw+'px';wrap.style.gap='3px';wrap.style.width='max-content';
+  const inputs=[];const allInputs=[];
+  for(let r=0;r<G.rows;r++){inputs.push([]);for(let c=0;c<G.cols;c++){
+    if(G.sol[r][c]===null){const blk=document.createElement('div');blk.className='s07-cw-block';wrap.appendChild(blk);inputs[r].push(null);}
+    else{const cell=document.createElement('div');cell.className='s07-cw-cell';
+      if(G.num[r][c]){const nm=document.createElement('span');nm.className='s07-cw-num';nm.textContent=G.num[r][c];cell.appendChild(nm);}
+      const inp=document.createElement('input');inp.maxLength=1;inp.setAttribute('autocomplete','off');inp.className='s07-cw-inp';inp.dataset.r=r;inp.dataset.c=c;
+      cell.appendChild(inp);wrap.appendChild(cell);inputs[r].push(inp);allInputs.push(inp);}
+  }}
+  const at=(r,c)=>(r>=0&&r<G.rows&&c>=0&&c<G.cols)?inputs[r][c]:null;
+  let dir='A';
+  function clearHL(){allInputs.forEach(i=>i.parentElement.classList.remove('hl'));}
+  function highlight(r,c){clearHL();if(dir==='A'){let c0=c;while(at(r,c0-1))c0--;let cc=c0;while(at(r,cc)){at(r,cc).parentElement.classList.add('hl');cc++;}}else{let r0=r;while(at(r0-1,c))r0--;let rr=r0;while(at(rr,c)){at(rr,c).parentElement.classList.add('hl');rr++;}}}
+  function nextCell(r,c){if(dir==='A'){let cc=c+1;while(cc<G.cols&&!at(r,cc))cc++;return at(r,cc);}let rr=r+1;while(rr<G.rows&&!at(rr,c))rr++;return at(rr,c);}
+  function prevCell(r,c){if(dir==='A'){let cc=c-1;while(cc>=0&&!at(r,cc))cc--;return at(r,cc);}let rr=r-1;while(rr>=0&&!at(rr,c))rr--;return at(rr,c);}
+  allInputs.forEach(inp=>{const r=+inp.dataset.r,c=+inp.dataset.c;
+    inp.addEventListener('focus',()=>highlight(r,c));
+    inp.addEventListener('click',()=>{const hasA=at(r,c-1)||at(r,c+1),hasD=at(r-1,c)||at(r+1,c);dir=(hasA&&hasD)?(dir==='A'?'D':'A'):(hasA?'A':'D');highlight(r,c);});
+    inp.addEventListener('input',()=>{if(window.s07Locked){inp.value='';return;}let v=inp.value.toUpperCase().replace(/[^A-Z]/g,'');inp.value=v;inp.parentElement.classList.remove('correct','wrong');if(v){const n=nextCell(r,c);if(n)n.focus();}});
+    inp.addEventListener('keydown',e=>{
+      if(window.s07Locked){if(e.key!=='Tab')e.preventDefault();return;}
+      if(e.key==='Backspace'&&inp.value===''){const p=prevCell(r,c);if(p){e.preventDefault();p.focus();p.value='';p.parentElement.classList.remove('correct','wrong');}}
+      else if(e.key==='ArrowRight'){const n=at(r,c+1);if(n){e.preventDefault();dir='A';n.focus();}}
+      else if(e.key==='ArrowLeft'){const n=at(r,c-1);if(n){e.preventDefault();dir='A';n.focus();}}
+      else if(e.key==='ArrowDown'){const n=at(r+1,c);if(n){e.preventDefault();dir='D';n.focus();}}
+      else if(e.key==='ArrowUp'){const n=at(r-1,c);if(n){e.preventDefault();dir='D';n.focus();}}
       else if(e.key==='Enter'){e.preventDefault();s07CheckAnswers();}
     });
   });
+  function clueItem(it,d){const el=document.createElement('div');el.className='s07-cw-clue';
+    el.innerHTML='<span class="s07-cw-cluenum">'+it.num+'</span><span>'+s07Esc(it.clue)+' <em>('+it.len+')</em></span>';
+    el.addEventListener('click',()=>{for(let r=0;r<G.rows;r++)for(let c=0;c<G.cols;c++)if(G.num[r][c]===it.num){dir=d;const cell=at(r,c);if(cell)cell.focus();return;}});
+    return el;}
+  G.across.forEach(it=>acrossEl.appendChild(clueItem(it,'A')));
+  G.down.forEach(it=>downEl.appendChild(clueItem(it,'D')));
+  if(!G.across.length)acrossEl.innerHTML='<div style="font-size:11px;color:var(--text-light);">None this round.</div>';
+  if(!G.down.length)downEl.innerHTML='<div style="font-size:11px;color:var(--text-light);">None this round.</div>';
 })();
-
 function s07CheckAnswers(){
-  if(window.s07Locked)return;
-  const status=document.getElementById('s07-status');
-  const rows=document.querySelectorAll('#s07-grid .s07-cross-row');
-  let all=true,filled=0,total=0,right=0;
-  rows.forEach(row=>{
-    const ans=row.dataset.ans||'';
-    row.querySelectorAll('input.s07-cross-cell').forEach((c,i)=>{
-      total++;const v=(c.value||'').toUpperCase();if(v)filled++;
-      c.classList.remove('correct','wrong');
-      if(v&&v===ans[i]){c.classList.add('correct');right++;}else if(v){c.classList.add('wrong');all=false;}else{all=false;}
-    });
-  });
-  if(!status)return;
-  status.classList.remove('win','partial');
-  if(all&&filled===total){status.textContent='✓ All five solved — coffee\'s on us. Email your name to #podx-fun.';status.classList.add('win');}
-  else if(filled===0){status.textContent='Nothing typed yet — give it a try.';}
-  else{status.textContent=right+' / '+total+' correct. Wrong letters highlighted.';status.classList.add('partial');}
+  if(window.s07Locked)return;const G=window.__s07G;if(!G)return;
+  const status=document.getElementById('s07-status');let total=0,filled=0,right=0;
+  document.querySelectorAll('#s07-cw .s07-cw-inp').forEach(inp=>{const r=+inp.dataset.r,c=+inp.dataset.c;total++;const v=(inp.value||'').toUpperCase();if(v)filled++;
+    inp.parentElement.classList.remove('correct','wrong');
+    if(v&&v===G.sol[r][c]){inp.parentElement.classList.add('correct');right++;}else if(v){inp.parentElement.classList.add('wrong');}});
+  if(!status)return;status.classList.remove('win','partial');
+  if(right===total&&filled===total){status.textContent='\u2713 Solved, the whole grid is correct. Email your name to #podx-fun.';status.classList.add('win');}
+  else if(filled===0){status.textContent='Nothing typed yet, click a clue to start.';}
+  else{status.textContent=right+' / '+total+' letters correct. Wrong ones are highlighted.';status.classList.add('partial');}
 }
 function s07ClearGrid(){
   if(window.s07Locked)return;
-  document.querySelectorAll('#s07-grid input.s07-cross-cell').forEach(c=>{c.value='';c.classList.remove('correct','wrong');});
+  document.querySelectorAll('#s07-cw .s07-cw-inp').forEach(inp=>{inp.value='';inp.parentElement.classList.remove('correct','wrong');});
   const s=document.getElementById('s07-status');if(s){s.classList.remove('win','partial');s.textContent='Cleared. Start fresh.';}
 }
 function s07RevealAnswers(){
-  if(window.s07Locked)return;
-  if(!window.confirm('Reveal all answers? This ends the game — you won\'t be able to play it again.'))return;
+  if(window.s07Locked)return;const G=window.__s07G;if(!G)return;
+  if(!window.confirm('Reveal all answers? This ends the game, you won\u0027t be able to play it again.'))return;
   window.s07Locked=true;
-  const rows=document.querySelectorAll('#s07-grid .s07-cross-row');
-  rows.forEach(row=>{
-    const ans=row.dataset.ans||'';
-    row.querySelectorAll('input.s07-cross-cell').forEach((c,i)=>{
-      c.value=ans[i]||'';
-      c.classList.remove('wrong');c.classList.add('correct');
-      c.readOnly=true;c.disabled=true;
-    });
-  });
-  // lock the controls so the game can't be replayed
-  ['s07-check-btn','s07-clear-btn','s07-reveal-btn'].forEach(id=>{
-    const b=document.getElementById(id);
-    if(b){b.disabled=true;b.style.opacity='0.5';b.style.cursor='not-allowed';}
-  });
-  const s=document.getElementById('s07-status');
-  if(s){s.classList.remove('partial');s.classList.add('win');s.textContent='✦ Answers revealed — game over. Refresh the page if you\'d like to try again.';}
+  document.querySelectorAll('#s07-cw .s07-cw-inp').forEach(inp=>{const r=+inp.dataset.r,c=+inp.dataset.c;inp.value=G.sol[r][c]||'';inp.parentElement.classList.remove('wrong');inp.parentElement.classList.add('correct');inp.readOnly=true;inp.disabled=true;});
+  ['s07-check-btn','s07-clear-btn','s07-reveal-btn'].forEach(id=>{const b=document.getElementById(id);if(b){b.disabled=true;b.style.opacity='0.5';b.style.cursor='not-allowed';}});
+  const s=document.getElementById('s07-status');if(s){s.classList.remove('partial');s.classList.add('win');s.textContent='\u2726 Answers revealed, game over. Refresh to play again.';}
 }
 function s07ClearGrid_end(){}
 
@@ -3485,7 +3521,7 @@ function s03Toggle(btn) {
   new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){bars.forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+'%',i*200));}});},{threshold:0.35}).observe(chart);
 })();
 
-/* ══ SECTION 08 — METEOR RAIN (live element on the light calendar) ══ */
+/* ══ SECTION 08, METEOR RAIN (live element on the light calendar) ══ */
 (function(){
   const stage=document.getElementById('s08-cal-stage');if(!stage)return;
   const N=8;
@@ -3521,21 +3557,24 @@ function s03Toggle(btn) {
   bar.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
 })();
 
-/* ══ SECTION 06 — TIPS JAR (v9: pull · unfurl · burst · carousel) ══ */
+/* ══ SECTION 06, TIPS JAR (v9: pull · unfurl · burst · carousel) ══ */
 (function(){
   const TIPS = [
-    { title: "📊 HCP open rates peak Tuesday–Thursday, 7–9 AM", body: "Analysis of 2M+ medical emails shows HCP open rates are 23% higher mid-week mornings vs Monday/Friday. Send times matter — especially for event invites or new evidence alerts. Use AJO send-time optimization when possible; otherwise default to Tuesday 8 AM local time. Source: Internal GMAO analytics, Q1 2026." },
+    { title: "📋 Paste, don't describe", body: "Drop in the actual content: a URL, a doc, raw data. Claude works better with real inputs than with vague descriptions of them." },
+    { title: "✍️ Meta-prompt it: let Claude write the prompt", body: "Not sure how to prompt Claude for a complex task? Ask Claude to draft the prompt for you first, then refine it together." },
+    { title: "🧭 Coach yourself with Valence", body: "Valence is a Lilly-approved AI coach for navigating workplace dynamics, tricky conversations, and team situations. → coach.valence.co" },
+    { title: "📊 HCP open rates peak Tuesday–Thursday, 7–9 AM", body: "Analysis of 2M+ medical emails shows HCP open rates are 23% higher mid-week mornings vs Monday/Friday. Send times matter, especially for event invites or new evidence alerts. Use AJO send-time optimization when possible; otherwise default to Tuesday 8 AM local time. Source: Internal GMAO analytics, Q1 2026." },
     { title: "📑 Physicians trust peer-reviewed content 3× more", body: "A 2025 Journal of Medical Internet Research study found HCPs are 3× more likely to engage with content citing peer-reviewed sources vs company-generated materials. Lead with evidence, cite journals, and save branding for footer-level attribution. Credibility drives engagement." },
-    { title: "⚡ Command Post — your M365 intelligence briefing", body: "Say \"Catch me up\" and get a PDB-style report scanning 7 days of emails, tasks, approvals, and follow-ups across M365. Surfaces buried action items in under a minute. Built by Ethan Whitaker. → Download: collab.lilly.com/sites/LillyClaudeSkillsHub (ID=14)" },
-    { title: "✂️ Token Efficient Responses — get to the point faster", body: "Instructs Claude to lead with the answer, cut preamble, and match length to task complexity. Reduces output tokens without losing quality. Best for everyday Q&A, summaries, and rewrites. Built by AJ Lahade. → collab.lilly.com/sites/LillyClaudeSkillsHub (ID=45)" },
-    { title: "🎓 Stop saving prompts in Google Docs — use Skills", body: "If you keep pasting your \"best prompt for X\" into a Doc and copying it back, there's a better way. Claude Skills are reusable instruction sets you save once and trigger with a slash command in any chat. Setup: Customize → + → Create Skill (1. description + when to fire it, 2. instructions, 3. two or three example outputs). Activate by typing /[skill-name] anywhere." }
+    { title: "⚡ Command Post, your M365 intelligence briefing", body: "Say \"Catch me up\" and get a PDB-style report scanning 7 days of emails, tasks, approvals, and follow-ups across M365. Surfaces buried action items in under a minute. Built by Ethan Whitaker. → Download: collab.lilly.com/sites/LillyClaudeSkillsHub (ID=14)" },
+    { title: "✂️ Token Efficient Responses, get to the point faster", body: "Instructs Claude to lead with the answer, cut preamble, and match length to task complexity. Reduces output tokens without losing quality. Best for everyday Q&A, summaries, and rewrites. Built by AJ Lahade. → collab.lilly.com/sites/LillyClaudeSkillsHub (ID=45)" },
+    { title: "🎓 Stop saving prompts in Google Docs, use Skills", body: "If you keep pasting your \"best prompt for X\" into a Doc and copying it back, there's a better way. Claude Skills are reusable instruction sets you save once and trigger with a slash command in any chat. Setup: Customize → + → Create Skill (1. description + when to fire it, 2. instructions, 3. two or three example outputs). Activate by typing /[skill-name] anywhere." }
   ];
 
-  const crumpleOrder = [4, 3, 1, 2, 0];
+  const crumpleOrder = [7, 6, 5, 4, 3, 1, 2, 0];
   let crumplesRemovedCount = 0;
 
   let availableIndices = TIPS.map((_, i) => i);
-  // Dynamic initial "TIPS LEFT" count — always reflects the tips array length
+  // Dynamic initial "TIPS LEFT" count, always reflects the tips array length
   (function(){ const tn = document.getElementById('tickerNum'); if (tn) tn.textContent = availableIndices.length; })();
   let pulledTips = [];
   let lastPulledIndex = -1;
@@ -3559,7 +3598,7 @@ function s03Toggle(btn) {
   const pullProgress = document.getElementById('pullProgress');
   const pullProgressText = document.getElementById('pullProgressText');
 
-  // First-pull hint — appears after 2s, removes on first interaction
+  // First-pull hint, appears after 2s, removes on first interaction
   let hintShown = false;
   let hintDismissed = false;
   setTimeout(() => {
@@ -3622,7 +3661,7 @@ function s03Toggle(btn) {
     if (count > 0) pullProgress.classList.add('visible');
   }
 
-  // BURST SPECKS — emit from jar rim when lid pops, settle then fade
+  // BURST SPECKS, emit from jar rim when lid pops, settle then fade
   const burstContainer = document.getElementById('burstContainer');
   function emitBurstSpecks() {
     // Find the jar's position relative to the section
@@ -3875,7 +3914,7 @@ function s03Toggle(btn) {
       flyingContainer.classList.add('animate');
     }, 460);
 
-    // Burst specks emerge from jar rim — narrative beat: the jar "releases ideas"
+    // Burst specks emerge from jar rim, narrative beat: the jar "releases ideas"
     setTimeout(() => emitBurstSpecks(), 480);
 
     setTimeout(() => jar.classList.remove('shake'), 880);
@@ -3921,7 +3960,7 @@ function s03Toggle(btn) {
 })();
 
 /* ══ PAST EDITIONS TAB + DRAWER ══ */
-/* ══ PAST EDITIONS — pill expander toggle ══ */
+/* ══ PAST EDITIONS, pill expander toggle ══ */
 function pe2Toggle(){
   const pill=document.getElementById('pe2-pill');
   const panel=document.getElementById('pe2-panel');
