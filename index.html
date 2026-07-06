@@ -2871,7 +2871,8 @@
     margin: 0;
   }
   .ts-title .ts-pop {
-    color: var(--coral);
+    color: var(--lilly-red);
+    font-style: italic;
     position: relative;
     display: inline-block;
   }
@@ -3329,9 +3330,18 @@
 
 <style>
 /* ===== EXPA: expanding-circles (sonar) motif, from the before design ===== */
-@keyframes tsSonar{0%{transform:scale(0.2);opacity:0.8}100%{transform:scale(1.5);opacity:0}}
+@keyframes tsSonar{
+  0%{transform:scale(0.4);opacity:0.7}
+  50%{opacity:0.35}
+  100%{transform:scale(2.2);opacity:0}
+}
+@keyframes tsSonarGlow{
+  0%{transform:scale(0.6);opacity:0.5}
+  100%{transform:scale(1.8);opacity:0}
+}
 #sec-04 .ts-sonar-svg{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
-#sec-04 .ts-sonar-ring{transform-origin:center;transform-box:fill-box;animation:tsSonar 4.5s ease-out infinite;opacity:0;}
+#sec-04 .ts-sonar-ring{transform-origin:center;transform-box:fill-box;animation:tsSonar 5.5s cubic-bezier(0.25,0.46,0.45,0.94) infinite;opacity:0;}
+#sec-04 .ts-sonar-ring.glow{animation-name:tsSonarGlow;animation-duration:6s;}
 #sec-04 .ts-tabpanel{position:relative;overflow:hidden;}
 #sec-04 .ts-tabpanel > *:not(.ts-sonar-svg){position:relative;z-index:1;}
 </style>
@@ -3723,7 +3733,7 @@
       <div class="ts-tabpanels">
 
         <!-- ===== Panel 1: Foundayo ===== -->
-        <div class="ts-tabpanel ts-tabpanel-foundayo is-active" id="ts-panel-foundayo" role="tabpanel" aria-labelledby="ts-tabbtn-foundayo"><svg class="ts-sonar-svg" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><circle class="ts-sonar-ring" cx="300" cy="150" r="34" fill="none" stroke="rgba(213,43,30,0.5)" stroke-width="2"/><circle class="ts-sonar-ring" cx="300" cy="150" r="34" fill="none" stroke="rgba(213,43,30,0.38)" stroke-width="2" style="animation-delay:1.5s"/><circle class="ts-sonar-ring" cx="300" cy="150" r="34" fill="none" stroke="rgba(213,43,30,0.26)" stroke-width="2" style="animation-delay:3s"/><circle class="ts-sonar-ring" cx="92" cy="58" r="22" fill="none" stroke="rgba(200,148,58,0.42)" stroke-width="2" style="animation-delay:0.8s"/><circle class="ts-sonar-ring" cx="92" cy="58" r="22" fill="none" stroke="rgba(200,148,58,0.3)" stroke-width="2" style="animation-delay:2.3s"/></svg>
+        <div class="ts-tabpanel ts-tabpanel-foundayo is-active" id="ts-panel-foundayo" role="tabpanel" aria-labelledby="ts-tabbtn-foundayo"><svg class="ts-sonar-svg" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><circle class="ts-sonar-ring" cx="310" cy="145" r="38" fill="none" stroke="rgba(213,43,30,0.45)" stroke-width="1.5"/><circle class="ts-sonar-ring" cx="310" cy="145" r="38" fill="none" stroke="rgba(213,43,30,0.32)" stroke-width="1.5" style="animation-delay:1.8s"/><circle class="ts-sonar-ring" cx="310" cy="145" r="38" fill="none" stroke="rgba(213,43,30,0.2)" stroke-width="1.5" style="animation-delay:3.6s"/><circle class="ts-sonar-ring glow" cx="310" cy="145" r="50" fill="none" stroke="rgba(213,43,30,0.12)" stroke-width="3" style="animation-delay:0.5s"/><circle class="ts-sonar-ring" cx="85" cy="55" r="24" fill="none" stroke="rgba(200,148,58,0.38)" stroke-width="1.5" style="animation-delay:0.9s"/><circle class="ts-sonar-ring" cx="85" cy="55" r="24" fill="none" stroke="rgba(200,148,58,0.24)" stroke-width="1.5" style="animation-delay:2.7s"/></svg>
           <span class="ts-work-eyebrow">★ Live &amp; Shipping</span>
           <span class="ts-badge">★ In Market</span>
           <h2>Foundayo&trade; HCP journey is live.</h2>
@@ -3798,7 +3808,7 @@
         </div>
 
         <!-- ===== Panel 2: Oura x Lilly Direct ===== -->
-        <div class="ts-tabpanel ts-tabpanel-oura" id="ts-panel-oura" role="tabpanel" aria-labelledby="ts-tabbtn-oura" hidden><svg class="ts-sonar-svg" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><circle class="ts-sonar-ring" cx="300" cy="150" r="34" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/><circle class="ts-sonar-ring" cx="300" cy="150" r="34" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" style="animation-delay:1.5s"/><circle class="ts-sonar-ring" cx="300" cy="150" r="34" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="2" style="animation-delay:3s"/><circle class="ts-sonar-ring" cx="92" cy="58" r="22" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" style="animation-delay:0.8s"/><circle class="ts-sonar-ring" cx="92" cy="58" r="22" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="2" style="animation-delay:2.3s"/></svg>
+        <div class="ts-tabpanel ts-tabpanel-oura" id="ts-panel-oura" role="tabpanel" aria-labelledby="ts-tabbtn-oura" hidden><svg class="ts-sonar-svg" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><circle class="ts-sonar-ring" cx="310" cy="145" r="38" fill="none" stroke="rgba(255,255,255,0.48)" stroke-width="1.5"/><circle class="ts-sonar-ring" cx="310" cy="145" r="38" fill="none" stroke="rgba(255,255,255,0.34)" stroke-width="1.5" style="animation-delay:1.8s"/><circle class="ts-sonar-ring" cx="310" cy="145" r="38" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" style="animation-delay:3.6s"/><circle class="ts-sonar-ring glow" cx="310" cy="145" r="50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="3" style="animation-delay:0.5s"/><circle class="ts-sonar-ring" cx="85" cy="55" r="24" fill="none" stroke="rgba(255,255,255,0.36)" stroke-width="1.5" style="animation-delay:0.9s"/><circle class="ts-sonar-ring" cx="85" cy="55" r="24" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" style="animation-delay:2.7s"/></svg>
           <div class="ts-oura-inner">
             <div class="ts-oura-copy">
               <span class="ts-work-eyebrow">★ Fresh Win &middot; Just Shipped</span>
@@ -4893,9 +4903,12 @@
 (function(){
   document.querySelectorAll('a[href^="#sec-"]').forEach(l=>{
     l.addEventListener('click',e=>{
-      const el=document.getElementById(l.getAttribute('href').slice(1));
+      const id=l.getAttribute('href').slice(1);
+      const el=document.getElementById(id);
       if(!el)return;
       e.preventDefault();
+      /* Update hash for bookmarking (without triggering a jump) */
+      if(history.replaceState)history.replaceState(null,null,'#'+id);
       /* Scroll within this document. Works when the newsletter is the top-level page
          (e.g. GitHub Pages) and inside any iframe that keeps its own scrollbar. */
       try{el.scrollIntoView({behavior:'smooth',block:'start'});}catch(_){el.scrollIntoView();}
@@ -4906,7 +4919,7 @@
       if(window.parent && window.parent!==window){
         try{
           var top=Math.round(el.getBoundingClientRect().top+(window.scrollY||window.pageYOffset||0));
-          window.parent.postMessage({type:'expa-newsletter-scrollto',id:el.id,top:top},'*');
+          window.parent.postMessage({type:'expa-newsletter-scrollto',id:id,top:top},'*');
         }catch(_){ }
       }
     });
