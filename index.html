@@ -91,7 +91,7 @@
   .nl-cursor-dot.is-hover { width: 28px; height: 28px; background: rgba(213,43,30,0.25); }
 
   /* SECTION SHELL */
-  .nl-section { background: var(--white); border-radius: 20px; border: 1.5px solid var(--border); overflow: hidden; position: relative; box-shadow: 0 4px 14px rgba(26,43,74,0.05); }
+  .nl-section { background: var(--white); border-radius: 20px; border: 1.5px solid var(--border); overflow: hidden; position: relative; box-shadow: 0 4px 14px rgba(26,43,74,0.05); width: 100%; }
   .nl-ribbon { background: var(--navy); color: var(--cream); padding: 9px 22px; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
   .nl-ribbon span:last-child { opacity: 0.65; }
   .nl-ribbon .nl-pulse { display: inline-block; width: 7px; height: 7px; background: var(--lilly-red); border-radius: 50%; margin-right: 8px; animation: nlPulse 1.6s ease-in-out infinite; vertical-align: middle; }
@@ -254,6 +254,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     align-items: stretch;
+    width: 100%;
   }
   .s06s08-wrapper .nl-section {
     margin: 0;
@@ -282,8 +283,6 @@
     .s04-meta { grid-template-columns: 1fr; }
     .s01-teams { flex-wrap: wrap; }
     .s01-team-box { flex: 1 1 100%; }
-    .s01-team-box-pers.open { flex-grow: 1; }
-    .s01-team-box-pers.open .s01-tag-drawer { max-width: 100%; }
   }
 
 
@@ -1466,22 +1465,8 @@
   .s01-team-box-work { font-size:11px; color:var(--slate); line-height:1.45; }
 
   /* ── Tagging live sideways expander (engulfed by the Personalization box) ── */
-  .s01-team-box-pers { padding:0; display:flex; align-items:stretch; overflow:hidden; position:relative; }
-  .s01-team-box-pers.open { flex-grow:2.35; }
-  .s01-pers-main { flex:1 1 auto; min-width:0; padding:14px 16px; }
-  .s01-tag-drawer {
-    flex:0 0 0; width:0; max-width:0; min-width:0; opacity:0; padding:14px 0;
-    border-left:1px dashed #2D7D4666;
-    background:linear-gradient(135deg,#D4EAD9,#E3F0E6);
-    overflow:hidden; white-space:nowrap;
-    transition:max-width 0.65s cubic-bezier(0.22,1,0.36,1), opacity 0.45s ease 0.12s, padding 0.65s cubic-bezier(0.22,1,0.36,1);
-  }
-  .s01-team-box-pers.open .s01-tag-drawer { flex:1 1 auto; max-width:62%; width:auto; opacity:1; padding:14px 16px; }
-  .s01-tag-drawer.wrapped { white-space:normal; }
-  .s01-tag-head { display:flex; align-items:center; gap:7px; margin-bottom:8px; }
-  .s01-tag-badge { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:99px; font-size:9px; letter-spacing:0.14em; font-weight:700; text-transform:uppercase; background:#2D7D46; color:#fff; white-space:nowrap; }
-  .s01-tag-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.9); flex-shrink:0; }
-  .s01-tag-work { font-size:11px; color:#225A33; line-height:1.45; }
+  .s01-team-box-pers { padding:14px 16px; }
+  .s01-pers-main { }
 
   /* ── SEC 03 team filter tabs ── */
   .s03-team-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
@@ -3451,7 +3436,7 @@
             </div>
             <div class="s01-team-box s01-team-box-omni">
               <div class="s01-team-box-head">
-                <span class="team-pill team-pill-omni">Omnichannel</span>
+                <span class="team-pill team-pill-omni">IBU Omnichannel</span>
               </div>
               <div class="s01-team-box-leader">Sharath Narayan</div>
               <div class="s01-team-box-work">Create consistent and connected brand experiences across all channels, online, offline, and everything in between, ensuring a unified journey for every user.</div>
@@ -3521,11 +3506,11 @@
     </div>
     <div class="nl-eyebrow">TEAM SPOTLIGHTS</div>
     <h2 class="nl-h1">Wins worth <span class="accent">celebrating.</span></h2>
-    <p class="nl-lede">Wins from across Digital Engagement, Omnichannel, and Medical Omnichannel, AI tools, pipeline speed-ups, and awards. Filter by team or browse all.</p>
+    <p class="nl-lede">Wins from across Digital Engagement, IBU Omnichannel, and Medical Omnichannel, AI tools, pipeline speed-ups, and awards. Filter by team or browse all.</p>
     <div class="s03-team-tabs">
       <button class="s03-team-tab all active" onclick="s03Filter('all',this)">ALL TEAMS</button>
       <button class="s03-team-tab de" onclick="s03Filter('de',this)">Digital Engagement</button>
-      <button class="s03-team-tab omni" onclick="s03Filter('omni',this)">Omnichannel</button>
+      <button class="s03-team-tab omni" onclick="s03Filter('omni',this)">IBU Omnichannel</button>
       <button class="s03-team-tab gmcxo" onclick="s03Filter('gmcxo',this)">Medical Omnichannel</button>
     </div>
     <div class="s03-people-grid" id="s03-grid">
@@ -3573,8 +3558,8 @@
       <div class="s03-person-card" data-team="omni">
         <div class="s03-person-card-top">
           <div class="s03-person-name">Cross-Team Collaboration</div>
-          <span class="team-pill team-pill-omni">Omnichannel</span>
-          <div class="s03-person-role">Initiative · Omnichannel</div>
+          <span class="team-pill team-pill-omni">IBU Omnichannel</span>
+          <div class="s03-person-role">Initiative · IBU Omnichannel</div>
           <div class="s03-person-achievement">10–15% story-points cut per year: one PoC now covers the entire request instead of separate OC and DT PoCs.</div>
         </div>
         <div class="s03-person-card-foot">
@@ -3592,8 +3577,8 @@
       <div class="s03-person-card" data-team="omni">
         <div class="s03-person-card-top">
           <div class="s03-person-name">IBU Chat Buddy</div>
-          <span class="team-pill team-pill-omni">Omnichannel</span>
-          <div class="s03-person-role">AI Agent · Omnichannel</div>
+          <span class="team-pill team-pill-omni">IBU Omnichannel</span>
+          <div class="s03-person-role">AI Agent · IBU Omnichannel</div>
           <div class="s03-person-achievement">Around 20% effort reduction for users: a Copilot-powered agent tuned for the team, with quicker turnaround on affiliate queries.</div>
         </div>
         <div class="s03-person-card-foot">
@@ -3726,7 +3711,7 @@
       <div class="ts-tabpanels">
 
         <!-- ===== Panel 1: Foundayo ===== -->
-        <div class="ts-tabpanel ts-tabpanel-foundayo is-active" id="ts-panel-foundayo" role="tabpanel" aria-labelledby="ts-tabbtn-foundayo"><svg class="ts-sonar-svg" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><circle class="ts-sonar-ring" cx="310" cy="145" r="38" fill="none" stroke="rgba(213,43,30,0.45)" stroke-width="1.5"/><circle class="ts-sonar-ring" cx="310" cy="145" r="38" fill="none" stroke="rgba(213,43,30,0.32)" stroke-width="1.5" style="animation-delay:1.8s"/><circle class="ts-sonar-ring" cx="310" cy="145" r="38" fill="none" stroke="rgba(213,43,30,0.2)" stroke-width="1.5" style="animation-delay:3.6s"/><circle class="ts-sonar-ring glow" cx="310" cy="145" r="50" fill="none" stroke="rgba(213,43,30,0.12)" stroke-width="3" style="animation-delay:0.5s"/><circle class="ts-sonar-ring" cx="85" cy="55" r="24" fill="none" stroke="rgba(200,148,58,0.38)" stroke-width="1.5" style="animation-delay:0.9s"/><circle class="ts-sonar-ring" cx="85" cy="55" r="24" fill="none" stroke="rgba(200,148,58,0.24)" stroke-width="1.5" style="animation-delay:2.7s"/></svg>
+        <div class="ts-tabpanel ts-tabpanel-foundayo is-active" id="ts-panel-foundayo" role="tabpanel" aria-labelledby="ts-tabbtn-foundayo">
           <span class="ts-work-eyebrow">★ Live &amp; Shipping</span>
           <span class="ts-badge">★ In Market</span>
           <h2>Foundayo&trade; HCP journey is live.</h2>
@@ -4466,11 +4451,11 @@
           <div class="s09-story">
             <div class="s09-story-num">14</div>
             <div class="s09-story-body">
-              <div class="s09-story-h">🎯 Your move next: NOVA just levelled up — meet SuperNOVA</div>
+              <div class="s09-story-h">🎯 Your move next: NOVA just levelled up. Meet SuperNOVA</div>
               <div class="s09-nova">
                 <div class="s09-nova-eye">◆ LILLY · AI UPSKILLING</div>
-                <div class="s09-story-p" style="margin-bottom:8px;">NOVA is no longer just a learning hub — it's becoming the place where AI ideas find a home, projects get discovered, and collaboration goes further than ever. The NOVA Core Team introduced <strong>SuperNOVA</strong>, a new layer launching <strong>July 22</strong> that helps you validate whether your AI idea is the right problem, the right solution, and worth building — in minutes, not months. The goal: stop reinventing, start connecting. Every AI project lives in one place, gets discovered, and never gets duplicated again.</div>
-                <div class="s09-story-p" style="margin-bottom:8px;">Alongside SuperNOVA, the team also launched the <strong>Databricks FastTrack Program</strong> (Jul–Aug 2026, virtual, 9 AM–1 PM IST). It offers three skill tracks — <strong>Business User</strong> (no coding needed), <strong>Data Engineer</strong> (pipelines, Unity Catalog, production architecture), and <strong>Generative AI Engineer</strong> (design, deploy, evaluate GenAI apps). NOVA is partnering with <strong>Workera</strong> to align Databricks learning with AI skill assessments. Seats are limited — register early.</div>
+                <div class="s09-story-p" style="margin-bottom:8px;">NOVA is no longer just a learning hub. It's becoming the place where AI ideas find a home, projects get discovered, and collaboration goes further than ever. The NOVA Core Team introduced <strong>SuperNOVA</strong>, a new layer launching <strong>July 22</strong> that helps you validate whether your AI idea is the right problem, the right solution, and worth building, in minutes, not months. The goal: stop reinventing, start connecting. Every AI project lives in one place, gets discovered, and never gets duplicated again.</div>
+                <div class="s09-story-p" style="margin-bottom:8px;">Alongside SuperNOVA, the team also launched the <strong>Databricks FastTrack Program</strong> (Jul to Aug 2026, virtual, 9 AM to 1 PM IST). It offers three skill tracks: <strong>Business User</strong> (no coding needed), <strong>Data Engineer</strong> (pipelines, Unity Catalog, production architecture), and <strong>Generative AI Engineer</strong> (design, deploy, evaluate GenAI apps). NOVA is partnering with <strong>Workera</strong> to align Databricks learning with AI skill assessments. Seats are limited, so register early.</div>
                 <div class="s09-nova-buttons">
                   <a href="https://collab.lilly.com/sites/CommercialAIUpskilling" class="s09-nova-btn">→ NOVA Hub</a>
                   <a href="https://collab.lilly.com/sites/CommercialAIUpskilling#frequently-asked-questions" class="s09-nova-btn">→ FAQs</a>
@@ -4487,7 +4472,7 @@
 
 
 <!-- TEAM BEHIND + THAT'S-A-WRAP side by side -->
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;width:100%;">
 
 <!-- THAT'S A WRAP (sign-off) -->
 <!-- FOOTER -->
@@ -5748,41 +5733,7 @@ function pe2Toggle(){
 }
 </script>
 <script>
-/* Tagging live expander: loops open/close with 8s read time */
-(function () {
-  var OPEN_DURATION = 8000;   /* 8s to read the tagging content */
-  var CLOSE_DURATION = 3000;  /* 3s closed before reopening */
-  var INITIAL_DELAY = 1400;   /* delay before first open */
-
-  var box = document.getElementById('s01-pers-box');
-  var drawer = document.getElementById('s01-tag-drawer');
-  if (!box) return;
-
-  function openTagging() {
-    box.classList.add('open');
-    if (drawer) {
-      drawer.setAttribute('aria-hidden', 'false');
-      setTimeout(function () { drawer.classList.add('wrapped'); }, 720);
-    }
-    setTimeout(closeTagging, OPEN_DURATION);
-  }
-
-  function closeTagging() {
-    box.classList.remove('open');
-    if (drawer) {
-      drawer.setAttribute('aria-hidden', 'true');
-      drawer.classList.remove('wrapped');
-    }
-    setTimeout(openTagging, CLOSE_DURATION);
-  }
-
-  function schedule() { setTimeout(openTagging, INITIAL_DELAY); }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', schedule);
-  } else {
-    schedule();
-  }
-})();
+/* Tagging live expander removed — Personalization box is now static */
 </script>
 <script>
 
