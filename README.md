@@ -1,4 +1,4 @@
-# IBU PODx Newsletter
+# EXPA Newsletter
 
 Monthly newsletter for the **IBU Personalisation, Omnichannel & Digital** team at Eli Lilly.
 
